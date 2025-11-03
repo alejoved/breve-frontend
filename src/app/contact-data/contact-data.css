@@ -1,0 +1,14 @@
+.formulario-card {
+  max-width: 400px;
+  margin: 2em auto;
+  padding: 1em;
+}
+
+mat-form-field {
+  width: 100%;
+  /* Hace que los campos ocupen todo el ancho dentro de la tarjeta */
+}
+
+button {
+  width: 100%;
+}
