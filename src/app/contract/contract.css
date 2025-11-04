@@ -1,0 +1,33 @@
+.suscripcion-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 600px;
+}
+
+.contrato-texto {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  max-height: 200px;
+  overflow-y: auto; /* Permite desplazamiento si el contrato es largo */
+  font-size: 0.9em;
+}
+
+ul {
+  margin-top: 10px;
+}
+.contrato-aceptado-msg {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+mat-card-actions button {
+  margin-right: 10px;
+}

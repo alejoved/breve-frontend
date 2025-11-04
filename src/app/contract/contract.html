@@ -1,1 +1,51 @@
-<p>contract works!</p>
+<div class="suscripcion-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Contract</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <h3>Contrato de Ejemplo de Suscripción</h3>
+      
+      <div class="contrato-texto">
+        <!-- El contrato de ejemplo va aquí -->
+        <p>
+          Este es un **Contrato de Suscripción de Ejemplo**. Al hacer clic en "Aceptar Contrato", usted (el "Usuario") acepta los siguientes términos y condiciones:
+        </p>
+        <ul>
+          <li>El servicio se proporciona "tal cual" y sin garantía.</li>
+          <li>La suscripción tiene una duración de un año desde la fecha de aceptación.</li>
+          <li>Los datos proporcionados serán tratados de acuerdo a nuestra política de privacidad.</li>
+          <li>Nos reservamos el derecho de modificar los términos con previo aviso de 30 días.</li>
+        </ul>
+        <p>
+          Asegúrese de leer los términos completos antes de proceder.
+        </p>
+      </div>
+      <p *ngIf="contract" class="contrato-aceptado-msg">
+        ✅ **¡Contrato aceptado!** Puede continuar.
+      </p>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <!-- Botón Aceptar Contrato: Se deshabilita una vez aceptado -->
+      <button 
+        mat-raised-button 
+        color="accent" 
+        (click)="contractAccept()"
+        [disabled]="contract">
+        Aceptar Contrato
+      </button>
+
+      <!-- Botón Continuar: Solo se habilita si el contrato está aceptado -->
+      <button 
+        mat-raised-button 
+        color="primary" 
+        [disabled]="!contract"
+        (click)="continue()">
+        Continuar
+      </button>
+      </mat-card-actions>
+  </mat-card>
+</div>

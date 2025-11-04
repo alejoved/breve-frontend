@@ -1,1 +1,40 @@
-<p>additional-information works!</p>
+<div class="form-container">
+  <h2>Información adicional</h2>
+  <p></p>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="genre">Género:</label>
+      <select id="genre" formControlName="genre">
+        <option *ngFor="let genre of genres" [value]="genre.value">
+          {{ genre.viewValue }}
+        </option>
+      </select>
+      <div *ngIf="form.get('genre')?.invalid && form.get('genre')?.touched" class="error-message">
+        Este campo es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="documentType">Tipo de documento:</label>
+      <select id="documentType" formControlName="documentType">
+        <option value="" disabled>Seleccione una opción</option>
+        <option *ngFor="let type of documentTypes" [value]="type.value">
+          {{ type.viewValue }}
+        </option>
+      </select>
+      <div *ngIf="form.get('documentType')?.invalid && form.get('documentType')?.touched" class="error-message">
+        Este campo es obligatorio.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="documentNumber">Número de documento:</label>
+      <input type="text" id="documentNumber" formControlName="documentNumber" placeholder="Ingrese el número de documento">
+      <div *ngIf="form.get('documentNumber')?.invalid && form.get('documentNumber')?.touched" class="error-message">
+        <span *ngIf="form.get('documentNumber')?.errors?.['required']">Este campo es obligatorio.</span>
+        <span *ngIf="form.get('documentNumber')?.errors?.['pattern']">Ingrese solo números.</span>
+      </div>
+    </div>
+
+    <button type="submit" (click)="continue()">Continuar</button>
+  </form>
+</div>
