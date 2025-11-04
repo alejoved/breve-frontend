@@ -1,1 +1,57 @@
-<p>summary works!</p>
+<div class="summary-container">
+  <mat-card class="subscription-card">
+    <mat-card-header>
+      <div mat-card-avatar class="avatar-icon">
+        <mat-icon>subscriptions</mat-icon>
+      </div>
+      <mat-card-title class="title-row">
+        <span>{{ plan?.name }}</span>
+        <span class="price" *ngIf="plan">{{ plan.price }}</span>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <section class="features" *ngIf="plan?.benefits?.length">
+        <h4>Características</h4>
+        <ul class="benefits-list">
+          <li *ngFor="let b of plan?.benefits">{{ b }}</li>
+        </ul>
+      </section>
+
+      <section class="customer" *ngIf="customer">
+        <h4>Datos del cliente</h4>
+        <mat-list>
+          <mat-list-item>
+            <mat-icon matListIcon>person</mat-icon>
+            <h4 matLine>Nombre</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 matLine>{{customer.name}}</h4>
+          </mat-list-item>
+
+          <mat-list-item>
+            <mat-icon matListIcon>email</mat-icon>
+            <h4 matLine>Correo</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 matLine>{{customer.email}}</h4>
+          </mat-list-item>
+
+          <mat-list-item>
+            <mat-icon matListIcon>badge</mat-icon>
+            <h4 matLine>Identificación</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 matLine>{{customer.documentNumber}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </section>
+
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit" (click)="pay()">Pagar</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { Company } from '../model/company';
 import { CompanyService } from '../service/company-service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { error_swal } from '../../constants';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +36,11 @@ export class Home {
   }
 
   async getAll(){
-    this.companies = await this.companyService.getAll();
+    try {
+      this.companies = await this.companyService.getAll();
+    } catch (ex: any){
+      Swal.fire({ icon: error_swal, title: ex.name, text: ex.error, footer: ex.error.codigo });
+    }
   }
 
   continue(){

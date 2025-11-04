@@ -48,7 +48,7 @@ export class PlanSelection {
       this.plans = await this.planService.filterByCompany(this.companyId!);
       this.cdr.detectChanges(); 
     } catch (ex: any){
-      Swal.fire({ icon: error_swal, title: ex.error.mensaje, text: ex.error.datos, footer: ex.error.codigo });
+      Swal.fire({ icon: error_swal, title: ex.name, text: ex.error, footer: ex.error.codigo });
     }
   }
 
@@ -57,8 +57,12 @@ export class PlanSelection {
   }
 
   async confirmSelection(){
-    this.plan = await this.planService.filterById(this.planId);
-    this.router.navigate(['/additional-information'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.plan.id}}});
+    try {
+      this.plan = await this.planService.filterById(this.planId);
+      this.router.navigate(['/additional-information'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.plan.id}}});
+    } catch (ex: any){
+      Swal.fire({ icon: error_swal, title: ex.name, text: ex.error, footer: ex.error.codigo });
+    }
   }
 
 }

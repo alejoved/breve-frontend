@@ -77,7 +77,6 @@ export class ContactData {
           this.router.navigate(['/plan-selection'], { state: { company: { id: this.companyId }, customer: {id: this.customer.id } }});
         }
       } catch (ex: any){
-        console.log(ex);
         Swal.fire({ icon: error_swal, title: ex.name, text: ex.error, footer: ex.error.codigo });
       }
     }

@@ -31,7 +31,7 @@ export class CompanyService {
     return await firstValueFrom(observable);
   }
 
-  async filterById(id: number): Promise<Company> {
+  async filterById(id: string): Promise<Company> {
     const observable = this.http.get(environment.host + "/api/company/" + id, options).pipe(
       map(response => response as Company));
     return await firstValueFrom(observable);

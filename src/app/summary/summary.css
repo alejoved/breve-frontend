@@ -1,0 +1,56 @@
+.summary-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* centra verticalmente */
+  min-height: calc(100vh - 64px);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.subscription-card {
+  width: 720px;
+  max-width: 100%;
+  margin: 12px;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-weight: 600;
+}
+
+.avatar-icon {
+  background: rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.features {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+/* lista de características */
+.benefits-list {
+  margin: 8px 0 0 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.benefits-list li {
+  margin-bottom: 6px;
+}
+
+.customer {
+  margin-top: 8px;
+}
+
+.actions {
+  margin-top: 16px;
+}
