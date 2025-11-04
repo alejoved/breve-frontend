@@ -1,3 +1,3 @@
 export const environment = {
-    host : "http://localhost:5000"
+    host : "https://breve-backend.onrender.com"
 };
