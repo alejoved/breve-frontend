@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SubscriptionService } from '../../services/subscription.service';
-import { CustomerService } from '../../services/customer-service';
 
 @Component({
   selector: 'app-additional-info',
@@ -257,31 +256,10 @@ import { CustomerService } from '../../services/customer-service';
 export class AdditionalInfoComponent {
   private router = inject(Router);
   private subscriptionService = inject(SubscriptionService);
-  private customerService = inject(CustomerService);
-  companyId: string | null = null;
-  customerId: string | null = null;
-  planId: string | null = null;
-
-  constructor(){
-    const state = this.router.getCurrentNavigation()?.extras.state;
-    if (state) {
-      this.companyId = state['company'].id;
-      this.customerId = state['customer'].id;
-      this.planId = state['plan'].id;
-    }
-    if(!state){
-      this.router.navigate(['']);
-    }
-    this.filterById();
-  }
 
   businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
 
   formData = {
-    id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
     gender: '',
     documentType: '',
     documentNumber: ''
@@ -292,14 +270,6 @@ export class AdditionalInfoComponent {
     documentType: '',
     documentNumber: ''
   };
-
-  async filterById(){
-    const customer = await this.customerService.filterById(this.customerId!);
-    this.formData.id = customer.id!;
-    this.formData.firstName = customer.firstName!;
-    this.formData.lastName = customer.lastName!;
-    this.formData.email = customer.email!;
-  }
 
   validateGender() {
     if (!this.formData.gender) {
@@ -363,15 +333,14 @@ export class AdditionalInfoComponent {
            this.errors.documentNumber === '';
   }
 
-  async onSubmit() {
+  onSubmit() {
     this.validateGender();
     this.validateDocumentType();
     this.validateDocumentNumber();
 
     if (this.isFormValid()) {
-      //this.subscriptionService.updateAdditionalInfo(this.formData);
-      const customer = await this.customerService.update(this.formData);
-      this.router.navigate(['/contract'], { state: { company: { id: this.companyId }, customer: {id: customer.id }, plan: {id: this.planId } }});
+      this.subscriptionService.updateAdditionalInfo(this.formData);
+      this.router.navigate(['/contract']);
     }
   }
 }
