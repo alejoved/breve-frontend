@@ -6,6 +6,7 @@ import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SubscriptionService } from '../../services/subscription.service';
 import { PlanService } from '../../services/plan-service';
 import { Plan } from '../../models/plan';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-plans',
@@ -267,7 +268,6 @@ export class PlansComponent {
   private planService = inject(PlanService);
 
   businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
-  //plans: Plan[] = this.subscriptionService.getPlans();
   plans: Plan[] = [];
   selectedPlan: Plan | null = null;
   companyId: string | null = null;
@@ -287,7 +287,11 @@ export class PlansComponent {
   }
 
   async filterByCompany(){
+    try {
     this.plans = await this.planService.filterByCompany(this.companyId!);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   selectPlan(plan: Plan) {
@@ -301,7 +305,6 @@ export class PlansComponent {
   onContinue() {
     if (this.selectedPlan) {
       this.planId = this.selectedPlan.id!;
-      //this.subscriptionService.updateSelectedPlan(this.selectedPlan);
       this.router.navigate(['/additional-info'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
     }
   }

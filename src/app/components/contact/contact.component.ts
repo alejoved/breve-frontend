@@ -6,6 +6,7 @@ import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SubscriptionService } from '../../services/subscription.service';
 import { CustomerService } from '../../services/customer-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact',
@@ -329,11 +330,18 @@ export class ContactComponent {
     this.validateEmail();
 
     if (this.isFormValid()) {
-      //this.subscriptionService.updateContactData(this.formData);
-      const customer = await this.customerService.crear(this.formData);
-      if(customer){
+      try {
+        const customer = await this.customerService.crear(this.formData);
+        if(customer){
           this.router.navigate(['/plans'], { state: { company: { id: this.companyId }, customer: {id: customer.id } }});
         }
+      } catch (ex: any) {
+        if(ex.error.error == "Customer found"){
+          Swal.fire({ icon: "error", title: "Cliente existente", text: "Por favor, inicia sesion." });
+        } else {
+          Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+        }
+      }
     }
   }
 }

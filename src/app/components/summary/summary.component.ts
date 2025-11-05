@@ -8,6 +8,7 @@ import { CustomerService } from '../../services/customer-service';
 import { PlanService } from '../../services/plan-service';
 import { Plan } from '../../models/plan';
 import { Customer } from '../../models/customer';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-summary',
@@ -296,10 +297,18 @@ export class SummaryComponent {
   }
 
   async planFilterById(){
-    this.plan = await this.planService.filterById(this.planId!);
+    try {
+      this.plan = await this.planService.filterById(this.planId!);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
   async customerFilterById(){
-    this.customer = await this.customerService.filterById(this.customerId!);
+    try {
+      this.customer = await this.customerService.filterById(this.customerId!);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   onPay() {

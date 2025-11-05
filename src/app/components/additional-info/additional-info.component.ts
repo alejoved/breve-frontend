@@ -6,6 +6,8 @@ import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SubscriptionService } from '../../services/subscription.service';
 import { CustomerService } from '../../services/customer-service';
+import Swal from 'sweetalert2';
+import { error } from '../../../constants';
 
 @Component({
   selector: 'app-additional-info',
@@ -369,9 +371,16 @@ export class AdditionalInfoComponent {
     this.validateDocumentNumber();
 
     if (this.isFormValid()) {
-      //this.subscriptionService.updateAdditionalInfo(this.formData);
-      const customer = await this.customerService.update(this.formData);
-      this.router.navigate(['/contract'], { state: { company: { id: this.companyId }, customer: {id: customer.id }, plan: {id: this.planId } }});
+      try {
+        const customer = await this.customerService.update(this.formData);
+        this.router.navigate(['/contract'], { state: { company: { id: this.companyId }, customer: {id: customer.id }, plan: {id: this.planId } }});
+      } catch (ex: any) {
+        if(ex.error.error == "Customer found"){
+          Swal.fire({ icon: "error", title: "Cliente existente", text: "Por favor, inicia sesion." });
+        } else {
+          Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+        }
+      }
     }
   }
 }
