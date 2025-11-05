@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SubscriptionService } from '../../services/subscription.service';
+import { CustomerService } from '../../services/customer-service';
+import { PlanService } from '../../services/plan-service';
+import { Plan } from '../../models/plan';
+import { Customer } from '../../models/customer';
 
 @Component({
   selector: 'app-summary',
@@ -35,8 +39,8 @@ import { SubscriptionService } from '../../services/subscription.service';
         <div class="summary-section">
           <h3 class="section-label">Plan seleccionado</h3>
           <div class="section-content">
-            <h4 class="section-title">{{ subscriptionData.selectedPlan?.name }}</h4>
-            <p class="plan-price">\${{ formatPrice(subscriptionData.selectedPlan?.price || 0) }}/mes</p>
+            <h4 class="section-title">{{ plan?.name }}</h4>
+            <p class="plan-price">\${{ formatPrice(plan?.price || 0) }}/mes</p>
           </div>
         </div>
 
@@ -44,11 +48,11 @@ import { SubscriptionService } from '../../services/subscription.service';
           <h3 class="section-label">Datos personales</h3>
           <div class="section-content">
             <h4 class="section-title">
-              {{ subscriptionData.contactData?.firstName }} {{ subscriptionData.contactData?.lastName }}
+              {{ customer?.firstName }} {{ customer?.lastName }}
             </h4>
-            <p class="section-text">{{ subscriptionData.contactData?.email }}</p>
+            <p class="section-text">{{ customer?.email }}</p>
             <p class="section-text">
-              {{ getDocumentTypeLabel() }}: {{ subscriptionData.additionalInfo?.documentNumber }}
+              {{ getDocumentTypeLabel() }}: {{ customer?.documentNumber }}
             </p>
           </div>
         </div>
@@ -56,7 +60,7 @@ import { SubscriptionService } from '../../services/subscription.service';
         <div class="summary-section">
           <h3 class="section-label">Características del Plan</h3>
           <ul class="features-list">
-            <li *ngFor="let feature of subscriptionData.selectedPlan?.features" class="feature-item">
+            <li *ngFor="let feature of plan?.features" class="feature-item">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
               </svg>
@@ -252,6 +256,27 @@ import { SubscriptionService } from '../../services/subscription.service';
 export class SummaryComponent {
   private router = inject(Router);
   private subscriptionService = inject(SubscriptionService);
+  private customerService = inject(CustomerService);
+  private planService = inject(PlanService);
+  companyId: string | null = null;
+  customerId: string | null = null;
+  planId: string | null = null;
+  plan: Plan | null = null;
+  customer: Customer | null = null;
+
+  constructor() {
+    const state = this.router.getCurrentNavigation()?.extras.state;
+    if (state) {
+      this.companyId = state['company'].id;
+      this.customerId = state['customer'].id;
+      this.planId = state['plan'].id;
+    }
+    if(!state){
+      this.router.navigate(['']);
+    }
+    this.planFilterById();
+    this.customerFilterById();
+  }
 
   businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
   subscriptionData = this.subscriptionService.getSubscriptionData();
@@ -267,7 +292,14 @@ export class SummaryComponent {
       'pasaporte': 'Pasaporte',
       'ti': 'Tarjeta de identidad'
     };
-    return types[this.subscriptionData.additionalInfo?.documentType || ''] || 'Documento';
+    return types[this.customer?.documentType || ''] || 'Documento';
+  }
+
+  async planFilterById(){
+    this.plan = await this.planService.filterById(this.planId!);
+  }
+  async customerFilterById(){
+    this.customer = await this.customerService.filterById(this.customerId!);
   }
 
   onPay() {

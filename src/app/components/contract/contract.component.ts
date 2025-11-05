@@ -254,6 +254,21 @@ import { SubscriptionService } from '../../services/subscription.service';
 export class ContractComponent {
   private router = inject(Router);
   private subscriptionService = inject(SubscriptionService);
+  companyId: string | null = null;
+  customerId: string | null = null;
+  planId: string | null = null;
+
+  constructor() {
+    const state = this.router.getCurrentNavigation()?.extras.state;
+    if (state) {
+      this.companyId = state['company'].id;
+      this.customerId = state['customer'].id;
+      this.planId = state['plan'].id;
+    }
+    if(!state){
+      this.router.navigate(['']);
+    }
+  }
 
   businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
   termsAccepted = false;
@@ -261,7 +276,7 @@ export class ContractComponent {
   onContinue() {
     if (this.termsAccepted) {
       this.subscriptionService.updateTermsAccepted(this.termsAccepted);
-      this.router.navigate(['/summary']);
+      this.router.navigate(['/summary'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
     }
   }
 }
