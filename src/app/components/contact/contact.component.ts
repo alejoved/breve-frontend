@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SubscriptionService } from '../../services/subscription.service';
+import { CustomerService } from '../../services/customer-service';
 
 @Component({
   selector: 'app-contact',
@@ -238,8 +239,10 @@ import { SubscriptionService } from '../../services/subscription.service';
 export class ContactComponent {
   private router = inject(Router);
   private subscriptionService = inject(SubscriptionService);
+  private customerService = inject(CustomerService);
 
   businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
+  companyId = "f182bfde-ba5e-4ff4-9bd4-ceaf8867d884";
 
   formData = {
     firstName: '',
@@ -320,14 +323,17 @@ export class ContactComponent {
            this.errors.email === '';
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.validateFirstName();
     this.validateLastName();
     this.validateEmail();
 
     if (this.isFormValid()) {
-      this.subscriptionService.updateContactData(this.formData);
-      this.router.navigate(['/plans']);
+      //this.subscriptionService.updateContactData(this.formData);
+      const customer = await this.customerService.crear(this.formData);
+      if(customer){
+          this.router.navigate(['/plans'], { state: { company: { id: this.companyId }, customer: {id: customer.id } }});
+        }
     }
   }
 }

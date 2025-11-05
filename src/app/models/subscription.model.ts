@@ -26,4 +26,5 @@ export interface SubscriptionData {
   termsAccepted?: boolean;
   businessName?: string;
   businessLogo?: string;
+  companyId?: string;
 }

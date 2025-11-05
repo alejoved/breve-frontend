@@ -7,6 +7,7 @@ import { PlansComponent } from './app/components/plans/plans.component';
 import { AdditionalInfoComponent } from './app/components/additional-info/additional-info.component';
 import { ContractComponent } from './app/components/contract/contract.component';
 import { SummaryComponent } from './app/components/summary/summary.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ const routes = [
 
 bootstrapApplication(App, {
   providers: [
-    provideRouter(routes)
+    provideRouter(routes),
+    provideHttpClient()
   ]
 });

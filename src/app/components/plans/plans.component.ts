@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SubscriptionService } from '../../services/subscription.service';
-import { Plan } from '../../models/subscription.model';
+import { PlanService } from '../../services/plan-service';
+import { Plan } from '../../models/plan';
 
 @Component({
   selector: 'app-plans',
@@ -39,7 +40,7 @@ import { Plan } from '../../models/subscription.model';
 
             <div class="plan-header">
               <h3 class="plan-name">{{ plan.name }}</h3>
-              <div class="plan-price">\${{ formatPrice(plan.price) }}/mes</div>
+              <div class="plan-price">\${{ formatPrice(plan.price!) }}/mes</div>
             </div>
 
             <ul class="features-list">
@@ -263,10 +264,31 @@ import { Plan } from '../../models/subscription.model';
 export class PlansComponent {
   private router = inject(Router);
   private subscriptionService = inject(SubscriptionService);
+  private planService = inject(PlanService);
 
   businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
-  plans: Plan[] = this.subscriptionService.getPlans();
+  //plans: Plan[] = this.subscriptionService.getPlans();
+  plans: Plan[] = [];
   selectedPlan: Plan | null = null;
+  companyId: string | null = null;
+  customerId: string | null = null;
+  planId: string | null = null;
+
+  constructor() {
+    const state = this.router.getCurrentNavigation()?.extras.state;
+    if (state) {
+      this.companyId = state['company'].id;
+      this.customerId = state['customer'].id;
+    }
+    if(!state){
+      this.router.navigate(['']);
+    }
+    this.filterByCompany();
+  }
+
+  async filterByCompany(){
+    this.plans = await this.planService.filterByCompany(this.companyId!);
+  }
 
   selectPlan(plan: Plan) {
     this.selectedPlan = plan;
@@ -278,8 +300,9 @@ export class PlansComponent {
 
   onContinue() {
     if (this.selectedPlan) {
-      this.subscriptionService.updateSelectedPlan(this.selectedPlan);
-      this.router.navigate(['/additional-info']);
+      this.planId = this.selectedPlan.id!;
+      //this.subscriptionService.updateSelectedPlan(this.selectedPlan);
+      this.router.navigate(['/additional-info'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
     }
   }
 }
