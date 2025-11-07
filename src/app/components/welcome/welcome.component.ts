@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { SubscriptionService } from '../../services/subscription.service';
+import { business_name } from '../../../constants';
 
 @Component({
   selector: 'app-welcome',
@@ -67,9 +67,8 @@ import { SubscriptionService } from '../../services/subscription.service';
 })
 export class WelcomeComponent implements OnInit {
   private router = inject(Router);
-  private subscriptionService = inject(SubscriptionService);
 
-  businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
+  businessName = business_name;
 
   ngOnInit() {
     setTimeout(() => {

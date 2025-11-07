@@ -13,7 +13,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  async crear(customer: Customer): Promise<Customer> {
+  async create(customer: Customer): Promise<Customer> {
     const observable = this.http.post(environment.host + "/api/customer", customer, options).pipe(
       map(response => response as Customer));
     return await firstValueFrom(observable);

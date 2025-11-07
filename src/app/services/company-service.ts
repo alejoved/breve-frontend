@@ -13,7 +13,7 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
-  async crear(company: Company): Promise<Company> {
+  async create(company: Company): Promise<Company> {
     const observable = this.http.post(environment.host + "/api/company", company, options).pipe(
       map(response => response as Company));
     return await firstValueFrom(observable);

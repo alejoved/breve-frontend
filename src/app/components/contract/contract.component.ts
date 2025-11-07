@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
-import { SubscriptionService } from '../../services/subscription.service';
+import { business_name } from '../../../constants';
 
 @Component({
   selector: 'app-contract',
@@ -253,7 +253,6 @@ import { SubscriptionService } from '../../services/subscription.service';
 })
 export class ContractComponent {
   private router = inject(Router);
-  private subscriptionService = inject(SubscriptionService);
   companyId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
@@ -270,12 +269,11 @@ export class ContractComponent {
     }
   }
 
-  businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
+  businessName = business_name;
   termsAccepted = false;
 
   onContinue() {
     if (this.termsAccepted) {
-      this.subscriptionService.updateTermsAccepted(this.termsAccepted);
       this.router.navigate(['/summary'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
     }
   }

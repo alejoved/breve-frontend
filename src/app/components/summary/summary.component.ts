@@ -3,12 +3,17 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
-import { SubscriptionService } from '../../services/subscription.service';
 import { CustomerService } from '../../services/customer-service';
 import { PlanService } from '../../services/plan-service';
 import { Plan } from '../../models/plan';
 import { Customer } from '../../models/customer';
 import Swal from 'sweetalert2';
+import { PayService } from '../../services/pay-service';
+import { Pay } from '../../models/pay';
+import { business_name } from '../../../constants';
+declare global {
+  interface Window { WidgetCheckout?: any; }
+}
 
 @Component({
   selector: 'app-summary',
@@ -69,14 +74,14 @@ import Swal from 'sweetalert2';
             </li>
           </ul>
         </div>
-
-        <button
-          type="button"
-          class="btn-continue"
-          (click)="onPay()"
-        >
-          Pagar
-        </button>
+        <form action="https://checkout.wompi.co/p/" method="GET">
+          <button
+            type="button"
+            class="btn-continue"
+            (click)="onPay()">
+            Pagar
+          </button>
+        </form>
       </div>
     </div>
   `,
@@ -256,9 +261,9 @@ import Swal from 'sweetalert2';
 })
 export class SummaryComponent {
   private router = inject(Router);
-  private subscriptionService = inject(SubscriptionService);
   private customerService = inject(CustomerService);
   private planService = inject(PlanService);
+  private payService = inject(PayService);
   companyId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
@@ -279,8 +284,7 @@ export class SummaryComponent {
     this.customerFilterById();
   }
 
-  businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
-  subscriptionData = this.subscriptionService.getSubscriptionData();
+  businessName = business_name;
 
   formatPrice(price: number): string {
     return price.toLocaleString('es-CO');
@@ -311,7 +315,45 @@ export class SummaryComponent {
     }
   }
 
-  onPay() {
-    alert('Función de pago - Paso 6/6 - Aquí se integraría el sistema de pagos');
+  async onPay() {
+    const pay = new Pay();
+    pay.amount = this.plan?.price;
+    pay.currency = 'COP';
+    pay.customer = { id: this.customerId! };
+    pay.plan = { id: this.planId! };
+    pay.company = { id: this.companyId! };
+    const res = await this.payService.create(pay);
+    const Widget = window.WidgetCheckout;
+    if (!Widget) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Widget de pago no disponible',
+        text: 'El script del widget no se cargó. Recarga la página e intenta de nuevo.'
+      });
+      return;
+    }
+    var checkout = new Widget({
+      currency: res.currency,
+      amountInCents: res.amount,
+      reference: res.id,
+      publicKey: res.publicKey,
+      signature: {integrity : res.signature},
+      customerData: { // Opcional
+        fullName: res.customer?.firstName + ' ' + res.customer?.lastName,
+        email: res.customer?.email,
+        phoneNumber: res.customer?.phone,
+        phoneNumberPrefix: res.prefix,
+        legalId: res.customer?.documentNumber,
+        legalIdType: res.customer?.documentType
+      },
+    });
+    console.log(checkout);
+    checkout.open(function (result: any) {
+      if (result?.transaction) {
+        console.log('Transaction:', result.transaction);
+      } else {
+        console.log('Checkout result:', result);
+      }
+    });
   }
 }

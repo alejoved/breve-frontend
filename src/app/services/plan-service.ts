@@ -13,7 +13,7 @@ export class PlanService {
 
   constructor(private http: HttpClient) { }
 
-  async crear(plan: Plan): Promise<Plan> {
+  async create(plan: Plan): Promise<Plan> {
     const observable = this.http.post(environment.host + "/api/plan", plan, options).pipe(
       map(response => response as Plan));
     return await firstValueFrom(observable);

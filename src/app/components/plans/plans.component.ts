@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
-import { SubscriptionService } from '../../services/subscription.service';
 import { PlanService } from '../../services/plan-service';
 import { Plan } from '../../models/plan';
 import Swal from 'sweetalert2';
+import { business_name } from '../../../constants';
 
 @Component({
   selector: 'app-plans',
@@ -264,10 +264,9 @@ import Swal from 'sweetalert2';
 })
 export class PlansComponent {
   private router = inject(Router);
-  private subscriptionService = inject(SubscriptionService);
   private planService = inject(PlanService);
 
-  businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
+  businessName = business_name;
   plans: Plan[] = [];
   selectedPlan: Plan | null = null;
   companyId: string | null = null;

@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
-import { SubscriptionService } from '../../services/subscription.service';
 import { CustomerService } from '../../services/customer-service';
 import Swal from 'sweetalert2';
-import { error } from '../../../constants';
+import { business_name, error } from '../../../constants';
 
 @Component({
   selector: 'app-additional-info',
@@ -62,10 +61,10 @@ import { error } from '../../../constants';
               required
             >
               <option value="" disabled>Selecciona tipo de documento</option>
-              <option value="cc">Cédula de ciudadanía</option>
-              <option value="ce">Cédula de extranjería</option>
-              <option value="pasaporte">Pasaporte</option>
-              <option value="ti">Tarjeta de identidad</option>
+              <option value="CC">Cédula de ciudadanía</option>
+              <option value="CE">Cédula de extranjería</option>
+              <option value="PP">Pasaporte</option>
+              <option value="TI">Tarjeta de identidad</option>
             </select>
             <span class="error-message" *ngIf="errors.documentType">{{ errors.documentType }}</span>
           </div>
@@ -258,7 +257,6 @@ import { error } from '../../../constants';
 })
 export class AdditionalInfoComponent {
   private router = inject(Router);
-  private subscriptionService = inject(SubscriptionService);
   private customerService = inject(CustomerService);
   companyId: string | null = null;
   customerId: string | null = null;
@@ -277,12 +275,13 @@ export class AdditionalInfoComponent {
     this.filterById();
   }
 
-  businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
+  businessName = business_name;
 
   formData = {
     id: "",
     firstName: "",
     lastName: "",
+    phone : "",
     email: "",
     gender: '',
     documentType: '',
@@ -300,6 +299,7 @@ export class AdditionalInfoComponent {
     this.formData.id = customer.id!;
     this.formData.firstName = customer.firstName!;
     this.formData.lastName = customer.lastName!;
+    this.formData.phone = customer.phone!;
     this.formData.email = customer.email!;
   }
 

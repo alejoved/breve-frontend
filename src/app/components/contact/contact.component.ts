@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
-import { SubscriptionService } from '../../services/subscription.service';
 import { CustomerService } from '../../services/customer-service';
 import Swal from 'sweetalert2';
+import { business_name } from '../../../constants';
 
 @Component({
   selector: 'app-contact',
@@ -59,6 +59,22 @@ import Swal from 'sweetalert2';
               required
             />
             <span class="error-message" *ngIf="errors.lastName">{{ errors.lastName }}</span>
+          </div>
+
+          <div class="form-group">
+            <label class="label">Celular*</label>
+            <input
+              type="text"
+              class="input"
+              [class.input-error]="errors.phone"
+              placeholder="Ingresa tu celular"
+              [(ngModel)]="formData.phone"
+              name="celular"
+              (blur)="validatePhone()"
+              (input)="onPhoneInput()"
+              required
+            />
+            <span class="error-message" *ngIf="errors.phone">{{ errors.phone }}</span>
           </div>
 
           <div class="form-group">
@@ -239,21 +255,22 @@ import Swal from 'sweetalert2';
 })
 export class ContactComponent {
   private router = inject(Router);
-  private subscriptionService = inject(SubscriptionService);
   private customerService = inject(CustomerService);
 
-  businessName = this.subscriptionService.getSubscriptionData().businessName || '+Breve';
+  businessName = business_name
   companyId = "f182bfde-ba5e-4ff4-9bd4-ceaf8867d884";
 
   formData = {
     firstName: '',
     lastName: '',
+    phone: '',
     email: ''
   };
 
   errors = {
     firstName: '',
     lastName: '',
+    phone: '',
     email: ''
   };
 
@@ -283,6 +300,19 @@ export class ContactComponent {
     return true;
   }
 
+  validatePhone() {
+    if (!this.formData.phone.trim()) {
+      this.errors.phone = 'Completa el numero de celular';
+      return false;
+    }
+    if (!/^\d{10}$/.test(this.formData.phone)) {
+      this.errors.phone = 'El número de celular debe tener 10 dígitos';
+      return false;
+    }
+    this.errors.phone = '';
+    return true;
+  }
+
   validateEmail() {
     if (!this.formData.email.trim()) {
       this.errors.email = 'Completa tu correo electrónico';
@@ -308,6 +338,11 @@ export class ContactComponent {
       this.validateLastName();
     }
   }
+  onPhoneInput() {
+    if (this.errors.phone) {
+      this.validatePhone();
+    }
+  }
 
   onEmailInput() {
     if (this.errors.email) {
@@ -318,20 +353,24 @@ export class ContactComponent {
   isFormValid(): boolean {
     return this.formData.firstName.trim() !== '' &&
            this.formData.lastName.trim() !== '' &&
+           this.formData.phone.trim() !== '' &&
            this.formData.email.trim() !== '' &&
            this.errors.firstName === '' &&
            this.errors.lastName === '' &&
+           this.errors.phone === '' &&
            this.errors.email === '';
   }
 
   async onSubmit() {
     this.validateFirstName();
     this.validateLastName();
+    this.validatePhone();
     this.validateEmail();
 
     if (this.isFormValid()) {
       try {
-        const customer = await this.customerService.crear(this.formData);
+        console.log(this.formData);
+        const customer = await this.customerService.create(this.formData);
         if(customer){
           this.router.navigate(['/plans'], { state: { company: { id: this.companyId }, customer: {id: customer.id } }});
         }
