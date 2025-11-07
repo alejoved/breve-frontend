@@ -314,42 +314,46 @@ export class SummaryComponent {
   }
 
   async onPay() {
-    const pay = new Pay();
-    pay.customer = { id: this.customerId! };
-    pay.plan = { id: this.planId! };
-    pay.company = { id: this.companyId! };
-    const res = await this.payService.create(pay);
-    const Widget = window.WidgetCheckout;
-    if (!Widget) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Widget de pago no disponible',
-        text: 'El script del widget no se cargó. Recarga la página e intenta de nuevo.'
-      });
-      return;
-    }
-    console.log(res);
-    var checkout = new Widget({
-      currency: res.currency,
-      amountInCents: res.amount,
-      reference: res.reference,
-      publicKey: res.publicKey,
-      signature: {integrity : res.signature},
-      customerData: { // Opcional
-        fullName: res.customer?.firstName + ' ' + res.customer?.lastName,
-        email: res.customer?.email,
-        phoneNumber: res.customer?.phone,
-        phoneNumberPrefix: res.prefix,
-        legalId: res.customer?.documentNumber,
-        legalIdType: res.customer?.documentType
-      },
-    });
-    checkout.open(function (result: any) {
-      if (result?.transaction) {
-        console.log('Transaction:', result.transaction);
-      } else {
-        console.log('Checkout result:', result);
+    try{
+      const pay = new Pay();
+      pay.customer = { id: this.customerId! };
+      pay.plan = { id: this.planId! };
+      pay.company = { id: this.companyId! };
+      const res = await this.payService.create(pay);
+      const Widget = window.WidgetCheckout;
+      if (!Widget) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Widget de pago no disponible',
+          text: 'El script del widget no se cargó. Recarga la página e intenta de nuevo.'
+        });
+        return;
       }
-    });
+      console.log(res);
+      var checkout = new Widget({
+        currency: res.currency,
+        amountInCents: res.amount,
+        reference: res.reference,
+        publicKey: res.publicKey,
+        signature: {integrity : res.signature},
+        customerData: { // Opcional
+          fullName: res.customer?.firstName + ' ' + res.customer?.lastName,
+          email: res.customer?.email,
+          phoneNumber: res.customer?.phone,
+          phoneNumberPrefix: res.prefix,
+          legalId: res.customer?.documentNumber,
+          legalIdType: res.customer?.documentType
+        },
+      });
+      checkout.open(function (result: any) {
+        if (result?.transaction) {
+          console.log('Transaction:', result.transaction);
+        } else {
+          console.log('Checkout result:', result);
+        }
+      });
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 }
