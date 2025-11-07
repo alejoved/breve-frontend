@@ -3,10 +3,11 @@ import { Dto } from "./dto";
 
 export class Pay {
     id?: string;
+    reference?: string;
     customer?: Customer;
     plan?: Dto;
     company?: Dto;
-    amount?: number;
+    amount?: string;
     currency?: string;
     prefix?: string;
     signature?: string;

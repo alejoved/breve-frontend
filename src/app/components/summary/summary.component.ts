@@ -74,14 +74,12 @@ declare global {
             </li>
           </ul>
         </div>
-        <form action="https://checkout.wompi.co/p/" method="GET">
           <button
             type="button"
             class="btn-continue"
             (click)="onPay()">
             Pagar
           </button>
-        </form>
       </div>
     </div>
   `,
@@ -317,8 +315,6 @@ export class SummaryComponent {
 
   async onPay() {
     const pay = new Pay();
-    pay.amount = this.plan?.price;
-    pay.currency = 'COP';
     pay.customer = { id: this.customerId! };
     pay.plan = { id: this.planId! };
     pay.company = { id: this.companyId! };
@@ -332,10 +328,11 @@ export class SummaryComponent {
       });
       return;
     }
+    console.log(res);
     var checkout = new Widget({
       currency: res.currency,
       amountInCents: res.amount,
-      reference: res.id,
+      reference: res.reference,
       publicKey: res.publicKey,
       signature: {integrity : res.signature},
       customerData: { // Opcional
@@ -347,7 +344,6 @@ export class SummaryComponent {
         legalIdType: res.customer?.documentType
       },
     });
-    console.log(checkout);
     checkout.open(function (result: any) {
       if (result?.transaction) {
         console.log('Transaction:', result.transaction);
