@@ -7,4 +7,5 @@ export class Customer {
     genre?: string;
     documentType?: string;
     documentNumber?: string;
+    status?: string;
 }

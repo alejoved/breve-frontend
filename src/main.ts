@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, RouterOutlet } from '@angular/router';
-import { WelcomeComponent } from './app/components/welcome/welcome.component';
-import { ContactComponent } from './app/components/contact/contact.component';
-import { PlansComponent } from './app/components/plans/plans.component';
-import { AdditionalInfoComponent } from './app/components/additional-info/additional-info.component';
-import { ContractComponent } from './app/components/contract/contract.component';
-import { SummaryComponent } from './app/components/summary/summary.component';
+import { WelcomeComponent } from './app/flow/welcome/welcome.component';
+import { ContactComponent } from './app/flow/contact/contact.component';
+import { PlansComponent } from './app/flow/plans/plans.component';
+import { AdditionalInfoComponent } from './app/flow/additional-info/additional-info.component';
+import { ContractComponent } from './app/flow/contract/contract.component';
+import { SummaryComponent } from './app/flow/summary/summary.component';
 import { provideHttpClient } from '@angular/common/http';
+import { DashboardComponent } from './app/b2b/dashboard/dashboard.component';
+import { BankAccountViewComponent } from './app/b2b/bank-account-view/bank-account-view.component';
+import { BusinessInfoViewComponent } from './app/b2b/business-info-view/business-info-view.component';
+import { LoginComponent } from './app/b2b/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +28,11 @@ const routes = [
   { path: 'additional-info', component: AdditionalInfoComponent },
   { path: 'contract', component: ContractComponent },
   { path: 'summary', component: SummaryComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'bank-account', component: BankAccountViewComponent },
+  { path: 'business-info', component: BusinessInfoViewComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 bootstrapApplication(App, {

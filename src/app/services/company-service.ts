@@ -36,4 +36,23 @@ export class CompanyService {
       map(response => response as Company));
     return await firstValueFrom(observable);
   }
+
+  async login(email: string, password: string): Promise<Company> {
+    const observable = this.http.get(environment.host + "/api/company/login/" + email + "/" + password , options).pipe(
+      map(response => response as Company));
+    return await firstValueFrom(observable);
+  }
+
+  setSesion(company: Company) {
+    sessionStorage.setItem('sesion', JSON.stringify(company));
+  }
+
+  getSesion(): Company {
+    const sesion = sessionStorage.getItem('sesion');
+    return JSON.parse(sesion!);
+  }
+
+  cerrarSesion(){
+    sessionStorage.removeItem('sesion');
+  }
 }
