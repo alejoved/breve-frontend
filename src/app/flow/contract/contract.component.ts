@@ -253,14 +253,14 @@ import { business_name } from '../../../constants';
 })
 export class ContractComponent {
   private router = inject(Router);
-  companyId: string | null = null;
+  businessId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
 
   constructor() {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state) {
-      this.companyId = state['company'].id;
+      this.businessId = state['business'].id;
       this.customerId = state['customer'].id;
       this.planId = state['plan'].id;
     }
@@ -274,7 +274,7 @@ export class ContractComponent {
 
   onContinue() {
     if (this.termsAccepted) {
-      this.router.navigate(['/summary'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
+      this.router.navigate(['/summary'], { state: { business: { id: this.businessId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
     }
   }
 }

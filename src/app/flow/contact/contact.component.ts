@@ -258,7 +258,7 @@ export class ContactComponent {
   private customerService = inject(CustomerService);
 
   businessName = business_name
-  companyId = "f182bfde-ba5e-4ff4-9bd4-ceaf8867d884";
+  businessId = "f182bfde-ba5e-4ff4-9bd4-ceaf8867d884";
 
   formData = {
     firstName: '',
@@ -372,7 +372,7 @@ export class ContactComponent {
         console.log(this.formData);
         const customer = await this.customerService.create(this.formData);
         if(customer){
-          this.router.navigate(['/plans'], { state: { company: { id: this.companyId }, customer: {id: customer.id } }});
+          this.router.navigate(['/plans'], { state: { business: { id: this.businessId }, customer: {id: customer.id } }});
         }
       } catch (ex: any) {
         if(ex.error.error == "Customer found"){

@@ -6,7 +6,7 @@ export class Pay {
     reference?: string;
     customer?: Customer;
     plan?: Dto;
-    company?: Dto;
+    business?: Dto;
     amount?: string;
     currency?: string;
     prefix?: string;

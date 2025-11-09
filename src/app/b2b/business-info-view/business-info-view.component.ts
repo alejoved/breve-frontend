@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Company } from '../../models/company';
+import { Business } from '../../models/business';
+import { BusinessService } from '../../services/business-service';
 
 @Component({
   selector: 'app-business-info-view',
@@ -11,6 +12,8 @@ import { Company } from '../../models/company';
   styleUrls: ['./business-info-view.component.css']
 })
 export class BusinessInfoViewComponent implements OnInit {
+
+  business: Business | null = null;
   loading = true;
   saving = false;
 
@@ -38,23 +41,22 @@ export class BusinessInfoViewComponent implements OnInit {
     address: false
   };
 
-  constructor() {}
+  constructor(private businessService: BusinessService) {}
 
   async ngOnInit() {
+    this.business = this.businessService.getSession();
     await this.loadData();
   }
 
   async loadData() {
     this.loading = true;
-    const business = new Company();
-
-    if (business) {
+    if (this.business) {
       this.formData = {
-        name: business.name || '',
-        owner_name: business.owner_name || '',
-        email: business.email || '',
-        phone: business.phone || '',
-        address: business.address || ''
+        name: this.business.name || '',
+        owner_name: this.business.owner_name || '',
+        email: this.business.email || '',
+        phone: this.business.phone || '',
+        address: this.business.address || ''
       };
     }
 
@@ -67,6 +69,7 @@ export class BusinessInfoViewComponent implements OnInit {
     if (!this.isFormValid()) {
       return;
     }
+    this.business = await this.businessService.update(this.formData);
     this.saving = true;
     this.saving = false;
   }

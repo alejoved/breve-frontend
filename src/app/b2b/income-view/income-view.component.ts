@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SubscriptionService } from '../../services/subscription-service';
+import { Business } from '../../models/business';
+import { BusinessService } from '../../services/business-service';
 
 @Component({
   selector: 'app-income-view',
@@ -11,26 +14,22 @@ import { CommonModule } from '@angular/common';
 export class IncomeViewComponent implements OnInit {
   totalRevenue = 0;
   monthlyRevenue = 0;
-  averageSubscription = 0;
+  average = 0;
   loading = true;
+  business: Business | null = null;
 
-  constructor() {}
+  constructor(private subscriptionService: SubscriptionService, private businessService: BusinessService) {}
 
   async ngOnInit() {
+    this.business = this.businessService.getSession();
     await this.loadData();
   }
 
   async loadData() {
     this.loading = true;
-    const stats = {
-      monthlyRevenue: 100000,
-      activeSubscribers: 50
-    };
-    this.monthlyRevenue = stats.monthlyRevenue;
-    this.totalRevenue = stats.monthlyRevenue * 12;
-    this.averageSubscription = stats.activeSubscribers > 0
-      ? stats.monthlyRevenue / stats.activeSubscribers
-      : 0;
+    this.monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business?.id!);
+    this.totalRevenue = await this.subscriptionService.filterByBusinessAndTotalRevenue(this.business?.id!);
+    this.average = await this.subscriptionService.filterByBusinessAndAverage(this.business?.id!);
     this.loading = false;
   }
 

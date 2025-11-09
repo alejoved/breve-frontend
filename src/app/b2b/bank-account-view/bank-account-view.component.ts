@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Company } from '../../models/company';
+import { Business } from '../../models/business';
+import { BusinessService } from '../../services/business-service';
 
 @Component({
   selector: 'app-bank-account-view',
@@ -11,6 +12,7 @@ import { Company } from '../../models/company';
   styleUrls: ['./bank-account-view.component.css']
 })
 export class BankAccountViewComponent implements OnInit {
+  business: Business | null = null;
   loading = true;
   saving = false;
 
@@ -41,7 +43,6 @@ export class BankAccountViewComponent implements OnInit {
     bank_name: '',
     account_type: '',
     account_number: '',
-    swift_bic: '',
     owner_name: ''
   };
 
@@ -57,36 +58,34 @@ export class BankAccountViewComponent implements OnInit {
     owner_name: false
   };
 
-  constructor() {}
+  constructor(private businessService: BusinessService) {
+  }
 
-  async ngOnInit() {
+  async ngOnInit() { 
+    this.business = this.businessService.getSession();
     await this.loadData();
   }
 
   async loadData() {
     this.loading = true;
-    const business = new Company();
-    if (business) {
+    if (this.business) {
       this.formData = {
-        bank_name: business.bank_name || '',
-        account_type: business.account_type || '',
-        account_number: business.account_number || '',
-        swift_bic: business.swift_bic || '',
-        owner_name: business.owner_name || ''
+        bank_name: this.business.bank_name || '',
+        account_type: this.business.account_type || '',
+        account_number: this.business.account_number || '',
+        owner_name: this.business.owner_name || ''
       };
     }
-
     this.loading = false;
   }
 
   async save() {
     this.markAllTouched();
     this.validateAll();
-
     if (!this.isFormValid()) {
       return;
     }
-
+    this.business = await this.businessService.update(this.formData);
     this.saving = true;
     this.saving = false;
   }

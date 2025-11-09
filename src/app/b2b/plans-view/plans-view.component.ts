@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Plan } from '../../models/plan';
+import { PlanService } from '../../services/plan-service';
+import { Business } from '../../models/business';
+import { BusinessService } from '../../services/business-service';
 
 @Component({
   selector: 'app-plans-view',
@@ -13,6 +16,7 @@ import { Plan } from '../../models/plan';
 export class PlansViewComponent implements OnInit {
   @Input() openCreateForm = false;
   plans: Plan[] = [];
+  business: Business | null = null;
   loading = true;
   showCreateView = false;
   editingPlan: Plan | null = null;
@@ -42,9 +46,10 @@ export class PlansViewComponent implements OnInit {
 
   newFeature = '';
 
-  constructor() {}
+  constructor(private planService: PlanService, private businessService: BusinessService) {}
 
   async ngOnInit() {
+    this.business = this.businessService.getSession();
     await this.loadPlans();
     if (this.openCreateForm) {
       this.openCreateView();
@@ -53,7 +58,9 @@ export class PlansViewComponent implements OnInit {
 
   async loadPlans() {
     this.loading = true;
-    this.plans = [];
+    if (this.business) {
+      this.plans = await this.planService.filterByBusiness(this.business?.id!);
+    }
     this.loading = false;
   }
 

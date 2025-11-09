@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MeshGradientComponent } from './mesh-gradient.component';
-import { CompanyService } from '../../services/company-service';
+import { BusinessService } from '../../services/business-service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent {
   passwordTouched = false;
 
   constructor(
-    private router: Router, private companyService: CompanyService) {}
+    private router: Router, private businessService: BusinessService) {}
 
   async onSubmit() {
     this.emailTouched = true;
@@ -40,10 +40,10 @@ export class LoginComponent {
     this.loading = true;
     this.errorMessage = '';
     
-    const company = await this.companyService.login(this.email, this.password);
+    const business = await this.businessService.login(this.email, this.password);
 
-    if (company) {
-      this.companyService.setSesion(company);
+    if (business) {
+      this.businessService.setSession(business);
       this.router.navigate(['/dashboard']);
     } else {
       this.errorMessage = 'Correo o contraseña incorrectos';

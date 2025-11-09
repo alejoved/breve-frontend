@@ -8,6 +8,6 @@ export class Plan {
     price?: number;
     type?: string;
     popular?: boolean;
-    company?: Dto;
+    business?: Dto;
     active?: string;
 }

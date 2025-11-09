@@ -1,4 +1,4 @@
-export class Company {
+export class Business {
     id?: string;
     name?: string;
     nit?: string;

@@ -258,14 +258,14 @@ import { business_name, error } from '../../../constants';
 export class AdditionalInfoComponent {
   private router = inject(Router);
   private customerService = inject(CustomerService);
-  companyId: string | null = null;
+  businessId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
 
   constructor(){
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state) {
-      this.companyId = state['company'].id;
+      this.businessId = state['business'].id;
       this.customerId = state['customer'].id;
       this.planId = state['plan'].id;
     }
@@ -373,7 +373,7 @@ export class AdditionalInfoComponent {
     if (this.isFormValid()) {
       try {
         const customer = await this.customerService.update(this.formData);
-        this.router.navigate(['/contract'], { state: { company: { id: this.companyId }, customer: {id: customer.id }, plan: {id: this.planId } }});
+        this.router.navigate(['/contract'], { state: { business: { id: this.businessId }, customer: {id: customer.id }, plan: {id: this.planId } }});
       } catch (ex: any) {
         if(ex.error.error == "Customer found"){
           Swal.fire({ icon: "error", title: "Cliente existente", text: "Por favor, inicia sesion." });

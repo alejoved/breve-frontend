@@ -269,25 +269,25 @@ export class PlansComponent {
   businessName = business_name;
   plans: Plan[] = [];
   selectedPlan: Plan | null = null;
-  companyId: string | null = null;
+  businessId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
 
   constructor() {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state) {
-      this.companyId = state['company'].id;
+      this.businessId = state['business'].id;
       this.customerId = state['customer'].id;
     }
     if(!state){
       this.router.navigate(['']);
     }
-    this.filterByCompany();
+    this.filterByBusiness();
   }
 
-  async filterByCompany(){
+  async filterByBusiness(){
     try {
-    this.plans = await this.planService.filterByCompany(this.companyId!);
+    this.plans = await this.planService.filterByBusiness(this.businessId!);
     } catch (ex: any) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
     }
@@ -304,7 +304,7 @@ export class PlansComponent {
   onContinue() {
     if (this.selectedPlan) {
       this.planId = this.selectedPlan.id!;
-      this.router.navigate(['/additional-info'], { state: { company: { id: this.companyId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
+      this.router.navigate(['/additional-info'], { state: { business: { id: this.businessId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
     }
   }
 }

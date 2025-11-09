@@ -2,8 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SubscriptionService } from '../../services/subscription-service';
 import { PlanService } from '../../services/plan-service';
-import { CompanyService } from '../../services/company-service';
-import { Company } from '../../models/company';
+import { BusinessService } from '../../services/business-service';
+import { Business } from '../../models/business';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -36,13 +36,13 @@ export class DashboardOverviewComponent implements OnInit {
 
   recentActivity: any[] = [];
   loading = true;
-  company: Company | null = null;
+  business: Business | null = null;
 
-  constructor(private companyService: CompanyService, private subscriptionService: SubscriptionService, private planService: PlanService) {}
+  constructor(private businessService: BusinessService, private subscriptionService: SubscriptionService, private planService: PlanService) {}
 
   async ngOnInit() {
+    this.business = this.businessService.getSession();
     this.loadData();
-    this.company = this.companyService.getSesion();
     this.activeSubscriptions()
     this.activePlans();
     this.monthlyRevenue();
@@ -50,7 +50,7 @@ export class DashboardOverviewComponent implements OnInit {
     this.newSubscriptions();
     this.cancellations();
     this.renewals();
-    this.todayIncome();
+    this.todayRevenue();
   }
 
   loadData() {
@@ -108,41 +108,42 @@ export class DashboardOverviewComponent implements OnInit {
   }
 
   async activeSubscriptions() {
-    const subscriptions = await this.subscriptionService.filterByCompany(this.company!.id!);
+    const subscriptions = await this.subscriptionService.filterByBusiness(this.business!.id!);
     this.stats.activeSubscribers = subscriptions.length;
   }
 
   async activePlans() {
-    const plans = await this.planService.filterByCompany(this.company!.id!);
+    const plans = await this.planService.filterByBusiness(this.business!.id!);
     this.stats.activePlans = plans.length;
   }
 
   async monthlyRevenue() {
-    const monthlyRevenue = await this.subscriptionService.filterByCompanyAndMonthlyRevenue(this.company!.id!);
+    const monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business!.id!);
     this.stats.monthlyRevenue = monthlyRevenue;
   }
 
   async retentionRate() {
-    const retentionRate = await this.subscriptionService.filterByCompanyAndRetentionRate(this.company!.id!);
+    const retentionRate = await this.subscriptionService.filterByBusinessAndRetentionRate(this.business!.id!);
     this.stats.retentionRate = retentionRate;
   }
 
   async newSubscriptions() {
-    const newSubscriptions = await this.subscriptionService.filterByCompanyAndNewSubscriptions(this.company!.id!);
+    const newSubscriptions = await this.subscriptionService.filterByBusinessAndNewSubscriptions(this.business!.id!);
     this.todayActivity.newSubscriptions = newSubscriptions;
   }
 
   async cancellations() {
-    const cancellations = await this.subscriptionService.filterByCompanyAndCancellations(this.company!.id!);
+    const cancellations = await this.subscriptionService.filterByBusinessAndCancellations(this.business!.id!);
     this.todayActivity.cancellations = cancellations;
   }
 
   async renewals() {
-    const renewals = await this.subscriptionService.filterByCompanyAndRenewals(this.company!.id!);
+    const renewals = await this.subscriptionService.filterByBusinessAndRenewals(this.business!.id!);
     this.todayActivity.renewals = renewals;
   }
 
-  todayIncome() {
-    return 50000; // Placeholder value
+  async todayRevenue() {
+    const revenue = await this.subscriptionService.filterByBusinessAndTodayRevenue(this.business!.id!);
+    this.todayActivity.revenue = revenue;
   }
 }

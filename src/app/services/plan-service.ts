@@ -37,8 +37,8 @@ export class PlanService {
     return await firstValueFrom(observable);
   }
 
-  async filterByCompany(companyId: string): Promise<Plan[]> {
-    const observable = this.http.get(environment.host + "/api/plan/filterByCompany/" + companyId, options).pipe(
+  async filterByBusiness(businessId: string): Promise<Plan[]> {
+    const observable = this.http.get(environment.host + "/api/plan/filterByBusiness/" + businessId, options).pipe(
       map(response => response as Plan[]));
     return await firstValueFrom(observable);
   }

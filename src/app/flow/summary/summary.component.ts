@@ -262,7 +262,7 @@ export class SummaryComponent {
   private customerService = inject(CustomerService);
   private planService = inject(PlanService);
   private payService = inject(PayService);
-  companyId: string | null = null;
+  businessId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
   plan: Plan | null = null;
@@ -271,7 +271,7 @@ export class SummaryComponent {
   constructor() {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state) {
-      this.companyId = state['company'].id;
+      this.businessId = state['business'].id;
       this.customerId = state['customer'].id;
       this.planId = state['plan'].id;
     }
@@ -318,7 +318,7 @@ export class SummaryComponent {
       const pay = new Pay();
       pay.customer = { id: this.customerId! };
       pay.plan = { id: this.planId! };
-      pay.company = { id: this.companyId! };
+      pay.business = { id: this.businessId! };
       const res = await this.payService.create(pay);
       const Widget = window.WidgetCheckout;
       if (!Widget) {
