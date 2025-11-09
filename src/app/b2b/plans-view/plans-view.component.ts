@@ -5,6 +5,7 @@ import { Plan } from '../../models/plan';
 import { PlanService } from '../../services/plan-service';
 import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-plans-view',
@@ -24,12 +25,14 @@ export class PlansViewComponent implements OnInit {
   planToDelete: Plan | null = null;
 
   formData = {
+    id: '',
     name: '',
     price: 0,
     description: '',
-    type: 'monthly' as 'monthly' | 'yearly',
+    type: 'mensual' as 'mensual' | 'anual',
     features: [] as string[],
-    active: true
+    active: true,
+    business: { id: this.business?.id }
   };
 
   errors = {
@@ -58,21 +61,28 @@ export class PlansViewComponent implements OnInit {
 
   async loadPlans() {
     this.loading = true;
-    if (this.business) {
-      this.plans = await this.planService.filterByBusiness(this.business?.id!);
+    try {
+      if (this.business) {
+        this.plans = await this.planService.filterByBusiness(this.business?.id!);
+      }
+    } catch (error) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } finally {
+      this.loading = false;
     }
-    this.loading = false;
   }
 
   openCreateView() {
     this.editingPlan = null;
     this.formData = {
+      id: '',
       name: '',
-      price: 0,
       description: '',
-      type: 'monthly',
       features: [],
-      active: true
+      price: 0,
+      type: 'mensual',
+      active: true,
+      business: { id: this.business?.id }
     };
     this.newFeature = '';
     this.showCreateView = true;
@@ -81,12 +91,14 @@ export class PlansViewComponent implements OnInit {
   openEditView(plan: Plan) {
     this.editingPlan = plan;
     this.formData = {
+      id: plan.id!,
       name: plan.name!,
-      price: plan.price!,
       description: plan.description!,
-      type: plan.type! as 'monthly' | 'yearly',
       features: [...(plan.features || [])],
-      active: plan.active === 'true'
+      price: plan.price!,
+      type: plan.type! as 'mensual' | 'anual',
+      active: plan.active === true,
+      business: { id: this.business?.id }
     };
     this.newFeature = '';
     this.showCreateView = true;
@@ -100,42 +112,26 @@ export class PlansViewComponent implements OnInit {
   async savePlan() {
     this.markAllTouched();
     this.validateAll();
-
     if (!this.isFormValid()) {
       return;
     }
-
-    //if (this.editingPlan) {
-    //  await this.businessService.updatePlan(this.editingPlan.id, this.formData);
-    //} else {
-    //  await this.businessService.createPlan(this.formData);
-    //}
-
-    await this.loadPlans();
-    this.closeCreateView();
+    try {
+      if (this.editingPlan) {
+        await this.planService.update(this.formData);
+      } else {
+        await this.planService.create(this.formData);
+      }
+      await this.loadPlans();
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } finally {
+      this.closeCreateView();
+    }
   }
 
   async togglePlanStatus(plan: Plan) {
-    //await this.businessService.updatePlan(plan.id, { is_active: !plan.is_active });
+    await this.planService.update(plan);
     await this.loadPlans();
-  }
-
-  openDeleteConfirm(plan: Plan) {
-    this.planToDelete = plan;
-    this.showDeleteConfirm = true;
-  }
-
-  closeDeleteConfirm() {
-    this.showDeleteConfirm = false;
-    this.planToDelete = null;
-  }
-
-  async confirmDelete() {
-    if (this.planToDelete) {
-      //await this.businessService.deletePlan(this.planToDelete.id);
-      await this.loadPlans();
-      this.closeDeleteConfirm();
-    }
   }
 
   formatCurrency(value: number): string {
@@ -158,7 +154,7 @@ export class PlansViewComponent implements OnInit {
     this.formData.features.splice(index, 1);
   }
 
-  setType(type: 'monthly' | 'yearly') {
+  setType(type: 'mensual' | 'anual') {
     this.formData.type = type;
   }
 

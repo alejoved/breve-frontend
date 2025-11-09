@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-business-info-view',
@@ -18,25 +19,32 @@ export class BusinessInfoViewComponent implements OnInit {
   saving = false;
 
   formData = {
+    id: '',
     name: '',
-    owner_name: '',
+    nit: '',
+    ownerName: '',
     email: '',
+    password: '',
     phone: '',
     address: ''
   };
 
   errors = {
     name: '',
-    owner_name: '',
+    nit: '',
+    ownerName: '',
     email: '',
+    password: '',
     phone: '',
     address: ''
   };
 
   touched = {
     name: false,
-    owner_name: false,
+    nit: false,
+    ownerName: false,
     email: false,
+    password: false,
     phone: false,
     address: false
   };
@@ -45,6 +53,8 @@ export class BusinessInfoViewComponent implements OnInit {
 
   async ngOnInit() {
     this.business = this.businessService.getSession();
+    this.business = await this.businessService.filterById(this.business?.id!);
+    console.log(this.business);
     await this.loadData();
   }
 
@@ -52,14 +62,16 @@ export class BusinessInfoViewComponent implements OnInit {
     this.loading = true;
     if (this.business) {
       this.formData = {
+        id: this.business.id || '',
         name: this.business.name || '',
-        owner_name: this.business.owner_name || '',
+        nit: this.business.nit || '',
+        ownerName: this.business.ownerName || '',
         email: this.business.email || '',
+        password: this.business.password || '',
         phone: this.business.phone || '',
         address: this.business.address || ''
       };
     }
-
     this.loading = false;
   }
 
@@ -69,7 +81,12 @@ export class BusinessInfoViewComponent implements OnInit {
     if (!this.isFormValid()) {
       return;
     }
-    this.business = await this.businessService.update(this.formData);
+    try {
+      this.business = await this.businessService.update(this.formData);
+      Swal.fire({ icon: "success", title: "Éxito", text: "La informacion del negocio se ha guardado correctamente." });
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
     this.saving = true;
     this.saving = false;
   }
@@ -108,14 +125,26 @@ export class BusinessInfoViewComponent implements OnInit {
     }
   }
 
-  validateOwnerName() {
-    if (this.touched.owner_name) {
-      if (!this.formData.owner_name.trim()) {
-        this.errors.owner_name = 'El nombre del propietario es requerido';
-      } else if (this.formData.owner_name.trim().length < 2) {
-        this.errors.owner_name = 'El nombre debe tener al menos 2 caracteres';
+  validateNit() {
+    if (this.touched.nit) {
+      if (!this.formData.nit.trim()) {
+        this.errors.nit = 'El NIT es requerido';
+      } else if (this.formData.nit.trim().length < 5) {
+        this.errors.nit = 'Ingresa un NIT válido';
       } else {
-        this.errors.owner_name = '';
+        this.errors.nit = '';
+      }
+    }
+  }
+
+  validateOwnerName() {
+    if (this.touched.ownerName) {
+      if (!this.formData.ownerName.trim()) {
+        this.errors.ownerName = 'El nombre del propietario es requerido';
+      } else if (this.formData.ownerName.trim().length < 2) {
+        this.errors.ownerName = 'El nombre debe tener al menos 2 caracteres';
+      } else {
+        this.errors.ownerName = '';
       }
     }
   }
@@ -128,6 +157,18 @@ export class BusinessInfoViewComponent implements OnInit {
         this.errors.email = 'Ingresa un email válido';
       } else {
         this.errors.email = '';
+      }
+    }
+  }
+
+  validatePassword() {
+    if (this.touched.password) {
+      if (!this.formData.password.trim()) {
+        this.errors.password = 'La contraseña es requerida';
+      } else if (this.formData.password.length < 6) {
+        this.errors.password = 'La contraseña debe tener al menos 6 caracteres';
+      } else {
+        this.errors.password = '';
       }
     }
   }
@@ -163,12 +204,12 @@ export class BusinessInfoViewComponent implements OnInit {
 
   isFormValid(): boolean {
     return !this.errors.name &&
-           !this.errors.owner_name &&
+           !this.errors.ownerName &&
            !this.errors.email &&
            !this.errors.phone &&
            !this.errors.address &&
            this.formData.name.trim() !== '' &&
-           this.formData.owner_name.trim() !== '' &&
+           this.formData.ownerName.trim() !== '' &&
            this.formData.email.trim() !== '' &&
            this.formData.phone.trim() !== '' &&
            this.formData.address.trim() !== '';
@@ -178,7 +219,7 @@ export class BusinessInfoViewComponent implements OnInit {
     this.touched[field] = true;
     switch(field) {
       case 'name': this.validateName(); break;
-      case 'owner_name': this.validateOwnerName(); break;
+      case 'ownerName': this.validateOwnerName(); break;
       case 'email': this.validateEmail(); break;
       case 'phone': this.validatePhone(); break;
       case 'address': this.validateAddress(); break;

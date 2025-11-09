@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BusinessService } from '../../services/business-service';
+import { Business } from '../../models/business';
 
 @Component({
   selector: 'app-profile-view',
@@ -12,11 +14,13 @@ import { RouterModule } from '@angular/router';
 export class ProfileViewComponent {
   @Output() logout = new EventEmitter<void>();
 
-  userEmail = '';
+  business: Business | null = null;
 
-  constructor() {
-    //const user = this.supabaseService.getUser();
-    //this.userEmail = user?.email || '';
+  constructor(private businessService: BusinessService) {
+  }
+
+  ngOnInit() {
+    this.business = this.businessService.getSession();
   }
 
   onLogout() {

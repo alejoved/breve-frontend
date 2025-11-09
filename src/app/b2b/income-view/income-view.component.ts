@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SubscriptionService } from '../../services/subscription-service';
 import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-income-view',
@@ -27,10 +28,15 @@ export class IncomeViewComponent implements OnInit {
 
   async loadData() {
     this.loading = true;
-    this.monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business?.id!);
-    this.totalRevenue = await this.subscriptionService.filterByBusinessAndTotalRevenue(this.business?.id!);
-    this.average = await this.subscriptionService.filterByBusinessAndAverage(this.business?.id!);
-    this.loading = false;
+    try {
+      this.monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business?.id!);
+      this.totalRevenue = await this.subscriptionService.filterByBusinessAndTotalRevenue(this.business?.id!);
+      this.average = await this.subscriptionService.filterByBusinessAndAverage(this.business?.id!);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } finally {
+      this.loading = false;
+    }
   }
 
   formatCurrency(value: number): string {

@@ -26,12 +26,6 @@
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
             </svg>
           </button>
-          <button class="action-icon-btn" (click)="openDeleteConfirm(plan)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <polyline points="3 6 5 6 21 6"></polyline>
-              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-            </svg>
-          </button>
         </div>
       </div>
 
@@ -164,16 +158,16 @@
               <button
                 type="button"
                 class="period-btn"
-                [class.active]="formData.type === 'monthly'"
-                (click)="setType('monthly')"
+                [class.active]="formData.type === 'mensual'"
+                (click)="setType('mensual')"
               >
                 Mensual
               </button>
               <button
                 type="button"
                 class="period-btn"
-                [class.active]="formData.type === 'yearly'"
-                (click)="setType('yearly')"
+                [class.active]="formData.type === 'anual'"
+                (click)="setType('anual')"
               >
                 Anual
               </button>
@@ -243,32 +237,5 @@
         </button>
       </div>
     </form>
-  </div>
-</div>
-
-<div class="modal-overlay" *ngIf="showDeleteConfirm" (click)="closeDeleteConfirm()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <div class="modal-icon-wrapper danger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-      </div>
-      <h3 class="modal-title">Eliminar Plan</h3>
-      <p class="modal-description">
-        ¿Estás seguro de que deseas eliminar el plan <strong>"{{ planToDelete?.name }}"</strong>?
-        Esta acción no se puede deshacer.
-      </p>
-    </div>
-    <div class="modal-actions">
-      <button class="modal-btn cancel" (click)="closeDeleteConfirm()">
-        Cancelar
-      </button>
-      <button class="modal-btn danger" (click)="confirmDelete()">
-        Eliminar Plan
-      </button>
-    </div>
   </div>
 </div>

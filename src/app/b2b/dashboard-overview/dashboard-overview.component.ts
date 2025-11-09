@@ -4,6 +4,7 @@ import { SubscriptionService } from '../../services/subscription-service';
 import { PlanService } from '../../services/plan-service';
 import { BusinessService } from '../../services/business-service';
 import { Business } from '../../models/business';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -108,42 +109,74 @@ export class DashboardOverviewComponent implements OnInit {
   }
 
   async activeSubscriptions() {
-    const subscriptions = await this.subscriptionService.filterByBusiness(this.business!.id!);
-    this.stats.activeSubscribers = subscriptions.length;
+    try {
+      const subscriptions = await this.subscriptionService.filterByBusiness(this.business!.id!);
+      this.stats.activeSubscribers = subscriptions.length;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   async activePlans() {
-    const plans = await this.planService.filterByBusiness(this.business!.id!);
-    this.stats.activePlans = plans.length;
+    try {
+      const plans = await this.planService.filterByBusiness(this.business!.id!);
+      this.stats.activePlans = plans.length;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   async monthlyRevenue() {
-    const monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business!.id!);
-    this.stats.monthlyRevenue = monthlyRevenue;
+    try {
+      const monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business!.id!);
+      this.stats.monthlyRevenue = monthlyRevenue;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   async retentionRate() {
-    const retentionRate = await this.subscriptionService.filterByBusinessAndRetentionRate(this.business!.id!);
-    this.stats.retentionRate = retentionRate;
+    try {
+      const retentionRate = await this.subscriptionService.filterByBusinessAndRetentionRate(this.business!.id!);
+      this.stats.retentionRate = retentionRate;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   async newSubscriptions() {
-    const newSubscriptions = await this.subscriptionService.filterByBusinessAndNewSubscriptions(this.business!.id!);
-    this.todayActivity.newSubscriptions = newSubscriptions;
+    try {
+      const newSubscriptions = await this.subscriptionService.filterByBusinessAndNewSubscriptions(this.business!.id!);
+      this.todayActivity.newSubscriptions = newSubscriptions;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   async cancellations() {
-    const cancellations = await this.subscriptionService.filterByBusinessAndCancellations(this.business!.id!);
-    this.todayActivity.cancellations = cancellations;
+    try {
+      const cancellations = await this.subscriptionService.filterByBusinessAndCancellations(this.business!.id!);
+      this.todayActivity.cancellations = cancellations;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   async renewals() {
-    const renewals = await this.subscriptionService.filterByBusinessAndRenewals(this.business!.id!);
-    this.todayActivity.renewals = renewals;
+    try {
+      const renewals = await this.subscriptionService.filterByBusinessAndRenewals(this.business!.id!);
+      this.todayActivity.renewals = renewals;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 
   async todayRevenue() {
-    const revenue = await this.subscriptionService.filterByBusinessAndTodayRevenue(this.business!.id!);
-    this.todayActivity.revenue = revenue;
+    try {
+      const revenue = await this.subscriptionService.filterByBusinessAndTodayRevenue(this.business!.id!);
+      this.todayActivity.revenue = revenue;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
   }
 }

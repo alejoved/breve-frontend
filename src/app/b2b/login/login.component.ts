@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MeshGradientComponent } from './mesh-gradient.component';
 import { BusinessService } from '../../services/business-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -39,15 +40,17 @@ export class LoginComponent {
 
     this.loading = true;
     this.errorMessage = '';
-    
-    const business = await this.businessService.login(this.email, this.password);
-
-    if (business) {
-      this.businessService.setSession(business);
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.errorMessage = 'Correo o contraseña incorrectos';
-      this.loading = false;
+    try {
+      const business = await this.businessService.login(this.email, this.password);
+      if (business) {
+        this.businessService.setSession(business);
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.errorMessage = 'Correo o contraseña incorrectos';
+        this.loading = false;
+      }
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
     }
   }
 

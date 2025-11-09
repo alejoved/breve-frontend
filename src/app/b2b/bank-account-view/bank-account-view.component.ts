@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-bank-account-view',
@@ -40,22 +41,28 @@ export class BankAccountViewComponent implements OnInit {
   ];
 
   formData = {
-    bank_name: '',
-    account_type: '',
-    account_number: '',
-    owner_name: ''
+    id: '',
+    name: '',
+    nit: '',
+    email: '',
+    password: '',
+    bankName: '',
+    accountType: '',
+    accountNumber: '',
+    accountOwner: ''
   };
 
   errors = {
-    bank_name: '',
-    account_number: '',
-    owner_name: ''
+    bankName: '',
+    accountNumber: '',
+    accountType: '',
+    accountOwner: ''
   };
 
   touched = {
-    bank_name: false,
-    account_number: false,
-    owner_name: false
+    bankName: false,
+    accountNumber: false,
+    accountOwner: false
   };
 
   constructor(private businessService: BusinessService) {
@@ -63,6 +70,7 @@ export class BankAccountViewComponent implements OnInit {
 
   async ngOnInit() { 
     this.business = this.businessService.getSession();
+    this.business = await this.businessService.filterById(this.business?.id!);
     await this.loadData();
   }
 
@@ -70,10 +78,15 @@ export class BankAccountViewComponent implements OnInit {
     this.loading = true;
     if (this.business) {
       this.formData = {
-        bank_name: this.business.bank_name || '',
-        account_type: this.business.account_type || '',
-        account_number: this.business.account_number || '',
-        owner_name: this.business.owner_name || ''
+        id: this.business.id || '',
+        name: this.business.name || '',
+        nit: this.business.nit || '',
+        email: this.business.email || '',
+        password: this.business.password || '',
+        bankName: this.business.bankName || '',
+        accountType: this.business.accountType || '',
+        accountNumber: this.business.accountNumber || '',
+        accountOwner: this.business.accountOwner || ''
       };
     }
     this.loading = false;
@@ -85,8 +98,13 @@ export class BankAccountViewComponent implements OnInit {
     if (!this.isFormValid()) {
       return;
     }
-    this.business = await this.businessService.update(this.formData);
     this.saving = true;
+    try {
+      this.business = await this.businessService.update(this.formData);
+      Swal.fire({ icon: "success", title: "Éxito", text: "La informacion den la cuenta bancaria se ha guardado correctamente." });
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    }
     this.saving = false;
   }
 
@@ -103,62 +121,62 @@ export class BankAccountViewComponent implements OnInit {
   validateAll() {
     this.validateBankName();
     this.validateAccountNumber();
-    this.validateOwnerName();
+    this.validateAccountOwner();
   }
 
   validateBankName() {
-    if (this.touched.bank_name) {
-      if (!this.formData.bank_name) {
-        this.errors.bank_name = 'Debes seleccionar un banco';
+    if (this.touched.bankName) {
+      if (!this.formData.bankName) {
+        this.errors.bankName = 'Debes seleccionar un banco';
       } else {
-        this.errors.bank_name = '';
+        this.errors.bankName = '';
       }
     }
   }
 
   validateAccountNumber() {
-    if (this.touched.account_number) {
-      const accountNumber = this.formData.account_number.trim();
+    if (this.touched.accountNumber) {
+      const accountNumber = this.formData.accountNumber.trim();
 
       if (!accountNumber) {
-        this.errors.account_number = 'El número de cuenta es requerido';
+        this.errors.accountNumber = 'El número de cuenta es requerido';
       } else if (!/^\d+$/.test(accountNumber)) {
-        this.errors.account_number = 'El número de cuenta solo debe contener dígitos';
+        this.errors.accountNumber = 'El número de cuenta solo debe contener dígitos';
       } else if (accountNumber.length < 9 || accountNumber.length > 20) {
-        this.errors.account_number = 'El número de cuenta debe tener entre 9 y 20 dígitos';
+        this.errors.accountNumber = 'El número de cuenta debe tener entre 9 y 20 dígitos';
       } else {
-        this.errors.account_number = '';
+        this.errors.accountNumber = '';
       }
     }
   }
 
-  validateOwnerName() {
-    if (this.touched.owner_name) {
-      if (!this.formData.owner_name.trim()) {
-        this.errors.owner_name = 'El nombre del titular es requerido';
-      } else if (this.formData.owner_name.trim().length < 2) {
-        this.errors.owner_name = 'El nombre debe tener al menos 2 caracteres';
+  validateAccountOwner() {
+    if (this.touched.accountOwner) {
+      if (!this.formData.accountOwner.trim()) {
+        this.errors.accountOwner = 'El nombre del titular es requerido';
+      } else if (this.formData.accountOwner.trim().length < 2) {
+        this.errors.accountOwner = 'El nombre debe tener al menos 2 caracteres';
       } else {
-        this.errors.owner_name = '';
+        this.errors.accountOwner = '';
       }
     }
   }
 
   isFormValid(): boolean {
-    return !this.errors.bank_name &&
-           !this.errors.account_number &&
-           !this.errors.owner_name &&
-           this.formData.bank_name.trim() !== '' &&
-           this.formData.account_number.trim() !== '' &&
-           this.formData.owner_name.trim() !== '';
+    return !this.errors.bankName &&
+           !this.errors.accountNumber &&
+           !this.errors.accountOwner &&
+           this.formData.bankName.trim() !== '' &&
+           this.formData.accountNumber.trim() !== '' &&
+           this.formData.accountOwner.trim() !== '';
   }
 
   onFieldBlur(field: keyof typeof this.touched) {
     this.touched[field] = true;
     switch(field) {
-      case 'bank_name': this.validateBankName(); break;
-      case 'account_number': this.validateAccountNumber(); break;
-      case 'owner_name': this.validateOwnerName(); break;
+      case 'bankName': this.validateBankName(); break;
+      case 'accountNumber': this.validateAccountNumber(); break;
+      case 'accountOwner': this.validateAccountOwner(); break;
     }
   }
 

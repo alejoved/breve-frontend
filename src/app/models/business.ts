@@ -3,14 +3,13 @@ export class Business {
     name?: string;
     nit?: string;
     contract?: string;
-
-    //nuevos campos
     email?: string;
+    password?: string;
+    ownerName?: string;
     phone?: string;
     address?: string;
-    bank_name?: string;
-    account_type?: string;
-    account_number?: string;
-    swift_bic?: string;
-    owner_name?: string;
+    bankName?: string;
+    accountType?: string;
+    accountNumber?: string;
+    accountOwner?: string;
 }

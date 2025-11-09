@@ -5,6 +5,8 @@ import { DashboardOverviewComponent } from '../dashboard-overview/dashboard-over
 import { IncomeViewComponent } from '../income-view/income-view.component';
 import { SubscribersViewComponent } from '../subscribers-view/subscribers-view.component';
 import { PlansViewComponent } from '../plans-view/plans-view.component';
+import { Business } from '../../models/business';
+import { BusinessService } from '../../services/business-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,12 +28,13 @@ export class DashboardComponent implements OnInit {
   isProfileMenuOpen = false;
   userName = 'Usuario';
   openPlansCreateForm = false;
+  business: Business | null = null;
 
   constructor(
-    private router: Router
-  ) {}
+    private router: Router, private businessService: BusinessService) {}
 
   ngOnInit() {
+    this.business = this.businessService.getSession();
   }
 
   setView(view: 'dashboard' | 'ingresos' | 'suscriptores' | 'planes' | string) {

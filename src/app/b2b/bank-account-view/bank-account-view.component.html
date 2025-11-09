@@ -18,18 +18,18 @@
         <label class="form-label">Nombre del Banco<span class="required">*</span></label>
         <select
           class="form-input"
-          [class.error]="errors.bank_name && touched.bank_name"
-          [(ngModel)]="formData.bank_name"
+          [class.error]="errors.bankName && touched.bankName"
+          [(ngModel)]="formData.bankName"
           (ngModelChange)="validateBankName()"
-          (blur)="onFieldBlur('bank_name')"
-          name="bank_name"
+          (blur)="onFieldBlur('bankName')"
+          name="bankName"
           required
         >
           <option value="" disabled selected>Selecciona un banco</option>
           <option *ngFor="let bank of colombianBanks" [value]="bank">{{ bank }}</option>
         </select>
-        <div *ngIf="errors.bank_name && touched.bank_name" class="field-error">
-          {{ errors.bank_name }}
+        <div *ngIf="errors.bankName && touched.bankName" class="field-error">
+          {{ errors.bankName }}
         </div>
       </div>
 
@@ -39,16 +39,16 @@
           <button
             type="button"
             class="option-btn"
-            [class.active]="formData.account_type === 'corriente'"
-            (click)="formData.account_type = 'corriente'"
+            [class.active]="formData.accountType === 'corriente'"
+            (click)="formData.accountType = 'corriente'"
           >
             Corriente
           </button>
           <button
             type="button"
             class="option-btn"
-            [class.active]="formData.account_type === 'ahorros'"
-            (click)="formData.account_type = 'ahorros'"
+            [class.active]="formData.accountType === 'ahorros'"
+            (click)="formData.accountType = 'ahorros'"
           >
             Ahorros
           </button>
@@ -60,19 +60,19 @@
         <input
           type="text"
           class="form-input"
-          [class.error]="errors.account_number && touched.account_number"
+          [class.error]="errors.accountNumber && touched.accountNumber"
           placeholder="304590569045"
-          [(ngModel)]="formData.account_number"
+          [(ngModel)]="formData.accountNumber"
           (ngModelChange)="validateAccountNumber()"
-          (blur)="onFieldBlur('account_number')"
+          (blur)="onFieldBlur('accountNumber')"
           (keypress)="onlyNumbers($event)"
-          name="account_number"
+          name="accountNumber"
           inputmode="numeric"
           pattern="[0-9]*"
           required
         />
-        <div *ngIf="errors.account_number && touched.account_number" class="field-error">
-          {{ errors.account_number }}
+        <div *ngIf="errors.accountNumber && touched.accountNumber" class="field-error">
+          {{ errors.accountNumber }}
         </div>
       </div>
 
@@ -81,16 +81,16 @@
         <input
           type="text"
           class="form-input"
-          [class.error]="errors.owner_name && touched.owner_name"
+          [class.error]="errors.accountOwner && touched.accountOwner"
           placeholder="Andrés Quintero"
-          [(ngModel)]="formData.owner_name"
-          (ngModelChange)="validateOwnerName()"
-          (blur)="onFieldBlur('owner_name')"
-          name="owner_name"
+          [(ngModel)]="formData.accountOwner"
+          (ngModelChange)="validateAccountOwner()"
+          (blur)="onFieldBlur('accountOwner')"
+          name="accountOwner"
           required
         />
-        <div *ngIf="errors.owner_name && touched.owner_name" class="field-error">
-          {{ errors.owner_name }}
+        <div *ngIf="errors.accountOwner && touched.accountOwner" class="field-error">
+          {{ errors.accountOwner }}
         </div>
       </div>
 

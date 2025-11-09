@@ -9,5 +9,5 @@ export class Plan {
     type?: string;
     popular?: boolean;
     business?: Dto;
-    active?: string;
+    active?: boolean;
 }
