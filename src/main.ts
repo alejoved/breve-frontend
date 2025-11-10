@@ -13,6 +13,7 @@ import { BankAccountViewComponent } from './app/b2b/bank-account-view/bank-accou
 import { BusinessInfoViewComponent } from './app/b2b/business-info-view/business-info-view.component';
 import { LoginComponent } from './app/b2b/login/login.component';
 import { ClarityComponent } from './app/flow/clarity/clarity.component';
+import { WithdrawalsViewComponent } from './app/b2b/withdrawals-view/withdrawals-view.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ import { ClarityComponent } from './app/flow/clarity/clarity.component';
 export class App {}
 
 const routes = [
-  { path: '', component: WelcomeComponent },
+  { path: 'flow/:businessId', component: WelcomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'plans', component: PlansComponent },
   { path: 'additional-info', component: AdditionalInfoComponent },
@@ -34,6 +35,7 @@ const routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'bank-account', component: BankAccountViewComponent },
   { path: 'business-info', component: BusinessInfoViewComponent },
+  { path: 'withdrawals', component: WithdrawalsViewComponent },
   { path: '**', redirectTo: '' },
 ];
 

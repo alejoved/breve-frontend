@@ -36,4 +36,22 @@ export class PayService {
       map(response => response as Pay));
     return await firstValueFrom(observable);
   }
+
+  async availableBalance(businessId: string): Promise<number> {
+    const observable = this.http.get(environment.host + "/api/pay/availableBalance/" + businessId, options).pipe(
+      map(response => response as number));
+    return await firstValueFrom(observable);
+  }
+
+  async historicalPayments(businessId: string): Promise<Pay[]> {
+    const observable = this.http.get(environment.host + "/api/pay/historicalPayments/" + businessId, options).pipe(
+      map(response => response as Pay[]));
+    return await firstValueFrom(observable);
+  }
+
+  async historicalWithdrawals(businessId: string): Promise<Pay[]> {
+    const observable = this.http.get(environment.host + "/api/pay/historicalWithdrawals/" + businessId, options).pipe(
+      map(response => response as Pay[]));
+    return await firstValueFrom(observable);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { business_name } from '../../../constants';
 
 @Component({
@@ -67,12 +67,22 @@ import { business_name } from '../../../constants';
 })
 export class WelcomeComponent implements OnInit {
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   businessName = business_name;
+  businessId: string | null = null;
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const idFromParam = params.get('businessId');
+      if (idFromParam) {
+        this.businessId = idFromParam;
+      } else {
+        this.router.navigate(['']);
+      }
+    });
     setTimeout(() => {
-      this.router.navigate(['/contact']);
+      this.router.navigate(['/contact'], { state: { business: { id: this.businessId } }});
     }, 2500);
   }
 }

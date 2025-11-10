@@ -283,15 +283,15 @@ export class AdditionalInfoComponent {
     lastName: "",
     phone : "",
     email: "",
-    gender: '',
-    documentType: '',
-    documentNumber: ''
+    gender: "",
+    documentType: "",
+    documentNumber: ""
   };
 
   errors = {
-    gender: '',
-    documentType: '',
-    documentNumber: ''
+    gender: "",
+    documentType: "",
+    documentNumber: ""
   };
 
   async filterById(){

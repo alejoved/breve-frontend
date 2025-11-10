@@ -7,7 +7,9 @@ export class Pay {
     customer?: Customer;
     plan?: Dto;
     business?: Dto;
-    amount?: string;
+    amount?: number;
+    transactionDate?: string;
+    amountInCents?: string;
     currency?: string;
     prefix?: string;
     signature?: string;

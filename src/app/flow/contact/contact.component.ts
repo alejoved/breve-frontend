@@ -257,8 +257,8 @@ export class ContactComponent {
   private router = inject(Router);
   private customerService = inject(CustomerService);
 
-  businessName = business_name
-  businessId = "c72eedf1-ffbd-4e53-9ecf-f068e4398b0a";
+  businessName = business_name;
+  businessId: string | null = null;
 
   formData = {
     firstName: '',
@@ -273,6 +273,16 @@ export class ContactComponent {
     phone: '',
     email: ''
   };
+
+  constructor() {
+    const state = this.router.getCurrentNavigation()?.extras.state;
+    if (state) {
+      this.businessId = state['business'].id;
+    }
+    if(!state){
+      this.router.navigate(['']);
+    }
+  }
 
   validateFirstName() {
     if (!this.formData.firstName.trim()) {
