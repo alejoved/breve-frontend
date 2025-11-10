@@ -261,7 +261,6 @@ export class SummaryComponent {
   private router = inject(Router);
   private customerService = inject(CustomerService);
   private planService = inject(PlanService);
-  private payService = inject(PayService);
   businessId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
@@ -314,46 +313,6 @@ export class SummaryComponent {
   }
 
   async onPay() {
-    try{
-      const pay = new Pay();
-      pay.customer = { id: this.customerId! };
-      pay.plan = { id: this.planId! };
-      pay.business = { id: this.businessId! };
-      const res = await this.payService.create(pay);
-      const Widget = window.WidgetCheckout;
-      if (!Widget) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Widget de pago no disponible',
-          text: 'El script del widget no se cargó. Recarga la página e intenta de nuevo.'
-        });
-        return;
-      }
-      console.log(res);
-      var checkout = new Widget({
-        currency: res.currency,
-        amountInCents: res.amount,
-        reference: res.reference,
-        publicKey: res.publicKey,
-        signature: {integrity : res.signature},
-        customerData: { // Opcional
-          fullName: res.customer?.firstName + ' ' + res.customer?.lastName,
-          email: res.customer?.email,
-          phoneNumber: res.customer?.phone,
-          phoneNumberPrefix: res.prefix,
-          legalId: res.customer?.documentNumber,
-          legalIdType: res.customer?.documentType
-        },
-      });
-      checkout.open(function (result: any) {
-        if (result?.transaction) {
-          console.log('Transaction:', result.transaction);
-        } else {
-          console.log('Checkout result:', result);
-        }
-      });
-    } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
-    }
+    this.router.navigate(['/clarity'], { state: { business: { id: this.businessId }, customer: {id: this.customerId }, plan: {id: this.planId } }});
   }
 }

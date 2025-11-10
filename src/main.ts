@@ -12,6 +12,7 @@ import { DashboardComponent } from './app/b2b/dashboard/dashboard.component';
 import { BankAccountViewComponent } from './app/b2b/bank-account-view/bank-account-view.component';
 import { BusinessInfoViewComponent } from './app/b2b/business-info-view/business-info-view.component';
 import { LoginComponent } from './app/b2b/login/login.component';
+import { ClarityComponent } from './app/flow/clarity/clarity.component';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ const routes = [
   { path: 'additional-info', component: AdditionalInfoComponent },
   { path: 'contract', component: ContractComponent },
   { path: 'summary', component: SummaryComponent },
+  { path: 'clarity', component: ClarityComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'bank-account', component: BankAccountViewComponent },
