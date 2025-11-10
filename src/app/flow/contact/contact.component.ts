@@ -7,6 +7,7 @@ import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { CustomerService } from '../../services/customer-service';
 import Swal from 'sweetalert2';
 import { business_name } from '../../../constants';
+import { BusinessService } from '../../services/business-service';
 
 @Component({
   selector: 'app-contact',
@@ -256,6 +257,7 @@ import { business_name } from '../../../constants';
 export class ContactComponent {
   private router = inject(Router);
   private customerService = inject(CustomerService);
+  private businessService = inject(BusinessService);
 
   businessName = business_name;
   businessId: string | null = null;
@@ -277,11 +279,17 @@ export class ContactComponent {
   constructor() {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state) {
-      this.businessId = state['business'].id;
+      this.businessName = state['businessName'];
     }
     if(!state){
       this.router.navigate(['']);
     }
+    this.businessFilterByName();
+  }
+
+  async businessFilterByName() {
+    const business = await this.businessService.filterByName(this.businessName);
+    this.businessId = business ? business.id! : null;
   }
 
   validateFirstName() {

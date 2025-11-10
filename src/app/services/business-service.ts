@@ -36,6 +36,11 @@ export class BusinessService {
       map(response => response as Business));
     return await firstValueFrom(observable);
   }
+  async filterByName(name: string): Promise<Business> {
+    const observable = this.http.get(environment.host + "/api/business/filterByName/" + name, options).pipe(
+      map(response => response as Business));
+    return await firstValueFrom(observable);
+  }
 
   async login(email: string, password: string): Promise<Business> {
     const observable = this.http.get(environment.host + "/api/business/login/" + email + "/" + password , options).pipe(

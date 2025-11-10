@@ -24,7 +24,7 @@ import { WithdrawalsViewComponent } from './app/b2b/withdrawals-view/withdrawals
 export class App {}
 
 const routes = [
-  { path: 'flow/:businessId', component: WelcomeComponent },
+  { path: 'flow/:businessName', component: WelcomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'plans', component: PlansComponent },
   { path: 'additional-info', component: AdditionalInfoComponent },

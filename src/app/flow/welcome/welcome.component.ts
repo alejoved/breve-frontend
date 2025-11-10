@@ -68,21 +68,19 @@ import { business_name } from '../../../constants';
 export class WelcomeComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-
-  businessName = business_name;
-  businessId: string | null = null;
+  businessName: string | null = null;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const idFromParam = params.get('businessId');
-      if (idFromParam) {
-        this.businessId = idFromParam;
+      const nameFromParam = params.get('businessName');
+      if (nameFromParam) {
+        this.businessName = nameFromParam;
       } else {
         this.router.navigate(['']);
       }
     });
     setTimeout(() => {
-      this.router.navigate(['/contact'], { state: { business: { id: this.businessId } }});
+      this.router.navigate(['/contact'], { state: { businessName: this.businessName } });
     }, 2500);
   }
 }
