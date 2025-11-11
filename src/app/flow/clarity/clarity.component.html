@@ -1,0 +1,30 @@
+<div class="modal-overlay" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-button" (click)="onClose()" aria-label="Cerrar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+    </button>
+
+    <div class="modal-body">
+        <div class="icon-container">
+        <img src="/assets/Seguro.png" alt="Pago seguro" class="security-icon" />
+        </div>
+
+        <h2 class="modal-title">Pago seguro con</h2>
+
+        <div class="logos-container">
+        <img src="/assets/Logo Wompi +Breve.png" alt="Wompi + Breve" class="partnership-logo" />
+        </div>
+
+        <p class="modal-description">
+        Procesamos tu pago con Wompi a través de +Breve, quien gestiona la transacción y envía el dinero a
+        <strong>{{ business?.name }}</strong>.
+        </p>
+
+        <button class="btn-continue" (click)="onContinue()">
+        Continuar con el pago
+        </button>
+    </div>
+    </div>
+</div>

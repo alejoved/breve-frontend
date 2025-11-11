@@ -1,0 +1,62 @@
+<div class="page-container">
+    <app-header [businessName]="businessName"></app-header>
+
+    <div class="content">
+    <div class="step-header">
+        <h1 class="title">Resumen</h1>
+        <span class="step-counter">5/6</span>
+    </div>
+
+    <app-progress-bar [currentStep]="5" [totalSteps]="6"></app-progress-bar>
+
+    <p class="description">
+        Revisa los detalles antes de proceder al pago
+    </p>
+
+    <div class="summary-section">
+        <h3 class="section-label">Negocio</h3>
+        <div class="section-content">
+        <h4 class="section-title">Contrato de suscripción</h4>
+        </div>
+    </div>
+
+    <div class="summary-section">
+        <h3 class="section-label">Plan seleccionado</h3>
+        <div class="section-content">
+        <h4 class="section-title">{{ plan?.name }}</h4>
+        <p class="plan-price">\${{ formatPrice(plan?.price || 0) }}/mes</p>
+        </div>
+    </div>
+
+    <div class="summary-section">
+        <h3 class="section-label">Datos personales</h3>
+        <div class="section-content">
+        <h4 class="section-title">
+            {{ customer?.firstName }} {{ customer?.lastName }}
+        </h4>
+        <p class="section-text">{{ customer?.email }}</p>
+        <p class="section-text">
+            {{ getDocumentTypeLabel() }}: {{ customer?.documentNumber }}
+        </p>
+        </div>
+    </div>
+
+    <div class="summary-section">
+        <h3 class="section-label">Características del Plan</h3>
+        <ul class="features-list">
+        <li *ngFor="let feature of plan?.features" class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+            </svg>
+            <span>{{ feature }}</span>
+        </li>
+        </ul>
+    </div>
+        <button
+        type="button"
+        class="btn-continue"
+        (click)="onPay()">
+        Pagar
+        </button>
+    </div>
+</div>

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { options } from '../../constants';
 import { environment } from '../../environments/environment';
+import { Subscription } from '../models/subscription';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,18 @@ export class SubscriptionService {
       map(response => response as Subscription));
     return await firstValueFrom(observable);
   }
+  async filterByCustomer(customerId: string): Promise<Subscription[]> {
+    const observable = this.http.get(environment.host + "/api/subscription/filterByCustomer/" + customerId, options).pipe(
+      map(response => response as Subscription[]));
+    return await firstValueFrom(observable);
+  }
+
+  async filterByCustomerAndRenewal(customerId: string): Promise<Subscription[]> {
+    const observable = this.http.get(environment.host + "/api/subscription/filterByCustomerAndRenewal/" + customerId, options).pipe(
+      map(response => response as Subscription[]));
+    return await firstValueFrom(observable);
+  }
+
   async filterByBusiness(businessId: string): Promise<Subscription[]> {
     const observable = this.http.get(environment.host + "/api/subscription/filterByBusiness/" + businessId, options).pipe(
       map(response => response as Subscription[]));

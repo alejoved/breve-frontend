@@ -1,0 +1,84 @@
+<div class="subscriptions-container" *ngIf="!isLoading">
+  <header class="header">
+    <button (click)="goBack()" class="back-button">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <h1 class="header-title">Mis suscripciones</h1>
+  </header>
+
+  <div class="content" *ngIf="subscriptions.length > 0">
+    <div *ngFor="let subscription of subscriptions" class="card">
+      <img [src]="subscription.business?.logo || 'assets/Logo +Breve.png'" [alt]="subscription.business?.name || 'Logo'" class="logo">
+
+      <div class="business-name">{{ subscription.business?.name }}</div>
+
+      <div class="plan-header">
+        <div class="plan-title-row">
+          <h2 class="plan-name">{{ subscription.plan?.name }}</h2>
+          <button (click)="editPlan(subscription)" class="edit-button">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M14.166 2.5c.442-.442 1.162-.442 1.604 0l1.73 1.73c.442.442.442 1.162 0 1.604l-9.5 9.5H4.166v-3.834l9.5-9.5h.5zM2.5 17.5h15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <span class="status-badge">Activo</span>
+      </div>
+
+      <ul class="features-list">
+        <li *ngFor="let feature of subscription.plan?.features" class="feature-item">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16.666 5L7.5 14.167l-4.167-4.167" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {{ feature }}
+        </li>
+      </ul>
+
+      <div class="info-section">
+        <div class="info-label">Monto mensual:</div>
+        <div class="info-value price">{{ formatCurrency(subscription.plan?.price || 0) }}</div>
+      </div>
+
+      <div class="info-section">
+        <div class="info-label">Fecha de inicio:</div>
+        <div class="info-value">{{ subscription.startDate! }}</div>
+      </div>
+
+      <div class="info-section">
+        <div class="info-label">Próximo cobro:</div>
+        <div class="info-value">{{ subscription.endDate }}</div>
+      </div>
+
+      <div class="invoices-section">
+        <h3 class="invoices-title">Facturas:</h3>
+
+        <div class="invoice-card">
+          <div class="invoice-header">
+            <div class="invoice-number">{{ payId }}</div>
+            <span class="status-pending">Pendiente</span>
+          </div>
+
+          <div class="invoice-details">
+            <div class="invoice-detail">
+              <span class="detail-label">Emitida:</span>
+              <span class="detail-value">{{ subscription.renewalDate }}</span>
+            </div>
+            <div class="invoice-detail">
+              <span class="detail-label">Vence:</span>
+              <span class="detail-value">{{ subscription.endDate }}</span>
+            </div>
+          </div>
+
+          <div class="invoice-amount">{{ formatCurrency(subscription.plan?.price!) }}</div>
+
+          <button (click)="onPagar(subscription)" class="btn-primary">Pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading-container" *ngIf="isLoading">
+  <div class="spinner"></div>
+</div>

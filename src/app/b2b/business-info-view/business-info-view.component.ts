@@ -54,7 +54,6 @@ export class BusinessInfoViewComponent implements OnInit {
   async ngOnInit() {
     this.business = this.businessService.getSession();
     this.business = await this.businessService.filterById(this.business?.id!);
-    console.log(this.business);
     await this.loadData();
   }
 

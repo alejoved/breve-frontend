@@ -14,6 +14,9 @@ import { BusinessInfoViewComponent } from './app/b2b/business-info-view/business
 import { LoginComponent } from './app/b2b/login/login.component';
 import { ClarityComponent } from './app/flow/clarity/clarity.component';
 import { WithdrawalsViewComponent } from './app/b2b/withdrawals-view/withdrawals-view.component';
+import { PortalComponent } from './app/b2c/portal/portal.component';
+import { ModifyPlanComponent } from './app/b2c/modify-plan/modify-plan.component';
+import { SubscriptionsPaymentComponent } from './app/b2c/subscriptions-payment/subscriptions-payment.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +27,7 @@ import { WithdrawalsViewComponent } from './app/b2b/withdrawals-view/withdrawals
 export class App {}
 
 const routes = [
-  { path: 'subscription/:businessName', component: WelcomeComponent },
+  { path: 'subscriptions/:businessName', component: WelcomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'plans', component: PlansComponent },
   { path: 'additional-info', component: AdditionalInfoComponent },
@@ -36,6 +39,9 @@ const routes = [
   { path: 'bank-account', component: BankAccountViewComponent },
   { path: 'business-info', component: BusinessInfoViewComponent },
   { path: 'withdrawals', component: WithdrawalsViewComponent },
+  { path: 'portal', component: PortalComponent },
+  { path: 'modify-plan', component: ModifyPlanComponent },
+  { path: 'subscriptions-payment', component: SubscriptionsPaymentComponent },
   { path: '**', redirectTo: '' },
 ];
 

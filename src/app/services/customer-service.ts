@@ -36,4 +36,10 @@ export class CustomerService {
       map(response => response as Customer));
     return await firstValueFrom(observable);
   }
+
+  async filterByDocumentNumber(documentNumber: string): Promise<Customer> {
+    const observable = this.http.get(environment.host + "/api/customer/filterByDocumentNumber/" + documentNumber, options).pipe(
+      map(response => response as Customer));
+    return await firstValueFrom(observable);
+  }
 }

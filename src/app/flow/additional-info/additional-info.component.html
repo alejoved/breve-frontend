@@ -1,0 +1,78 @@
+<div class="page-container">
+    <app-header [businessName]="businessName"></app-header>
+
+    <div class="content">
+    <div class="step-header">
+        <h1 class="title">Información Adicional</h1>
+        <span class="step-counter">3/6</span>
+    </div>
+
+    <app-progress-bar [currentStep]="3" [totalSteps]="6"></app-progress-bar>
+
+    <p class="description">
+        Completa tu perfil para personalizar tu experiencia
+    </p>
+
+    <form class="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+        <label class="label">Género*</label>
+        <select
+            class="select"
+            [class.input-error]="errors.gender"
+            [(ngModel)]="formData.gender"
+            name="gender"
+            (blur)="validateGender()"
+            (change)="onGenderChange()"
+            required
+        >
+            <option value="" disabled>Selecciona tu género</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+            <option value="prefiero-no-decir">Prefiero no decir</option>
+        </select>
+        <span class="error-message" *ngIf="errors.gender">{{ errors.gender }}</span>
+        </div>
+
+        <div class="form-group">
+        <label class="label">Tipo de documento*</label>
+        <select
+            class="select"
+            [class.input-error]="errors.documentType"
+            [(ngModel)]="formData.documentType"
+            name="documentType"
+            (blur)="validateDocumentType()"
+            (change)="onDocumentTypeChange()"
+            required
+        >
+            <option value="" disabled>Selecciona tipo de documento</option>
+            <option value="CC">Cédula de ciudadanía</option>
+            <option value="CE">Cédula de extranjería</option>
+            <option value="PP">Pasaporte</option>
+            <option value="TI">Tarjeta de identidad</option>
+        </select>
+        <span class="error-message" *ngIf="errors.documentType">{{ errors.documentType }}</span>
+        </div>
+
+        <div class="form-group">
+        <label class="label">Número de documento*</label>
+        <input
+            type="text"
+            class="input"
+            [class.input-error]="errors.documentNumber"
+            placeholder="Ingresa tu número de documento"
+            [(ngModel)]="formData.documentNumber"
+            name="documentNumber"
+            (blur)="validateDocumentNumber()"
+            (input)="onDocumentNumberInput()"
+            required
+        />
+        <span class="error-message" *ngIf="errors.documentNumber">{{ errors.documentNumber }}</span>
+        </div>
+
+        <button type="submit" class="btn-continue" [disabled]="!isFormValid()">
+        Continuar
+        </button>
+    </form>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="page-container">
+    <app-header [businessName]="businessName"></app-header>
+
+    <div class="content">
+    <div class="step-header">
+        <h1 class="title">Planes</h1>
+        <span class="step-counter">2/6</span>
+    </div>
+
+    <app-progress-bar [currentStep]="2" [totalSteps]="6"></app-progress-bar>
+
+    <p class="description">
+        Elige el plan que mejor se adapte a tus necesidades
+    </p>
+
+    <div class="plans-container">
+        <div
+        *ngFor="let plan of plans"
+        class="plan-card"
+        [class.selected]="selectedPlan?.id === plan.id"
+        (click)="selectPlan(plan)"
+        >
+        <div class="plan-badge" *ngIf="plan.popular">
+            MÁS POPULAR
+        </div>
+
+        <div class="plan-header">
+            <h3 class="plan-name">{{ plan.name }}</h3>
+            <div class="plan-price">\${{ formatPrice(plan.price!) }}/mes</div>
+        </div>
+
+        <ul class="features-list">
+            <li *ngFor="let feature of plan.features" class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+            </svg>
+            <span>{{ feature }}</span>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+    <button
+        type="button"
+        class="btn-continue"
+        [disabled]="!selectedPlan"
+        (click)="onContinue()"
+    >
+        Continuar
+    </button>
+    </div>
+</div>

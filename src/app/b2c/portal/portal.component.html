@@ -1,0 +1,49 @@
+<div class="gradient-container">
+  <canvas #gradientCanvas id="gradientCanvas"></canvas>
+</div>
+
+<div class="home-container">
+  <div class="card">
+    <div class="security-icon">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="24" fill="#10B981" opacity="0.1"/>
+        <path d="M24 12L15 16V22C15 27.55 18.84 32.74 24 34C29.16 32.74 33 27.55 33 22V16L24 12Z"
+              fill="#10B981" stroke="#10B981" stroke-width="2"/>
+        <path d="M21 24L23 26L27 22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <img src="assets/Logo +Breve.png" alt="+Breve Logo" class="logo">
+
+    <h1 class="title">Bienvenido a nuestro portal de pagos</h1>
+
+    <p class="subtitle">
+      Procesamos tu pago con Wompi a través de +Breve, quien gestiona la transacción y envía el dinero al negocio.
+    </p>
+
+    <div class="form-container">
+      <label for="identification" class="label">Ingresa tu número de identificación</label>
+      <input
+        id="identification"
+        type="text"
+        [(ngModel)]="documentNumber"
+        (keyup.enter)="onConsultar()"
+        placeholder="Ingresa tu número de identificación"
+        class="input"
+        [disabled]="isLoading"
+      >
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button
+        (click)="onConsultar()"
+        [disabled]="isLoading"
+        class="btn-primary"
+      >
+        {{ isLoading ? 'Consultando...' : 'Consultar' }}
+      </button>
+    </div>
+  </div>
+</div>

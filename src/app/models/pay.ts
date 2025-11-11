@@ -15,4 +15,5 @@ export class Pay {
     signature?: string;
     publicKey?: string;
     status?: string;
+    type?: string;
 } 

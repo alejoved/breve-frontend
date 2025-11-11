@@ -1,0 +1,86 @@
+<div class="page-container">
+    <app-header [businessName]="businessName" [showBack]="false"></app-header>
+
+    <div class="content">
+    <div class="step-header">
+        <h1 class="title">Datos de Contacto</h1>
+        <span class="step-counter">1/6</span>
+    </div>
+
+    <app-progress-bar [currentStep]="1" [totalSteps]="6"></app-progress-bar>
+
+    <p class="description">
+        Necesitamos tus datos para contactarte en caso de cualquier inconveniente
+    </p>
+
+    <form class="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+        <label class="label">Nombre*</label>
+        <input
+            type="text"
+            class="input"
+            [class.input-error]="errors.firstName"
+            placeholder="Ingresa tu nombre"
+            [(ngModel)]="formData.firstName"
+            name="firstName"
+            (blur)="validateFirstName()"
+            (input)="onFirstNameInput()"
+            required
+        />
+        <span class="error-message" *ngIf="errors.firstName">{{ errors.firstName }}</span>
+        </div>
+
+        <div class="form-group">
+        <label class="label">Apellido*</label>
+        <input
+            type="text"
+            class="input"
+            [class.input-error]="errors.lastName"
+            placeholder="Ingresa tu apellido"
+            [(ngModel)]="formData.lastName"
+            name="lastName"
+            (blur)="validateLastName()"
+            (input)="onLastNameInput()"
+            required
+        />
+        <span class="error-message" *ngIf="errors.lastName">{{ errors.lastName }}</span>
+        </div>
+
+        <div class="form-group">
+        <label class="label">Celular*</label>
+        <input
+            type="text"
+            class="input"
+            [class.input-error]="errors.phone"
+            placeholder="Ingresa tu celular"
+            [(ngModel)]="formData.phone"
+            name="celular"
+            (blur)="validatePhone()"
+            (input)="onPhoneInput()"
+            required
+        />
+        <span class="error-message" *ngIf="errors.phone">{{ errors.phone }}</span>
+        </div>
+
+        <div class="form-group">
+        <label class="label">Correo electrónico*</label>
+        <input
+            type="email"
+            class="input"
+            [class.input-error]="errors.email"
+            placeholder="ejemplo@correo.com"
+            [(ngModel)]="formData.email"
+            name="email"
+            (blur)="validateEmail()"
+            (input)="onEmailInput()"
+            required
+        />
+        <span class="error-message" *ngIf="errors.email">{{ errors.email }}</span>
+        </div>
+
+        <button type="submit" class="btn-continue" [disabled]="!isFormValid()">
+        Continuar
+        </button>
+    </form>
+    </div>
+</div>

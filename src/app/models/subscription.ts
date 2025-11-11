@@ -1,6 +1,17 @@
+import { Business } from "./business";
+import { Customer } from "./customer";
+import { Pay } from "./pay";
+import { Plan } from "./plan";
+
 export class Subscription {
     id?: string;
-    customerId?: string;
-    planId?: string;
-    businessId?: string;
+    customer?: Customer;
+    plan?: Plan;
+    business?: Business;
+    pay?: Pay;
+    startDate?: Date;
+    endDate?: Date;
+    status?: boolean;
+    //TEMP
+    renewalDate?: Date;
 }

@@ -1,0 +1,55 @@
+<div class="modify-plan-container" *ngIf="!isLoading">
+  <header class="header">
+    <button (click)="goBack()" class="back-button">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <h1 class="header-title">Modificar plan</h1>
+  </header>
+
+  <div class="content">
+    <div *ngFor="let plan of plans" class="plan-card" [class.selected]="selectedPlanId === plan.id" (click)="selectPlan(plan.id!)">
+      <div class="selection-indicator" *ngIf="selectedPlanId === plan.id">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="12" fill="#10B981"/>
+          <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="plan-header">
+        <div>
+          <span class="popular-badge" *ngIf="plan.popular">MÁS POPULAR</span>
+          <h2 class="plan-name">{{ plan.name }}</h2>
+        </div>
+        <div class="plan-price">{{ formatCurrency(plan.price!, plan.type!) }}</div>
+      </div>
+
+      <ul class="features-list">
+        <li *ngFor="let feature of plan.features" class="feature-item">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16.666 5L7.5 14.167l-4.167-4.167" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {{ feature }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="info-message" *ngIf="canSave()">
+      El cambio aplica a partir del 9 de diciembre que comienza tu nuevo corte de facturación.
+    </div>
+
+    <button
+      (click)="onSaveChanges()"
+      [disabled]="!canSave()"
+      class="btn-primary"
+      [class.disabled]="!canSave()"
+    >
+      {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
+    </button>
+  </div>
+</div>
+
+<div class="loading-container" *ngIf="isLoading">
+  <div class="spinner"></div>
+</div>
