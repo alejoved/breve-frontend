@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Customer } from '../../models/customer';
+import { SubscriptionService } from '../../services/subscription-service';
+import { BusinessService } from '../../services/business-service';
+import { Business } from '../../models/business';
+import { Subscription } from '../../models/subscription';
 
 @Component({
   selector: 'app-subscribers-view',
@@ -11,30 +15,33 @@ import { Customer } from '../../models/customer';
   styleUrls: ['./subscribers-view.component.css']
 })
 export class SubscribersViewComponent implements OnInit {
-  customers: Customer[] = [];
-  filteredCustomers: Customer[] = [];
+  business: Business | null = null;
+  subscriptions: Subscription[] = [];
+  filteredSubscriptions: Subscription[] = [];
   searchTerm = '';
   filterStatus: 'all' | 'active' | 'cancelled' | 'pending' = 'all';
   loading = true;
 
-  constructor() {}
+  constructor(private subscriptionService: SubscriptionService, private businessService: BusinessService) {}
 
   async ngOnInit() {
+    this.business = this.businessService.getSession();
     await this.loadCustomers();
   }
 
   async loadCustomers() {
     this.loading = true;
-    this.customers = [];
+    this.subscriptions = await this.subscriptionService.filterByBusiness(this.business?.id!);
+    console.log(this.subscriptions);
     this.applyFilters();
     this.loading = false;
   }
 
   applyFilters() {
-    this.filteredCustomers = this.customers.filter(customer => {
-      const matchesSearch = customer.firstName!.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-                           customer.email!.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const matchesStatus = this.filterStatus === 'all';
+    this.filteredSubscriptions = this.subscriptions.filter(subscription => {
+      const matchesSearch = subscription.customer!.firstName!.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                           subscription.customer!.email!.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const matchesStatus = this.filterStatus === 'all' || subscription.customer?.status === this.filterStatus;
       return matchesSearch && matchesStatus;
     });
   }
@@ -66,14 +73,6 @@ export class SubscribersViewComponent implements OnInit {
     }
   }
 
-  formatDate(date: string): string {
-    return new Date(date).toLocaleDateString('es-CO', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  }
-
   formatCurrency(value: number): string {
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',
@@ -84,15 +83,15 @@ export class SubscribersViewComponent implements OnInit {
   }
 
   getActiveCount(): number {
-    return this.customers.filter(c => c.status === 'active').length;
+    return this.subscriptions.filter(c => c.status).length;
   }
 
   getPendingCount(): number {
-    return this.customers.filter(c => c.status === 'pending').length;
+    return 0
   }
 
   getCancelledCount(): number {
-    return this.customers.filter(c => c.status === 'cancelled').length;
+    return this.subscriptions.filter(c => !c.status).length;
   }
 
   formatNextPayment(startDate: string): string {
