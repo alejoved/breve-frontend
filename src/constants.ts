@@ -8,3 +8,4 @@ export const exito_swal = 'success';
 export const error_swal = 'error';
 export const error_falta_datos = "DATOS INCOMPLETOS, FAVOR INGRESE TODOS LOS DATOS"
 export const business_name = '+Breve';
+export const prefix = "+57"

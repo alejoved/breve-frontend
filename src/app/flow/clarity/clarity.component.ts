@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { BusinessService } from '../../services/business-service';
 import { Business } from '../../models/business';
 import { SubscriptionService } from '../../services/subscription-service';
+import { Subscription } from '../../models/subscription';
+import { prefix } from '../../../constants';
 
 @Component({
   selector: 'app-payment-modal',
@@ -63,7 +65,7 @@ export class ClarityComponent {
         this.pay.customer = { id: this.customerId! };
         this.pay.plan = { id: this.planId! };
         this.pay.business = { id: this.businessId! };
-        const res = await this.payService.create(this.pay);
+        this.pay = await this.payService.create(this.pay);
         const Widget = window.WidgetCheckout;
         if (!Widget) {
           Swal.fire({
@@ -74,31 +76,41 @@ export class ClarityComponent {
           return;
         }
         var checkout = new Widget({
-          currency: res.currency,
-          amountInCents: res.amountInCents,
-          reference: res.reference,
-          publicKey: res.publicKey,
-          signature: {integrity : res.signature},
+          currency: this.pay.currency,
+          amountInCents: this.pay.amountInCents,
+          reference: this.pay.reference,
+          publicKey: this.pay.publicKey,
+          signature: {integrity : this.pay.signature},
           customerData: { // Opcional
-            fullName: res.customer?.firstName + ' ' + res.customer?.lastName,
-            email: res.customer?.email,
-            phoneNumber: res.customer?.phone,
-            phoneNumberPrefix: res.prefix,
-            legalId: res.customer?.documentNumber,
-            legalIdType: res.customer?.documentType
+            fullName: this.pay.customer?.firstName + ' ' + this.pay.customer?.lastName,
+            email: this.pay.customer?.email,
+            phoneNumber: this.pay.customer?.phone,
+            phoneNumberPrefix: prefix,
+            legalId: this.pay.customer?.documentNumber,
+            legalIdType: this.pay.customer?.documentType
           },
         });
-        checkout.open((result: any) => {
-          console.log(result);
-          if (result?.transaction) {
-            this.pay!.status= result.transaction.status;
-            this.pay!.type= result.transaction.type;
+        checkout.open(async (result: any) => {
+          try {
+            console.log(result.transaction);
+            this.pay!.status = result.transaction.status;
+            this.pay!.type = result.transaction.paymentMethodType;
+            this.pay!.transactionDate = result.transaction.finalizedAt;
             this.payService.update(this.pay!);
-            
-            this.continue.emit();
-            console.log('Transaction:', result.transaction);
-          } else {
-            console.log('Checkout result:', result);
+            const subscription = new Subscription();
+            subscription.business = { id: this.businessId! };
+            subscription.customer = { id: this.customerId! };
+            subscription.plan = { id: this.planId! };
+            subscription.pay = { id: this.pay!.id };
+            await this.subscriptionService.create(subscription);
+            Swal.fire({
+              icon: 'success',
+              title: 'Pago exitoso',
+              text: 'Tu pago ha sido procesado correctamente.'
+            });
+            this.router.navigate(['/login']);
+          } catch (ex: any) {
+            Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
           }
         });
       } catch (ex: any) {

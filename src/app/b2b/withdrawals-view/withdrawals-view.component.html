@@ -81,7 +81,7 @@
         <div class="payment-main">
           <div class="payment-info">
             <div class="payment-subscriber">{{ payment.customer?.firstName! || 'Suscriptor' }}</div>
-            <div class="payment-date">{{ formatDate(payment.transactionDate!) }}</div>
+            <div class="payment-date">{{ payment.transactionDate! }}</div>
           </div>
           <div class="payment-amount">{{ formatCurrency(payment.amount!) }}</div>
         </div>
@@ -110,7 +110,7 @@
         <div class="withdrawal-main">
           <div class="withdrawal-info">
             <div class="withdrawal-amount">{{ formatCurrency(withdrawal.amount!) }}</div>
-            <div class="withdrawal-date">{{ formatDate(withdrawal.transactionDate!) }}</div>
+            <div class="withdrawal-date">{{ withdrawal.transactionDate! }}</div>
           </div>
           <div class="withdrawal-status">
             <span class="status-badge" [ngClass]="getStatusClass(withdrawal.status!)">
@@ -122,7 +122,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
-          <span>Completado el {{ formatDate(withdrawal.transactionDate) }}</span>
+          <span>Completado el {{ withdrawal.transactionDate }}</span>
         </div>
       </div>
     </div>

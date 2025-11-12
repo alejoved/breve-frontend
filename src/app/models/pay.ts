@@ -8,7 +8,7 @@ export class Pay {
     plan?: Dto;
     business?: Dto;
     amount?: number;
-    transactionDate?: string;
+    transactionDate?: Date;
     amountInCents?: string;
     currency?: string;
     prefix?: string;
