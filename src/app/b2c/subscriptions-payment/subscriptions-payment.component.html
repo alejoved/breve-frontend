@@ -12,8 +12,6 @@
     <div *ngFor="let subscription of subscriptions" class="card">
       <img [src]="subscription.business?.logo || 'assets/Logo +Breve.png'" [alt]="subscription.business?.name || 'Logo'" class="logo">
 
-      <div class="business-name">{{ subscription.business?.name }}</div>
-
       <div class="plan-header">
         <div class="plan-title-row">
           <h2 class="plan-name">{{ subscription.plan?.name }}</h2>
