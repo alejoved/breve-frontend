@@ -1,7 +1,11 @@
-<div class="gradient-container">
-  <canvas #gradientCanvas id="gradientCanvas"></canvas>
+<div class="mesh-container">
+  <div class="gradient-background">
+    <app-mesh-gradient
+      [colors]="['hsl(266, 100%, 64%)', 'hsl(266, 100%, 64%)', 'hsl(266, 100%, 64%)', 'hsl(266, 100%, 64%)']"
+      [speed]="1"
+    ></app-mesh-gradient>
+  </div>
 </div>
-
 <div class="home-container">
   <div class="card">
     <div class="security-icon">

@@ -11,7 +11,7 @@ export class Subscription {
     pay?: Pay;
     startDate?: Date;
     endDate?: Date;
-    status?: boolean;
+    status?: string;
     //TEMP
     renewalDate?: Date;
 }

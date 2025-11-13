@@ -108,7 +108,7 @@ export class ClarityComponent {
               title: 'Pago exitoso',
               text: 'Tu pago ha sido procesado correctamente.'
             });
-            this.router.navigate(['/login']);
+            this.router.navigate(['/portal']);
           } catch (ex: any) {
             Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
           }

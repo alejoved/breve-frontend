@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from '../../services/customer-service';
+import { MeshGradientComponent } from "../../b2b/login/mesh-gradient.component";
 
 @Component({
   selector: 'app-portal',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MeshGradientComponent],
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.css']
 })
@@ -42,7 +43,7 @@ export class PortalComponent implements OnInit, OnDestroy {
     try {
       const customer = await this.customerService.filterByDocumentNumber(this.documentNumber);
       if (customer) {
-        this.router.navigate(['/subscriptions-payment'], { state: { customer: {id: customer.id } } });
+        this.router.navigate(['/payment'], { state: { customer: {id: customer.id } } });
       } else {
         this.errorMessage = 'No se encontró ningún cliente con este número de documento';
       }

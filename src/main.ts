@@ -16,7 +16,7 @@ import { ClarityComponent } from './app/flow/clarity/clarity.component';
 import { WithdrawalsViewComponent } from './app/b2b/withdrawals-view/withdrawals-view.component';
 import { PortalComponent } from './app/b2c/portal/portal.component';
 import { ModifyPlanComponent } from './app/b2c/modify-plan/modify-plan.component';
-import { SubscriptionsPaymentComponent } from './app/b2c/subscriptions-payment/subscriptions-payment.component';
+import { PaymentComponent } from './app/b2c/payment/payment.component';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +41,7 @@ const routes = [
   { path: 'withdrawals', component: WithdrawalsViewComponent },
   { path: 'portal', component: PortalComponent },
   { path: 'modify-plan', component: ModifyPlanComponent },
-  { path: 'subscriptions-payment', component: SubscriptionsPaymentComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: '**', redirectTo: '' },
 ];
 

@@ -155,7 +155,7 @@ export class ContactComponent {
         }
       } catch (ex: any) {
         if(ex.error.error == "Customer found"){
-          Swal.fire({ icon: "error", title: "Cliente existente", text: "Por favor, inicia sesion." });
+          Swal.fire({ icon: "error", title: "Usuario existente", text: "Usuario existente por favor inicia sesion" });
         } else {
           Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
         }

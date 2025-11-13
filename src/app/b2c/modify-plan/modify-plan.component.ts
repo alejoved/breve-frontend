@@ -56,7 +56,7 @@ export class ModifyPlanComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/subscriptions-payment']);
+    this.router.navigate(['/payment']);
   }
 
   selectPlan(planId: string) {
@@ -70,7 +70,7 @@ export class ModifyPlanComponent implements OnInit {
     }
     this.isSaving = true;
     try {
-      this.router.navigate(['/subscriptions-payment'], { state: { business: { id: this.businessId }, customer: { id: this.customerId }, plan: { id: this.selectedPlanId } } });
+      this.router.navigate(['/payment'], { state: { business: { id: this.businessId }, customer: { id: this.customerId }, plan: { id: this.selectedPlanId } } });
     } catch (error) {
       console.error('Error updating plan:', error);
       alert('Ocurrió un error al actualizar el plan.');
