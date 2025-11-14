@@ -27,7 +27,7 @@ import { PaymentComponent } from './app/b2c/payment/payment.component';
 export class App {}
 
 const routes = [
-  { path: 'subscriptions/:businessName', component: WelcomeComponent },
+  { path: 'subscription/:businessName', component: WelcomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'plans', component: PlansComponent },
   { path: 'additional-info', component: AdditionalInfoComponent },
