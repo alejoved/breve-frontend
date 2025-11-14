@@ -1,6 +1,8 @@
 import { HttpHeaders } from "@angular/common/http";
-
-export const headers = new HttpHeaders({ "Content-Type": "application/json" });
+export const credencialUsuario = "admin";
+export const credencialPassword = "admin";
+export const credencial = credencialUsuario + ":" + credencialPassword;
+export const headers = new HttpHeaders({ "Content-Type": "application/json", "Authorization": "Basic " + btoa(credencial) });
 export const options = { headers: headers };
 export const exito = "Success";
 export const error = "Error";
