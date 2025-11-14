@@ -41,7 +41,7 @@ export class PlansComponent {
   async filterByBusiness(){
     try {
       this.plans = await this.planService.filterByBusiness(this.businessId!);
-      if(this.plans.length > 0){
+      if(this.plans.length === 0){
         this.router.navigate(['']);
       }
     } catch (ex: any) {
