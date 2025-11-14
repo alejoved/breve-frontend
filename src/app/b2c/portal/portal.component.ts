@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from '../../services/customer-service';
 import { MeshGradientComponent } from "../../b2b/login/mesh-gradient.component";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-portal',
@@ -48,7 +49,7 @@ export class PortalComponent implements OnInit, OnDestroy {
         this.errorMessage = 'No se encontró ningún cliente con este número de documento';
       }
     } catch (error) {
-      this.errorMessage = 'Ocurrió un error al consultar. Por favor intenta de nuevo.';
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
     } finally {
       this.isLoading = false;
     }

@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.business = this.businessService.getSession();
+    this.userName = this.business?.name!;
   }
 
   setView(view: 'dashboard' | 'ingresos' | 'suscriptores' | 'planes' | string) {

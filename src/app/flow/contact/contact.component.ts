@@ -50,8 +50,13 @@ export class ContactComponent {
   }
 
   async businessFilterByName() {
-    const business = await this.businessService.filterByName(this.businessName);
-    this.businessId = business ? business.id! : null;
+    try {
+      const business = await this.businessService.filterByName(this.businessName);
+      this.businessId = business ? business.id! : null;
+    } catch (error) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      this.router.navigate(['']);
+    }
   }
 
   validateFirstName() {
@@ -159,6 +164,7 @@ export class ContactComponent {
         } else {
           Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
         }
+        this.router.navigate(['']);
       }
     }
   }

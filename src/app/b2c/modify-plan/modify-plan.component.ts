@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Plan } from '../../models/plan';
-import { Subscription } from '../../models/subscription';
-import { SubscriptionService } from '../../services/subscription-service';
 import { PlanService } from '../../services/plan-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modify-plan',
@@ -23,7 +22,6 @@ export class ModifyPlanComponent implements OnInit {
   isSaving: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private planService: PlanService) {
     const state = this.router.getCurrentNavigation()?.extras.state;
@@ -43,12 +41,11 @@ export class ModifyPlanComponent implements OnInit {
 
   async loadData() {
     this.isLoading = true;
-
     try {
       this.plans = await this.planService.filterByBusiness(this.businessId);
       this.selectedPlanId = this.planId;
     } catch (error) {
-      console.error('Error loading data:', error);
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
       this.router.navigate(['/portal']);
     } finally {
       this.isLoading = false;
@@ -69,14 +66,8 @@ export class ModifyPlanComponent implements OnInit {
       return;
     }
     this.isSaving = true;
-    try {
-      this.router.navigate(['/payment'], { state: { business: { id: this.businessId }, customer: { id: this.customerId }, plan: { id: this.selectedPlanId } } });
-    } catch (error) {
-      console.error('Error updating plan:', error);
-      alert('Ocurrió un error al actualizar el plan.');
-    } finally {
-      this.isSaving = false;
-    }
+    this.router.navigate(['/payment'], { state: { business: { id: this.businessId }, customer: { id: this.customerId }, plan: { id: this.selectedPlanId } } });
+    this.isSaving = false;
   }
 
   formatCurrency(amount: number, type: string): string {

@@ -55,12 +55,17 @@ export class AdditionalInfoComponent {
   };
 
   async filterById(){
+    try {
     const customer = await this.customerService.filterById(this.customerId!);
     this.formData.id = customer.id!;
     this.formData.firstName = customer.firstName!;
     this.formData.lastName = customer.lastName!;
     this.formData.phone = customer.phone!;
     this.formData.email = customer.email!;
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      this.router.navigate(['']);
+    }
   }
 
   validateGender() {
@@ -140,6 +145,7 @@ export class AdditionalInfoComponent {
         } else {
           Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
         }
+        this.router.navigate(['']);
       }
     }
   }

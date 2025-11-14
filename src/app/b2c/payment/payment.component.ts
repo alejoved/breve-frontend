@@ -42,12 +42,11 @@ export class PaymentComponent implements OnInit {
 
   async loadSubscriptionData() {
     this.isLoading = true;
-
     try {
       this.subscriptions = await this.subscriptionService.filterByCustomerAndRenewal(this.customerId);
     } catch (error) {
-      console.error('Error loading subscriptions:', error);
-      this.router.navigate(['/']);
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      this.router.navigate(['']);
     } finally {
       this.isLoading = false;
     }
@@ -129,10 +128,12 @@ export class PaymentComponent implements OnInit {
           this.router.navigate(['/portal']);
         } catch (ex: any) {
           Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+          this.router.navigate(['/portal']);
         }
       });
     } catch (ex: any) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      this.router.navigate(['/portal']);
     }
   }
 }

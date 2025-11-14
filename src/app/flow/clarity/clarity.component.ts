@@ -53,11 +53,12 @@ export class ClarityComponent {
     }
 
     async businessFilterById(){
-        try {
-          this.business = await this.businessService.filterById(this.businessId!);
-        } catch (ex: any) {
-          Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
-        }
+      try {
+        this.business = await this.businessService.filterById(this.businessId!);
+      } catch (ex: any) {
+        Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+        this.router.navigate(['']);
+      }
     }
     async onPay() {
       try{
@@ -92,7 +93,6 @@ export class ClarityComponent {
         });
         checkout.open(async (result: any) => {
           try {
-            console.log(result.transaction);
             this.pay!.status = result.transaction.status;
             this.pay!.type = result.transaction.paymentMethodType;
             this.pay!.transactionDate = result.transaction.finalizedAt;
@@ -111,10 +111,12 @@ export class ClarityComponent {
             this.router.navigate(['/portal']);
           } catch (ex: any) {
             Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+            this.router.navigate(['']);
           }
         });
       } catch (ex: any) {
         Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+        this.router.navigate(['']);
       }
     }
 }

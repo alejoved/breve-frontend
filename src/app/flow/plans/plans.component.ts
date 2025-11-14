@@ -40,9 +40,13 @@ export class PlansComponent {
 
   async filterByBusiness(){
     try {
-    this.plans = await this.planService.filterByBusiness(this.businessId!);
+      this.plans = await this.planService.filterByBusiness(this.businessId!);
+      if(this.plans.length > 0){
+        this.router.navigate(['']);
+      }
     } catch (ex: any) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      this.router.navigate(['']);
     }
   }
 
