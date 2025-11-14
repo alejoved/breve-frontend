@@ -42,6 +42,7 @@ export class PlansComponent {
     try {
       this.plans = await this.planService.filterByBusiness(this.businessId!);
       if(this.plans.length === 0){
+        Swal.fire({ icon: "error", title: "Error", text: "No se encontraron planes para este negocio." });
         this.router.navigate(['']);
       }
     } catch (ex: any) {
