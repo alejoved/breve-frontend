@@ -17,6 +17,7 @@ import { WithdrawalsViewComponent } from './app/b2b/withdrawals-view/withdrawals
 import { PortalComponent } from './app/b2c/portal/portal.component';
 import { ModifyPlanComponent } from './app/b2c/modify-plan/modify-plan.component';
 import { PaymentComponent } from './app/b2c/payment/payment.component';
+import { LandingPageComponent } from './app/web/landing-page.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import { PaymentComponent } from './app/b2c/payment/payment.component';
 export class App {}
 
 const routes = [
+  { path: '', component: LandingPageComponent },
   { path: 'subscription/:businessName', component: WelcomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'plans', component: PlansComponent },
