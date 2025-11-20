@@ -50,7 +50,7 @@ export class UserReviewsSectionComponent implements AfterViewInit {
       description: 'Factura asesorías o mantenimientos con cobros periódicos simples.'
     },
     {
-      icon: 'assets/Barberías o salones de belleza.webp',
+      icon: 'assets/barberiasysalones.webp',
       title: 'Barberías o salones de belleza',
       description: 'Cobra membresías mensuales para cortes y servicios.'
     },
