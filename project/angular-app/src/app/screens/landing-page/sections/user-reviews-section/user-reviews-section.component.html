@@ -1,0 +1,25 @@
+<section #section id="sectores" class="flex flex-col w-full items-center justify-center gap-[42px] px-4 md:px-[178px] pt-[30px] md:pt-[60px] pb-[60px] md:pb-[124px]">
+  <h2 [class]="'[font-family:\\'Funnel_Display\\',Helvetica] font-medium text-white text-3xl md:text-4xl lg:text-[51.6px] text-center tracking-[-1.09px] leading-tight md:leading-[59px] px-4 transition-all duration-700 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
+    Perfecto para tu sector
+  </h2>
+
+  <p [class]="'max-w-[705px] [font-family:\\'Degular-Regular\\',Helvetica] font-normal text-white text-xl md:text-2xl text-center tracking-[0] leading-[30px] transition-all duration-700 delay-100 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
+    <span class="[font-family:'Degular-Bold',Helvetica] font-bold">+Breve</span> es ideal para cualquier negocio local que ofrece suscripciones, membresías o planes mensuales sencillos.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-[19px] w-full">
+    <div *ngFor="let sector of businessSectors; let i = index"
+         [style.transition-delay]="isVisible ? getItemDelay(i) : '0ms'"
+         [class]="'bg-[#f7f7ff] rounded-[31.55px] border-[0.93px] border-solid border-[#1111110d] h-auto transition-all duration-700 hover:scale-105 hover:shadow-lg ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
+      <div class="p-8 md:p-[34px] flex flex-col gap-[13px]">
+        <img class="w-[60.32px] h-[60.32px]" [alt]="sector.title" [src]="sector.icon">
+        <h3 class="[font-family:'Funnel_Display',Helvetica] font-medium text-[#272625] text-[26px] tracking-[0] leading-[26.0px]">
+          {{ sector.title }}
+        </h3>
+        <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-[#111111] text-[18.6px] tracking-[0] leading-[23.2px]">
+          {{ sector.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

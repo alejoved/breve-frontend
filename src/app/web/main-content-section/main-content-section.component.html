@@ -1,0 +1,50 @@
+<section [class]="'flex flex-col w-full items-center gap-8 md:gap-12 lg:gap-[57px] px-4 md:px-12 lg:px-[77px] py-12 md:py-16 lg:py-[73px] relative transition-all duration-1000 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
+  <div class="flex flex-col w-full max-w-[950px] items-center gap-6 md:gap-12 relative">
+    <div class="flex flex-col items-center gap-6 relative w-full">
+      <h1 class="relative flex items-center justify-center w-full max-w-[796px] [font-family:'Funnel_Display',Helvetica] font-medium text-white text-3xl md:text-4xl lg:text-5xl text-center tracking-[-0.48px] leading-tight md:leading-[53.2px]">
+        Gestión completa de suscripciones y pagos para tu negocio.
+      </h1>
+
+      <p class="relative flex items-center justify-center w-full [font-family:'Degular-Regular',Helvetica] font-normal text-[#fffffff2] text-base md:text-xl lg:text-2xl text-center tracking-[0] leading-relaxed md:leading-[30px]">
+        Con +Breve, tus clientes pueden suscribirse desde cualquier canal,
+        WhatsApp, Instagram, TikTok o tu web, en minutos. Nosotros nos
+        encargamos del proceso, tú te concentras en crecer.
+      </p>
+    </div>
+
+    <button class="sm:hidden w-full max-w-[350px] h-[50px] rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] [font-family:'Degular-Medium',Helvetica] font-medium text-white text-base text-center tracking-[0] leading-[18.0px] hover:opacity-90 transition-opacity shadow-none focus-visible:ring-0 ring-[3.16px] ring-[#f9fafa4c] ring-inset">
+      Contratar
+    </button>
+
+    <div class="relative w-full max-w-[678px] h-auto md:h-[47px] rounded-[43px] border border-solid border-[#c3b7ff] bg-transparent p-0 flex flex-row">
+      <button (click)="setActiveDemo('flujo')"
+              [class]="'flex-1 h-[47px] rounded-[43px] text-white [font-family:\'Degular-Semibold\',Helvetica] font-normal text-base sm:text-sm md:text-base lg:text-xl tracking-[0] leading-tight border-0 px-2 sm:px-3 md:px-4 text-center flex items-center justify-center whitespace-nowrap ' + (activeDemo === 'flujo' ? 'bg-[linear-gradient(214deg,rgba(255,239,243,1)_0%,rgba(203,193,255,1)_100%)] text-[#3a3a3a]' : '')">
+        <span class="hidden sm:inline">Flujo de suscripción</span>
+        <span class="sm:hidden">Suscripción</span>
+      </button>
+      <button (click)="setActiveDemo('tablero')"
+              [class]="'flex-1 h-[47px] rounded-[43px] text-white [font-family:\'Degular-Semibold\',Helvetica] font-normal text-base sm:text-sm md:text-base lg:text-xl tracking-[0] leading-tight border-0 px-2 sm:px-3 md:px-4 text-center flex items-center justify-center whitespace-nowrap ' + (activeDemo === 'tablero' ? 'bg-[linear-gradient(214deg,rgba(255,239,243,1)_0%,rgba(203,193,255,1)_100%)] text-[#3a3a3a]' : '')">
+        <span class="hidden sm:inline">Tablero de analítica</span>
+        <span class="sm:hidden">Analítica</span>
+      </button>
+      <button (click)="setActiveDemo('portal')"
+              [class]="'flex-1 h-[47px] rounded-[43px] text-white [font-family:\'Degular-Semibold\',Helvetica] font-normal text-base sm:text-sm md:text-base lg:text-xl tracking-[0] leading-tight border-0 px-2 sm:px-3 md:px-4 text-center flex items-center justify-center whitespace-nowrap ' + (activeDemo === 'portal' ? 'bg-[linear-gradient(214deg,rgba(255,239,243,1)_0%,rgba(203,193,255,1)_100%)] text-[#3a3a3a]' : '')">
+        <span class="hidden sm:inline">Portal de pagos</span>
+        <span class="sm:hidden">Pagos</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="relative w-full max-w-[1188px] overflow-hidden">
+    <div class="relative w-full h-[500px] md:h-[600px] lg:h-[768px] bg-gray-50 rounded-[29px] overflow-hidden border-0 shadow-none">
+      <div class="relative w-full h-full p-0 flex items-center justify-center bg-gray-50">
+        <iframe [src]="getCurrentDemoUrl() | sanitizeUrl"
+                title="Demo interactivo de +Breve"
+                class="w-full h-full rounded-[29px] border-0"
+                allow="clipboard-write"
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>

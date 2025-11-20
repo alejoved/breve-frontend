@@ -1,0 +1,39 @@
+<section #section class="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-[71px] pt-8 md:pt-12 lg:pt-[55px] pb-12 md:pb-16 lg:pb-[91px] px-4 md:px-12 lg:px-[77px] w-full">
+  <h2 [ngClass]="'[font-family:\'Funnel_Display\',Helvetica] font-medium text-white text-3xl md:text-4xl lg:text-[51.6px] text-center tracking-[-1.09px] leading-tight md:leading-[59px] px-4 transition-all duration-700 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
+    ¿Por qué tu negocio pierde clientes cada mes?
+  </h2>
+
+  <div class="flex flex-col lg:flex-row items-stretch justify-center gap-6 md:gap-8 lg:gap-[34px] w-full max-w-[1358px]">
+    <div [class]="'relative w-full lg:flex-1 lg:max-w-[662px] min-h-[500px] md:min-h-[550px] lg:min-h-[549px] bg-[#fcf8f90f] rounded-[30px] md:rounded-[40px] lg:rounded-[60px] border-0 shadow-[inset_1px_0px_21.9px_#fc9eb9] hover:shadow-[inset_1px_0px_30px_#fc9eb9] hover:-translate-y-2 transition-all duration-700 ' + (isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10')">
+      <div class="relative w-full pt-6 pb-[58px] px-6 md:pt-8 md:pb-[74px] md:px-8 lg:pt-[81px] lg:pb-[81px] lg:px-[65px]">
+        <div class="w-full mb-4 md:mb-6 [font-family:'Funnel_Display',Helvetica] font-medium text-white text-2xl md:text-2xl lg:text-[32px] tracking-[-0.62px] leading-9">
+          Hoy pierdes clientes porque:
+        </div>
+
+        <div class="w-full flex flex-col gap-3 md:gap-4 lg:gap-6 [font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed md:leading-6">
+          <div *ngFor="let problem of problemsList" class="flex items-start gap-2">
+            <img class="w-[15px] h-[15px] mt-1 flex-shrink-0" alt="Icon" src="assets/icon-4.svg">
+            <span>{{ problem }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div [class]="'relative w-full lg:flex-1 lg:max-w-[662px] min-h-[500px] md:min-h-[550px] lg:min-h-[549px] bg-[#fcf8f90f] rounded-[30px] md:rounded-[40px] lg:rounded-[60px] border-0 shadow-[inset_1px_0px_21.9px_#58f6a7] hover:shadow-[inset_1px_0px_30px_#58f6a7] hover:-translate-y-2 transition-all duration-700 delay-200 ' + (isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10')">
+      <div class="relative w-full pt-6 pb-[58px] px-6 md:pt-8 md:pb-[74px] md:px-8 lg:pt-[81px] lg:pb-[81px] lg:px-[69px]">
+        <div class="w-full mb-4 md:mb-6 [font-family:'Funnel_Display',Helvetica] font-bold text-white text-2xl md:text-2xl lg:text-[32px] tracking-[-0.62px] leading-9">
+          Con +Breve cambia así:
+        </div>
+
+        <div class="w-full [font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed md:leading-6">
+          <ng-container *ngFor="let solution of solutionsList; let i = index">
+            {{ solution }}
+            <ng-container *ngIf="i < solutionsList.length - 1">
+              <br><br>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

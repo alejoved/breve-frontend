@@ -1,0 +1,135 @@
+<section #section id="caracteristicas" [class]="'flex flex-col w-full items-center justify-center gap-12 md:gap-16 lg:gap-[87px] px-4 md:px-12 lg:px-[177px] pb-8 md:pb-24 lg:pb-36 relative transition-all duration-1000 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
+  <h2 class="relative self-stretch min-h-[59px] font-medium text-white text-3xl md:text-4xl lg:text-[51.6px] text-center tracking-[-1.09px] leading-tight md:leading-[59px] flex items-center justify-center [font-family:'Funnel_Display',Helvetica] px-4">
+    Todo lo que necesitas, en un solo lugar
+  </h2>
+
+  <div class="flex flex-col items-center gap-6 lg:gap-[27px] w-full max-w-[1580px]">
+    <!-- First Row -->
+    <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-[23px] w-full">
+      <!-- Card 1: Dashboard -->
+      <div class="relative w-full lg:flex-[2] h-[450px] lg:h-[562px] overflow-hidden border-0 shadow-none">
+        <div class="p-0 relative w-full h-full">
+          <div class="absolute inset-0 bg-[#371682] rounded-[31.55px]"></div>
+          <div class="absolute inset-0 rounded-[31.55px] border border-solid border-[#ffffff3d] bg-[linear-gradient(303deg,rgba(77,4,150,0)_0%,rgba(107,27,161,1)_76%)]"></div>
+
+          <div class="relative z-10 flex flex-col justify-between w-full h-full">
+            <div class="flex flex-col gap-3 lg:gap-4 p-6 md:p-8 lg:hidden">
+              <h3 class="[font-family:'Degular-Medium',Helvetica] text-white text-2xl md:text-2xl leading-tight font-medium tracking-[0]">
+                Dashboard con métricas en tiempo real
+              </h3>
+              <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base tracking-[0] leading-relaxed">
+                Visualiza ingresos, nuevos suscriptores, churn y retención en un solo dashboard.
+              </p>
+            </div>
+
+            <div class="w-full flex justify-center pb-0 lg:hidden">
+              <img class="w-full max-w-[380px] h-auto object-contain" alt="Dashboard metrics" src="assets/Dashboardmetricas.png">
+            </div>
+
+            <div class="hidden lg:flex lg:flex-row lg:items-end lg:justify-between w-full h-full">
+              <div class="flex flex-col gap-4 p-10 pl-12 self-center w-[45%] flex-shrink-0">
+                <h3 class="[font-family:'Degular-Medium',Helvetica] text-white text-[30px] leading-tight font-medium tracking-[0]">
+                  Dashboard con métricas en tiempo real
+                </h3>
+                <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-white text-xl tracking-[0] leading-relaxed">
+                  Visualiza ingresos, nuevos suscriptores, churn y retención en un solo dashboard.
+                </p>
+              </div>
+
+              <div class="flex-1 flex items-end justify-end pb-0">
+                <img class="w-full max-w-[480px] h-auto object-contain" alt="Dashboard metrics" src="assets/Dashboardmetricas.png">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Gestión -->
+      <div class="relative w-full lg:flex-1 h-[450px] lg:h-[562px] overflow-hidden border-0 shadow-none">
+        <div class="p-0 relative w-full h-full">
+          <div class="absolute inset-0 bg-[#371682] rounded-[31.55px]"></div>
+          <div class="absolute inset-0 rounded-[31.55px] border border-solid border-[#ffffff3d] bg-[linear-gradient(342deg,rgba(77,4,150,0)_0%,rgba(107,27,161,1)_73%)]"></div>
+
+          <div class="relative z-10 flex flex-col justify-between w-full h-full">
+            <div class="flex flex-col gap-3 p-6 md:p-8 lg:p-10">
+              <h3 class="[font-family:'Degular-Medium',Helvetica] text-white text-2xl md:text-2xl lg:text-[30px] leading-tight font-medium tracking-[0]">
+                Gestión completa de suscriptores
+              </h3>
+              <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed">
+                Controla quién está activo, pausado o cancelado desde un solo lugar.
+              </p>
+            </div>
+
+            <div class="w-full flex justify-center pb-0">
+              <img class="w-full max-w-[400px] md:max-w-[480px] lg:max-w-full h-auto object-contain" alt="Subscriber management" src="assets/Gestionsuscriptores.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-[18px] w-full">
+      <!-- Card 3: Wompi -->
+      <div class="relative w-full lg:flex-1 h-[450px] lg:h-[486px] overflow-hidden border-0 shadow-none">
+        <div class="p-0 relative w-full h-full overflow-hidden rounded-[31.55px]">
+          <div class="absolute inset-0 bg-[#371682] rounded-[31.55px]"></div>
+          <div class="absolute inset-0 rounded-[31.55px] border border-solid border-[#ffffff3d] bg-[linear-gradient(303deg,rgba(77,4,150,0)_0%,rgba(107,27,161,1)_80%)]"></div>
+
+          <div class="relative z-10 flex flex-col h-full">
+            <div class="flex flex-col gap-3 p-6 md:p-8 lg:p-10 flex-shrink-0">
+              <h3 class="[font-family:'Degular-Medium',Helvetica] text-white text-2xl md:text-2xl lg:text-[30px] leading-tight font-medium tracking-[0]">
+                Pago a través de Wompi
+              </h3>
+              <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed">
+                Tus clientes pagan con tarjeta, PSE, Nequi, transferencia Bancolombia y otros métodos de pago disponibles.
+              </p>
+            </div>
+
+            <div class="w-full flex justify-center items-center flex-grow px-6 pt-4 pb-6 min-h-0">
+              <img class="w-full max-w-[280px] md:max-w-[320px] lg:max-w-[380px] h-full max-h-[200px] lg:max-h-[280px] object-contain" alt="Payment methods" src="assets/Pago Wompi.png">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Recordatorios -->
+      <div class="relative w-full lg:flex-[2] h-[450px] lg:h-[486px] overflow-hidden border-0 shadow-none">
+        <div class="p-0 relative w-full h-full">
+          <div class="absolute inset-0 bg-[#371682] rounded-[31.55px]"></div>
+          <div class="absolute inset-0 rounded-[31.55px] border border-solid border-[#ffffff3d] bg-[linear-gradient(303deg,rgba(77,4,150,0)_0%,rgba(107,27,161,1)_77%)]"></div>
+
+          <div class="relative z-10 flex flex-col justify-between w-full h-full">
+            <div class="flex flex-col gap-3 lg:gap-4 p-6 md:p-8 lg:hidden">
+              <h3 class="[font-family:'Degular-Medium',Helvetica] text-white text-2xl md:text-2xl leading-tight font-medium tracking-[0]">
+                Recordatorios Automáticos de Pago
+              </h3>
+              <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base tracking-[0] leading-relaxed">
+                Ayuda a que tus clientes paguen a tiempo con mensajes personalizados enviados antes del vencimiento, todo de forma automática y controlada desde tu dashboard.
+              </p>
+            </div>
+
+            <div class="w-full flex justify-center pb-0 lg:hidden">
+              <img class="w-full max-w-[380px] h-auto object-contain" alt="Automatic reminders" src="assets/Recordatorios.png">
+            </div>
+
+            <div class="hidden lg:flex lg:flex-row lg:items-end lg:justify-between w-full h-full">
+              <div class="flex flex-col gap-4 p-10 pl-12 self-center w-[50%] flex-shrink-0">
+                <h3 class="[font-family:'Degular-Medium',Helvetica] text-white text-[30px] leading-tight font-medium tracking-[0]">
+                  Recordatorios Automáticos de Pago
+                </h3>
+                <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-white text-xl tracking-[0] leading-relaxed">
+                  Ayuda a que tus clientes paguen a tiempo con mensajes personalizados enviados antes del vencimiento, todo de forma automática y controlada desde tu dashboard.
+                </p>
+              </div>
+
+              <div class="flex-1 flex items-end justify-end pb-0 overflow-hidden">
+                <img class="w-full max-w-[550px] h-auto object-contain" alt="Automatic reminders" src="assets/Recordatorios.png">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
