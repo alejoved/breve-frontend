@@ -37,13 +37,6 @@ export class HeroSectionComponent implements AfterViewInit, OnDestroy {
     this.loadCalendlyScript();
   }
 
-  ngOnDestroy() {
-    const script = document.querySelector('script[src*="calendly"]');
-    if (script) {
-      script.remove();
-    }
-  }
-
   private loadCalendlyScript() {
     if (document.querySelector('script[src*="calendly"]')) {
       return;
@@ -53,5 +46,12 @@ export class HeroSectionComponent implements AfterViewInit, OnDestroy {
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
     document.body.appendChild(script);
+  }
+
+  ngOnDestroy() {
+    const script = document.querySelector('script[src*="calendly"]');
+    if (script) {
+      script.remove();
+    }
   }
 }
