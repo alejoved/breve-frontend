@@ -16,7 +16,7 @@ export class HeroSectionComponent implements AfterViewInit, OnDestroy {
 
   constructor(private sanitizer: DomSanitizer) {
     this.calendlyUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://calendly.com/masbreve/reunion-inicial'
+      'https://calendly.com/masbreve-info'
     );
   }
 

@@ -20,12 +20,12 @@ export class UserReviewsSectionComponent implements AfterViewInit {
 
   businessSectors: BusinessSector[] = [
     {
-      icon: 'assets/group-1000003862.png',
+      icon: 'assets/11zon_Gimnasios y fitness.webp',
       title: 'Gimnasios y fitness',
       description: 'Ofrece membresías mensuales y olvídate de los cobros manuales.'
     },
     {
-      icon: 'assets/group-1000003863.png',
+      icon: 'assets/11zon_Spas y centros de bienestar.webp',
       title: 'Spas y centros de bienestar',
       description: 'Crea planes sencillos para tus servicios y cobra todos los meses.'
     },
@@ -45,12 +45,12 @@ export class UserReviewsSectionComponent implements AfterViewInit {
       description: 'Mantén las membresías activas y cobra a tus socios cada mes.'
     },
     {
-      icon: 'assets/group-1000003867.png',
+      icon: 'assets/11zon_Servicios profesionales.webp',
       title: 'Servicios profesionales',
       description: 'Factura asesorías o mantenimientos con cobros periódicos simples.'
     },
     {
-      icon: 'assets/group-1000003868.png',
+      icon: 'assets/Barberías o salones de belleza.webp',
       title: 'Barberías o salones de belleza',
       description: 'Cobra membresías mensuales para cortes y servicios.'
     },
