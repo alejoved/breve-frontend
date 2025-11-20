@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface NavigationItem {
   label: string;
@@ -16,12 +17,14 @@ interface NavigationItem {
 export class CallToActionSectionComponent {
   mobileMenuOpen = false;
 
+  constructor(private router: Router) {}
+
   navigationItems: NavigationItem[] = [
     { label: '¿Cómo funciona?', href: '#como-funciona' },
     { label: 'Características', href: '#caracteristicas' },
     { label: 'Preguntas frecuentes', href: '#preguntas-frecuentes' },
-    { label: 'Gestionar negocio', href: '#gestionar-negocio' },
-    { label: 'Pagar suscripción', href: '#pagar-suscripcion' },
+    { label: 'Gestionar negocio', href: '/login' },
+    { label: 'Pagar suscripción', href: '/portal' },
     { label: 'Contacto', href: '#contacto' }
   ];
 
@@ -30,6 +33,12 @@ export class CallToActionSectionComponent {
   }
 
   handleScrollTo(href: string): void {
+    // Si es una ruta (comienza con /), navegar con Router
+    if (href.startsWith('/')) {
+      this.router.navigate([href]);
+      this.mobileMenuOpen = false;
+      return;
+    }
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {

@@ -46,6 +46,7 @@ export class AppOverviewSectionComponent implements AfterViewInit {
 
   onSubmit() {
     console.log('Form submitted:', this.formData);
+    
     alert('¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.');
     this.formData = {
       fullName: '',

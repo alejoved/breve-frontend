@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface NavigationLink {
   text: string;
@@ -16,6 +17,8 @@ interface NavigationLink {
 export class NavigationSectionComponent implements AfterViewInit {
   @ViewChild('section') section!: ElementRef;
   isVisible = false;
+
+  constructor(private router: Router) {}
 
   navigationLinks: NavigationLink[] = [
     { text: '¿Cómo funciona?', href: '#como-funciona' },
@@ -43,6 +46,11 @@ export class NavigationSectionComponent implements AfterViewInit {
 
   handleScrollTo(event: Event, href: string) {
     event.preventDefault();
+    // Si es una ruta (comienza con /), navegar con Router
+    if (href.startsWith('/')) {
+      this.router.navigate([href]);
+      return;
+    }
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
