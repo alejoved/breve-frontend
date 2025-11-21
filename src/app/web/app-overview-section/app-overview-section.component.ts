@@ -1,13 +1,15 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ContactService } from '../../services/contact-service';
+import Swal from 'sweetalert2';
 
 interface FormData {
-  fullName: string;
-  companyName: string;
+  name: string;
+  business: string;
   phone: string;
   email: string;
-  businessDescription: string;
+  description: string;
 }
 
 @Component({
@@ -21,12 +23,16 @@ export class AppOverviewSectionComponent implements AfterViewInit {
   @ViewChild('section') section!: ElementRef;
   isVisible = false;
 
+  constructor(private contactService: ContactService) {
+
+  }
+
   formData: FormData = {
-    fullName: '',
-    companyName: '',
+    name: '',
+    business: '',
     phone: '',
     email: '',
-    businessDescription: ''
+    description: ''
   };
 
   ngAfterViewInit() {
@@ -44,16 +50,21 @@ export class AppOverviewSectionComponent implements AfterViewInit {
     }
   }
 
-  onSubmit() {
-    console.log('Form submitted:', this.formData);
-    
-    alert('¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.');
-    this.formData = {
-      fullName: '',
-      companyName: '',
-      phone: '',
-      email: '',
-      businessDescription: ''
-    };
+  async onSubmit() {
+    try {
+      console.log('Form submitted:', this.formData);
+      await this.contactService.create(this.formData);
+      Swal.fire({ icon: "success", title: "¡Mensaje enviado!", text: "Gracias por contactarnos. Nos pondremos en contacto contigo pronto." });
+    } catch (error) {
+      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } finally {
+      this.formData = {
+        name: '',
+        business: '',
+        phone: '',
+        email: '',
+        description: ''
+      };
+    }
   }
 }
