@@ -7,6 +7,7 @@ import { SubscribersViewComponent } from '../subscribers-view/subscribers-view.c
 import { PlansViewComponent } from '../plans-view/plans-view.component';
 import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
+import { AuthB2BService } from '../../auth/auth-b2b-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,11 +31,10 @@ export class DashboardComponent implements OnInit {
   openPlansCreateForm = false;
   business: Business | null = null;
 
-  constructor(
-    private router: Router, private businessService: BusinessService) {}
+  constructor(private router: Router, private businessService: BusinessService, private authB2B: AuthB2BService) {}
 
   ngOnInit() {
-    this.business = this.businessService.getSession();
+    this.business = this.authB2B.getBusiness();
     this.userName = this.business?.name!;
   }
 
@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async logout() {
+    this.authB2B.logout();
     this.router.navigate(['/login']);
   }
 }

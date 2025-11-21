@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MeshGradientComponent } from './mesh-gradient.component';
 import { BusinessService } from '../../services/business-service';
 import Swal from 'sweetalert2';
+import { AuthB2BService } from '../../auth/auth-b2b-service';
 
 @Component({
   selector: 'app-login',
@@ -25,32 +26,71 @@ export class LoginComponent {
   emailTouched = false;
   passwordTouched = false;
 
-  constructor(
-    private router: Router, private businessService: BusinessService) {}
+  constructor(private router: Router, private businessService: BusinessService, private authB2B: AuthB2BService) {
+    if (this.authB2B.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
+
+  ngOnInit() {
+    // Cargar email guardado si existe
+    const rememberedEmail = localStorage.getItem('remember_email');
+    if (rememberedEmail) {
+      this.email = rememberedEmail;
+      this.rememberMe = true;
+    }
+  }
 
   async onSubmit() {
     this.emailTouched = true;
     this.passwordTouched = true;
     this.validateEmail();
     this.validatePassword();
-
     if (!this.isFormValid()) {
       return;
     }
-
     this.loading = true;
     this.errorMessage = '';
     try {
-      const business = await this.businessService.login(this.email, this.password);
-      if (business) {
-        this.businessService.setSession(business);
+      const response = await this.authB2B.login(this.email, this.password);
+      
+      if (response && response.token) {
+        // Si "Recordarme" está activado, guardar también en localStorage
+        if (this.rememberMe) {
+          localStorage.setItem('remember_email', this.email);
+        } else {
+          localStorage.removeItem('remember_email');
+        }
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Bienvenido',
+          text: `Hola ${response.business.name || ''}`,
+          timer: 1500,
+          showConfirmButton: false
+        });
+
         this.router.navigate(['/dashboard']);
-      } else {
-        this.errorMessage = 'Correo o contraseña incorrectos';
-        this.loading = false;
       }
-    } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } catch (error: any) {
+      this.loading = false;
+      
+      // Manejar diferentes tipos de errores
+      if (error.status === 401) {
+        this.errorMessage = 'Correo o contraseña incorrectos';
+      } else if (error.status === 403) {
+        this.errorMessage = 'Tu cuenta está desactivada. Contacta con soporte.';
+      } else if (error.status === 0) {
+        this.errorMessage = 'No se pudo conectar con el servidor. Verifica tu conexión.';
+      } else {
+        this.errorMessage = 'Ha ocurrido un error. Intenta nuevamente más tarde.';
+      }
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error de autenticación',
+        text: this.errorMessage
+      });
     }
   }
 

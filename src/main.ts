@@ -7,7 +7,7 @@ import { PlansComponent } from './app/flow/plans/plans.component';
 import { AdditionalInfoComponent } from './app/flow/additional-info/additional-info.component';
 import { ContractComponent } from './app/flow/contract/contract.component';
 import { SummaryComponent } from './app/flow/summary/summary.component';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { DashboardComponent } from './app/b2b/dashboard/dashboard.component';
 import { BankAccountViewComponent } from './app/b2b/bank-account-view/bank-account-view.component';
 import { BusinessInfoViewComponent } from './app/b2b/business-info-view/business-info-view.component';
@@ -18,6 +18,7 @@ import { PortalComponent } from './app/b2c/portal/portal.component';
 import { ModifyPlanComponent } from './app/b2c/modify-plan/modify-plan.component';
 import { PaymentComponent } from './app/b2c/payment/payment.component';
 import { LandingPageComponent } from './app/web/landing/landing-page.component';
+import { AuthInterceptor } from './app/auth/auth-interceptor';
 
 @Component({
   selector: 'app-root',
@@ -50,6 +51,11 @@ const routes = [
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 });
