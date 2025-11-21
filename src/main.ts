@@ -19,6 +19,7 @@ import { ModifyPlanComponent } from './app/b2c/modify-plan/modify-plan.component
 import { PaymentComponent } from './app/b2c/payment/payment.component';
 import { LandingPageComponent } from './app/web/landing/landing-page.component';
 import { AuthInterceptor } from './app/auth/auth-interceptor';
+import { AuthB2BGuard } from './app/auth/auth-b2b-guard';
 
 @Component({
   selector: 'app-root',
@@ -37,11 +38,11 @@ const routes = [
   { path: 'contract', component: ContractComponent },
   { path: 'summary', component: SummaryComponent },
   { path: 'clarity', component: ClarityComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'bank-account', component: BankAccountViewComponent },
-  { path: 'business-info', component: BusinessInfoViewComponent },
-  { path: 'withdrawals', component: WithdrawalsViewComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthB2BGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthB2BGuard] },
+  { path: 'bank-account', component: BankAccountViewComponent, canActivate: [AuthB2BGuard] },
+  { path: 'business-info', component: BusinessInfoViewComponent, canActivate: [AuthB2BGuard] },
+  { path: 'withdrawals', component: WithdrawalsViewComponent, canActivate: [AuthB2BGuard] },
   { path: 'portal', component: PortalComponent },
   { path: 'modify-plan', component: ModifyPlanComponent },
   { path: 'payment', component: PaymentComponent },

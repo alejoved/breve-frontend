@@ -11,11 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Determinar qué token usar según la ruta
-    const isB2B = req.url.includes('/api/business') || req.url.includes('/api/subscription');
-    const token = isB2B 
-      ? sessionStorage.getItem('b2b_token')
-      : sessionStorage.getItem('b2c_token');
-
+    const token = sessionStorage.getItem('token');
     if (token) {
       req = req.clone({
         setHeaders: {
@@ -29,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           // Token expirado o inválido
           sessionStorage.clear();
-          this.router.navigate([isB2B ? '/login' : '/portal']);
+          this.router.navigate(['/login']);
         }
         return throwError(() => error);
       })

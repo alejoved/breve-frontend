@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-import { Business } from '../models/business';
 import { optionsBasic } from '../../constants';
 import { BusinessService } from '../services/business-service';
 
 interface LoginResponse {
   token: string;
-  business: Business;
+  businessId: string;
   expiresIn: number;
 }
 
@@ -22,8 +20,8 @@ export class AuthB2BService {
       this.http.get<LoginResponse>(environment.host + "/api/business/login/" + email + "/" + password, optionsBasic)
     );
     if (response.token) {
-      sessionStorage.setItem('b2b_token', response.token);
-      sessionStorage.setItem('business', JSON.stringify(response.business));
+      sessionStorage.setItem('token', response.token);
+      sessionStorage.setItem('business', JSON.stringify(response.businessId));
       sessionStorage.setItem('token_expiry', String(Date.now() + response.expiresIn * 1000));
     }
     return response;
@@ -54,8 +52,7 @@ export class AuthB2BService {
     return sessionStorage.getItem('token');
   }
 
-  getBusiness(): Business | null {
-    const data = sessionStorage.getItem('business');
-    return data ? JSON.parse(data) : null;
+  getBusinessId(): string | null {
+    return sessionStorage.getItem('businessId');
   }
 }
