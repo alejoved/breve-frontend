@@ -4,6 +4,7 @@ import { BusinessService } from '../../services/business-service';
 import { Business } from '../../models/business';
 import { PayService } from '../../services/pay-service';
 import { Pay } from '../../models/pay';
+import { AuthB2BService } from '../../auth/auth-b2b-service';
 
 @Component({
   selector: 'app-withdrawals-view',
@@ -25,10 +26,11 @@ export class WithdrawalsViewComponent implements OnInit {
   withdrawalAmountToConfirm = 0;
   business: Business | null = null;
 
-  constructor(private businessService: BusinessService, private payService: PayService) {}
+  constructor(private businessService: BusinessService, private payService: PayService, private authB2B: AuthB2BService) {}
 
   async ngOnInit() {
-    this.business = this.businessService.getSession();
+    const businessId = this.authB2B.getBusinessId();
+    this.business = await this.businessService.filterById(businessId!);
     await this.loadData();
   }
 

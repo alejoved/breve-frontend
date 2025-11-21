@@ -33,8 +33,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(private router: Router, private businessService: BusinessService, private authB2B: AuthB2BService) {}
 
-  ngOnInit() {
-    this.business = this.authB2B.getBusiness();
+  async ngOnInit() {
+    const businessId = this.authB2B.getBusinessId();
+    this.business = await this.businessService.filterById(businessId!);
     this.userName = this.business?.name!;
   }
 

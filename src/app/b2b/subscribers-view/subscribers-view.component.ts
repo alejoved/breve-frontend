@@ -6,6 +6,7 @@ import { SubscriptionService } from '../../services/subscription-service';
 import { BusinessService } from '../../services/business-service';
 import { Business } from '../../models/business';
 import { Subscription } from '../../models/subscription';
+import { AuthB2BService } from '../../auth/auth-b2b-service';
 
 @Component({
   selector: 'app-subscribers-view',
@@ -22,10 +23,11 @@ export class SubscribersViewComponent implements OnInit {
   filterStatus: 'all' | 'active' | 'cancelled' | 'pending' = 'all';
   loading = true;
 
-  constructor(private subscriptionService: SubscriptionService, private businessService: BusinessService) {}
+  constructor(private subscriptionService: SubscriptionService, private businessService: BusinessService, private authB2B: AuthB2BService) {}
 
   async ngOnInit() {
-    this.business = this.businessService.getSession();
+    const businessId = this.authB2B.getBusinessId();
+    this.business = await this.businessService.filterById(businessId!);
     await this.loadCustomers();
   }
 

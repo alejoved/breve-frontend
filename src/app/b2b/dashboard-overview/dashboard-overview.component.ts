@@ -5,6 +5,7 @@ import { PlanService } from '../../services/plan-service';
 import { BusinessService } from '../../services/business-service';
 import { Business } from '../../models/business';
 import Swal from 'sweetalert2';
+import { AuthB2BService } from '../../auth/auth-b2b-service';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -39,10 +40,11 @@ export class DashboardOverviewComponent implements OnInit {
   loading = true;
   business: Business | null = null;
 
-  constructor(private businessService: BusinessService, private subscriptionService: SubscriptionService, private planService: PlanService) {}
+  constructor(private businessService: BusinessService, private subscriptionService: SubscriptionService, private planService: PlanService, private authB2B: AuthB2BService) {}
 
   async ngOnInit() {
-    this.business = this.businessService.getSession();
+    const businessId = this.authB2B.getBusinessId();
+    this.business = await this.businessService.filterById(businessId!);
     this.loadData();
     this.activeSubscriptions()
     this.activePlans();

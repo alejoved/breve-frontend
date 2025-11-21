@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
 import Swal from 'sweetalert2';
+import { AuthB2BService } from '../../auth/auth-b2b-service';
 
 @Component({
   selector: 'app-business-info-view',
@@ -49,11 +50,11 @@ export class BusinessInfoViewComponent implements OnInit {
     address: false
   };
 
-  constructor(private businessService: BusinessService) {}
+  constructor(private businessService: BusinessService, private authB2B: AuthB2BService ) {}
 
   async ngOnInit() {
-    this.business = this.businessService.getSession();
-    this.business = await this.businessService.filterById(this.business?.id!);
+    const businessId = this.authB2B.getBusinessId();
+    this.business = await this.businessService.filterById(businessId!);
     await this.loadData();
   }
 

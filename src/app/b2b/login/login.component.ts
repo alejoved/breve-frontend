@@ -65,7 +65,6 @@ export class LoginComponent {
         Swal.fire({
           icon: 'success',
           title: 'Bienvenido',
-          text: `Hola ${response.business.name || ''}`,
           timer: 1500,
           showConfirmButton: false
         });

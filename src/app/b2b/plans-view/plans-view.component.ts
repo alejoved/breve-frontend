@@ -6,6 +6,7 @@ import { PlanService } from '../../services/plan-service';
 import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
 import Swal from 'sweetalert2';
+import { AuthB2BService } from '../../auth/auth-b2b-service';
 
 @Component({
   selector: 'app-plans-view',
@@ -49,10 +50,11 @@ export class PlansViewComponent implements OnInit {
 
   newFeature = '';
 
-  constructor(private planService: PlanService, private businessService: BusinessService) {}
+  constructor(private planService: PlanService, private businessService: BusinessService, private authB2B: AuthB2BService) {}
 
   async ngOnInit() {
-    this.business = this.businessService.getSession();
+    const businessId = this.authB2B.getBusinessId();
+    this.business = await this.businessService.filterById(businessId!);
     await this.loadPlans();
     if (this.openCreateForm) {
       this.openCreateView();
