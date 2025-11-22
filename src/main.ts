@@ -38,7 +38,7 @@ const routes = [
   { path: 'contract', component: ContractComponent },
   { path: 'summary', component: SummaryComponent },
   { path: 'clarity', component: ClarityComponent },
-  { path: 'login', component: LoginComponent, canActivate: [AuthB2BGuard] },
+  { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthB2BGuard] },
   { path: 'bank-account', component: BankAccountViewComponent, canActivate: [AuthB2BGuard] },
   { path: 'business-info', component: BusinessInfoViewComponent, canActivate: [AuthB2BGuard] },
