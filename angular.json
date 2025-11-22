@@ -39,6 +39,7 @@
           },
           "options": {
             "assets": [
+              "src/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "src/assets",
