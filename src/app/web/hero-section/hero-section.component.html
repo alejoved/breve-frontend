@@ -1,7 +1,8 @@
-<section #section [class]="'flex flex-col w-full gap-8 md:gap-12 px-4 md:px-12 lg:px-[226px] pt-12 md:pt-20 lg:pt-[151px] pb-[100px] relative overflow-hidden transition-all duration-1000 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
-  <div class="flex flex-col lg:flex-row w-full items-start lg:items-center justify-between gap-8 md:gap-12 lg:gap-[74px]">
-    <div class="flex flex-col gap-6 md:gap-[27px] flex-1 w-full lg:w-auto lg:max-w-[600px]">
-      <h2 class="[font-family:'Funnel_Display',Helvetica] font-semibold text-white text-4xl md:text-5xl lg:text-[56px] tracking-[-0.5px] md:tracking-[-1.5px] leading-[1.1] md:leading-[1.15]">
+<section #section [class]="'flex flex-col w-full gap-8 md:gap-12 px-4 md:px-12 lg:px-[100px] pt-12 md:pt-20 lg:pt-[151px] pb-[100px] relative overflow-hidden transition-all duration-1000 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
+  <div class="flex flex-col lg:flex-row w-full items-start lg:items-center justify-between gap-8 md:gap-12 lg:gap-[40px]">
+    <!-- Contenido de texto -->
+    <div class="flex flex-col gap-6 md:gap-[27px] flex-1 w-full lg:max-w-[450px]">
+      <h2 class="font-funnel font-semibold text-white text-4xl md:text-5xl lg:text-[56px] tracking-[-0.5px] md:tracking-[-1.5px] leading-[1.1] md:leading-[1.15]">
         Agenda una reunión personalizada
       </h2>
 
@@ -10,22 +11,17 @@
       </p>
     </div>
 
-    <div class="hidden lg:block flex-shrink-0 w-full lg:w-auto lg:max-w-[650px]">
-      <div
-        class="calendly-inline-widget"
-        data-url="https://calendly.com/masbreve-info"
-        style="min-width:320px;height:700px;">
-      </div>
+    <!-- Iframe de Cal.com - máximo ancho posible -->
+    <div class="hidden lg:block flex-1">
+      <iframe 
+        src="https://cal.com/huber-martinez-gonzalez-ot3540" 
+        style="width:100%;height:700px;border:none;zoom:1;border-radius:20px;transform-origin:top center" 
+        loading="lazy" 
+        fetchpriority="auto" 
+        referrerpolicy="no-referrer"
+        sandbox="allow-same-origin allow-scripts allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+        title="Agenda tu reunión con +Breve">
+      </iframe>
     </div>
-  </div>
-
-  <div class="flex flex-col items-center gap-6 lg:hidden w-full">
-    <a
-      href="https://calendly.com/masbreve-info"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="w-full max-w-md px-8 py-4 rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] font-degular font-medium text-white text-lg text-center tracking-[0] leading-[18.0px] hover:opacity-90 transition-opacity shadow-lg">
-      Agendar reunión
-    </a>
   </div>
 </section>
