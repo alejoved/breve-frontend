@@ -5,14 +5,14 @@
     <ul class="hidden md:flex items-center gap-3 lg:gap-6 list-none m-0 p-0">
       <li *ngFor="let item of navigationItems">
         <button (click)="handleScrollTo(item.href)"
-                class="flex items-center justify-center h-5 [font-family:'Degular-Regular',Helvetica] font-normal text-white text-[10px] lg:text-base tracking-[0] leading-[22.4px] whitespace-nowrap bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                class="flex items-center justify-center h-5 font-degular font-normal text-white text-[10px] lg:text-base tracking-[0] leading-[22.4px] whitespace-nowrap bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
           {{ item.label }}
         </button>
       </li>
     </ul>
 
     <div class="hidden md:block md:min-w-[180px] lg:w-[235px] h-[50.64px]">
-      <button class="w-full h-full rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] [font-family:'Degular-Medium',Helvetica] font-medium text-white text-lg lg:text-[23.1px] text-center tracking-[0] leading-[18.0px] hover:opacity-90 transition-opacity shadow-none focus-visible:ring-0 ring-[3.16px] ring-[#f9fafa4c] ring-inset">
+      <button class="w-full h-full rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] font-degular font-medium text-white text-lg lg:text-[23.1px] text-center tracking-[0] leading-[18.0px] hover:opacity-90 transition-opacity shadow-none focus-visible:ring-0 ring-[3.16px] ring-[#f9fafa4c] ring-inset">
         Contratar
       </button>
     </div>
@@ -32,12 +32,12 @@
       <ul class="flex flex-col gap-4 list-none m-0 p-0 mb-4">
         <li *ngFor="let item of navigationItems">
           <button (click)="handleScrollTo(item.href)"
-                  class="w-full text-left [font-family:'Degular-Regular',Helvetica] font-normal text-white text-base tracking-[0] leading-[22.4px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity p-2">
+                  class="w-full text-left font-degular font-normal text-white text-base tracking-[0] leading-[22.4px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity p-2">
             {{ item.label }}
           </button>
         </li>
       </ul>
-      <button class="w-full h-[50px] rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] [font-family:'Degular-Medium',Helvetica] font-medium text-white text-base text-center tracking-[0] leading-[18.0px] hover:opacity-90 transition-opacity shadow-none focus-visible:ring-0 ring-[3.16px] ring-[#f9fafa4c] ring-inset">
+      <button class="w-full h-[50px] rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] font-degular font-medium text-white text-base text-center tracking-[0] leading-[18.0px] hover:opacity-90 transition-opacity shadow-none focus-visible:ring-0 ring-[3.16px] ring-[#f9fafa4c] ring-inset">
         Contratar
       </button>
     </div>

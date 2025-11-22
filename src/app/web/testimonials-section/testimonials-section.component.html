@@ -8,7 +8,7 @@
       <div class="bg-[#f7f5fd] rounded-[16.26px] border-none px-6 py-4">
         <button
           (click)="toggleItem(item)"
-          class="w-full flex items-center justify-between hover:no-underline [font-family:'Degular-Regular',Helvetica] font-normal text-[#272727] text-[20px] md:text-lg lg:text-[22.4px] tracking-[0] leading-relaxed md:leading-[33.5px] text-left transition-all"
+          class="w-full flex items-center justify-between hover:no-underline font-degular font-normal text-[#272727] text-[20px] md:text-lg lg:text-[22.4px] tracking-[0] leading-relaxed md:leading-[33.5px] text-left transition-all"
           [attr.aria-expanded]="item.isOpen">
           <span class="flex-1 pr-4">{{ item.question }}</span>
           <svg
@@ -23,7 +23,7 @@
         <div
           [class]="'overflow-hidden transition-all duration-300 ' + (item.isOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0')"
           [style.max-height]="item.isOpen ? '24rem' : '0'">
-          <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-[#272727] text-sm md:text-base lg:text-[18px] tracking-[0] leading-relaxed md:leading-[27px]">
+          <p class="font-degular font-normal text-[#272727] text-sm md:text-base lg:text-[18px] tracking-[0] leading-relaxed md:leading-[27px]">
             {{ item.answer }}
           </p>
         </div>

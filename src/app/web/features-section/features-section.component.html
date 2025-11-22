@@ -10,7 +10,7 @@
           Hoy pierdes clientes porque:
         </div>
 
-        <div class="w-full flex flex-col gap-3 md:gap-4 lg:gap-6 [font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed md:leading-6">
+        <div class="w-full flex flex-col gap-3 md:gap-4 lg:gap-6 font-degular font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed md:leading-6">
           <div *ngFor="let problem of problemsList" class="flex items-start gap-2">
             <img class="w-[15px] h-[15px] mt-1 flex-shrink-0" alt="Icon" src="assets/icon-4.svg">
             <span>{{ problem }}</span>
@@ -25,7 +25,7 @@
           Con +Breve cambia así:
         </div>
 
-        <div class="w-full [font-family:'Degular-Regular',Helvetica] font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed md:leading-6">
+        <div class="w-full font-degular font-normal text-white text-base md:text-base lg:text-xl tracking-[0] leading-relaxed md:leading-6">
           <ng-container *ngFor="let solution of solutionsList; let i = index">
             {{ solution }}
             <ng-container *ngIf="i < solutionsList.length - 1">

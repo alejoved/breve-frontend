@@ -24,18 +24,18 @@
           </div>
 
           <div class="flex flex-col px-6 pb-8 gap-4">
-            <h3 class="[font-family:'Degular-Semibold',Helvetica] font-semibold text-white text-xl md:text-[24px] lg:text-[26px] tracking-[-0.5px] leading-tight">
+            <h3 class="font-degular font-semibold text-white text-xl md:text-[24px] lg:text-[26px] tracking-[-0.5px] leading-tight">
               {{ step.title }}
             </h3>
 
-            <p class="[font-family:'Degular-Regular',Helvetica] font-normal text-white/90 text-base md:text-[17px] lg:text-[18px] tracking-[0] leading-relaxed">
+            <p class="font-degular font-normal text-white/90 text-base md:text-[17px] lg:text-[18px] tracking-[0] leading-relaxed">
               {{ step.description }}
             </p>
 
             <div class="flex flex-col gap-3 mt-2">
               <div *ngFor="let feature of step.features" class="flex items-center gap-3">
                 <img class="w-[48px] h-[48px] flex-shrink-0" alt="Feature icon" [src]="feature.icon">
-                <span class="[font-family:'Degular-Medium',Helvetica] font-medium text-white text-[15px] md:text-[16px] lg:text-[17px] tracking-[0] leading-snug">
+                <span class="font-degular font-medium text-white text-[15px] md:text-[16px] lg:text-[17px] tracking-[0] leading-snug">
                   {{ feature.text }}
                 </span>
               </div>
