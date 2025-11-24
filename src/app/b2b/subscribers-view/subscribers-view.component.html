@@ -10,8 +10,8 @@
       <div class="stat-label">Activos</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value">{{ getPendingCount() }}</div>
-      <div class="stat-label">Pendientes</div>
+      <div class="stat-value">{{ getRenewalCount() }}</div>
+      <div class="stat-label">Renovaciones</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">{{ getCancelledCount() }}</div>
@@ -44,17 +44,17 @@
     </button>
     <button
       class="filter-tab"
-      [class.active]="filterStatus === 'cancelled'"
-      (click)="setStatusFilter('cancelled')"
-    >
-      Cancelados
-    </button>
-    <button
-      class="filter-tab"
       [class.active]="filterStatus === 'renewal'"
       (click)="setStatusFilter('renewal')"
     >
       Renovaciones
+    </button>
+    <button
+      class="filter-tab"
+      [class.active]="filterStatus === 'cancelled'"
+      (click)="setStatusFilter('cancelled')"
+    >
+      Cancelados
     </button>
   </div>
 

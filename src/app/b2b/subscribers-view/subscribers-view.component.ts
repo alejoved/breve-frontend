@@ -20,7 +20,7 @@ export class SubscribersViewComponent implements OnInit {
   subscriptions: Subscription[] = [];
   filteredSubscriptions: Subscription[] = [];
   searchTerm = '';
-  filterStatus: 'active' | 'cancelled' | 'renewal' = 'active';
+  filterStatus: 'active' | 'renewal' | 'cancelled' = 'active';
   loading = true;
 
   constructor(private subscriptionService: SubscriptionService, private businessService: BusinessService, private authB2B: AuthB2BService) {}
@@ -52,7 +52,7 @@ export class SubscribersViewComponent implements OnInit {
     this.applyFilters();
   }
 
-  setStatusFilter(status: 'active' | 'cancelled' | 'renewal') {
+  setStatusFilter(status: 'active' | 'renewal' | 'cancelled') {
     this.filterStatus = status;
     this.applyFilters();
   }
@@ -60,8 +60,8 @@ export class SubscribersViewComponent implements OnInit {
   getStatusClass(status: string): string {
     switch (status) {
       case 'active': return 'status-active';
-      case 'cancelled': return 'status-cancelled';
       case 'renewal': return 'status-renewal';
+      case 'cancelled': return 'status-cancelled';
       default: return '';
     }
   }
@@ -69,8 +69,8 @@ export class SubscribersViewComponent implements OnInit {
   getStatusLabel(status: string): string {
     switch (status) {
       case 'active': return 'Activo';
-      case 'cancelled': return 'Cancelado';
       case 'renewal': return 'Renovación';
+      case 'cancelled': return 'Cancelado';
       default: return status;
     }
   }
@@ -85,15 +85,15 @@ export class SubscribersViewComponent implements OnInit {
   }
 
   getActiveCount(): number {
-    return this.subscriptions.filter(c => c.status).length;
+    return this.subscriptions.filter(c => c.status == "active").length;
   }
 
-  getPendingCount(): number {
-    return 0
+  getRenewalCount(): number {
+    return this.subscriptions.filter(c => c.status == "renewal").length;
   }
 
   getCancelledCount(): number {
-    return this.subscriptions.filter(c => !c.status).length;
+    return this.subscriptions.filter(c => c.status == "cancelled").length;
   }
 
   formatNextPayment(startDate: string): string {
