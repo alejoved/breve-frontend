@@ -226,12 +226,12 @@
   color: #16a34a;
 }
 
-.status-cancelled {
+.status-inactive {
   background: #fee;
   color: #dc2626;
 }
 
-.status-pending {
+.status-renewal {
   background: #fef3c7;
   color: #d97706;
 }

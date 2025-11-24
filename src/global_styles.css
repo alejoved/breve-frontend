@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import 'sweetalert2/dist/sweetalert2.min.css';
 @font-face {
   font-family: 'Degular';
   src: url('assets/tipografia/Degular-Thin.otf') format('opentype');
@@ -94,9 +96,6 @@
   font-weight: 900;
   font-style: italic;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
-@import 'sweetalert2/dist/sweetalert2.min.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

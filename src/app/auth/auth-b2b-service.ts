@@ -21,16 +21,16 @@ export class AuthB2BService {
     );
     if (response.token) {
       sessionStorage.setItem('token', response.token);
-      sessionStorage.setItem('business', JSON.stringify(response.businessId));
+      sessionStorage.setItem('businessId', response.businessId);
       sessionStorage.setItem('token_expiry', String(Date.now() + response.expiresIn * 1000));
     }
     return response;
   }
 
   logout() {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('business');
-    sessionStorage.removeItem('token_expiry');
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('businessId');
+      sessionStorage.removeItem('token_expiry');
   }
 
   isAuthenticated(): boolean {

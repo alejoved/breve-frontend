@@ -20,7 +20,7 @@ export class SubscribersViewComponent implements OnInit {
   subscriptions: Subscription[] = [];
   filteredSubscriptions: Subscription[] = [];
   searchTerm = '';
-  filterStatus: 'all' | 'active' | 'cancelled' | 'pending' = 'all';
+  filterStatus: 'active' | 'cancelled' | 'renewal' = 'active';
   loading = true;
 
   constructor(private subscriptionService: SubscriptionService, private businessService: BusinessService, private authB2B: AuthB2BService) {}
@@ -34,7 +34,7 @@ export class SubscribersViewComponent implements OnInit {
   async loadCustomers() {
     this.loading = true;
     this.subscriptions = await this.subscriptionService.filterByBusiness(this.business?.id!);
-    console.log(this.subscriptions);
+    this.setStatusFilter('active');
     this.applyFilters();
     this.loading = false;
   }
@@ -43,7 +43,7 @@ export class SubscribersViewComponent implements OnInit {
     this.filteredSubscriptions = this.subscriptions.filter(subscription => {
       const matchesSearch = subscription.customer!.firstName!.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
                            subscription.customer!.email!.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const matchesStatus = this.filterStatus === 'all' || subscription.customer?.status === this.filterStatus;
+      const matchesStatus = subscription?.status === this.filterStatus;
       return matchesSearch && matchesStatus;
     });
   }
@@ -52,7 +52,7 @@ export class SubscribersViewComponent implements OnInit {
     this.applyFilters();
   }
 
-  setStatusFilter(status: 'all' | 'active' | 'cancelled' | 'pending') {
+  setStatusFilter(status: 'active' | 'cancelled' | 'renewal') {
     this.filterStatus = status;
     this.applyFilters();
   }
@@ -61,7 +61,7 @@ export class SubscribersViewComponent implements OnInit {
     switch (status) {
       case 'active': return 'status-active';
       case 'cancelled': return 'status-cancelled';
-      case 'pending': return 'status-pending';
+      case 'renewal': return 'status-renewal';
       default: return '';
     }
   }
@@ -70,7 +70,7 @@ export class SubscribersViewComponent implements OnInit {
     switch (status) {
       case 'active': return 'Activo';
       case 'cancelled': return 'Cancelado';
-      case 'pending': return 'Pendiente';
+      case 'renewal': return 'Renovación';
       default: return status;
     }
   }
@@ -120,17 +120,5 @@ export class SubscribersViewComponent implements OnInit {
     const message = encodeURIComponent(`Hola ${customer.firstName}, te contacto desde mi sistema de suscripciones.`);
     const whatsappUrl = `https://wa.me/${cleanPhone}?text=${message}`;
     window.open(whatsappUrl, '_blank');
-  }
-
-  async changeStatus(customer: Customer, event: Event) {
-    const select = event.target as HTMLSelectElement;
-    const newStatus = select.value as 'active' | 'cancelled' | 'pending';
-
-    const updated = new Customer();
-
-    if (updated) {
-      customer.status = newStatus;
-      this.applyFilters();
-    }
   }
 }

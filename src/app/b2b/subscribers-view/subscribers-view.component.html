@@ -37,13 +37,6 @@
   <div class="filter-tabs">
     <button
       class="filter-tab"
-      [class.active]="filterStatus === 'all'"
-      (click)="setStatusFilter('all')"
-    >
-      Todos
-    </button>
-    <button
-      class="filter-tab"
       [class.active]="filterStatus === 'active'"
       (click)="setStatusFilter('active')"
     >
@@ -51,17 +44,17 @@
     </button>
     <button
       class="filter-tab"
-      [class.active]="filterStatus === 'pending'"
-      (click)="setStatusFilter('pending')"
-    >
-      Pendientes
-    </button>
-    <button
-      class="filter-tab"
       [class.active]="filterStatus === 'cancelled'"
       (click)="setStatusFilter('cancelled')"
     >
       Cancelados
+    </button>
+    <button
+      class="filter-tab"
+      [class.active]="filterStatus === 'renewal'"
+      (click)="setStatusFilter('renewal')"
+    >
+      Renovaciones
     </button>
   </div>
 
@@ -75,8 +68,8 @@
           <h3 class="subscriber-name">{{ subscription.customer!.firstName }} {{ subscription.customer!.lastName }}</h3>
           <p class="subscriber-email">{{ subscription.customer!.email }}</p>
         </div>
-        <span class="status-badge" [ngClass]="getStatusClass(subscription.customer!.status!)">
-          {{ getStatusLabel(subscription.customer!.status!) }}
+        <span class="status-badge" [ngClass]="getStatusClass(subscription?.status!)">
+          {{ getStatusLabel(subscription?.status!) }}
         </span>
       </div>
 
