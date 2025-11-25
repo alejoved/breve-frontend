@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    host : "http://localhost:5000",
-    username: 'dev',
-    password: 'dev'
+    host : "https://breve-backend.onrender.com",
+    username: process.env['USERNAME'] || '',
+    password: process.env['PASSWORD'] || ''
 };
