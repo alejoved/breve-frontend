@@ -31,7 +31,7 @@ export class App {}
 
 const routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'subscription/:businessName', component: WelcomeComponent },
+  { path: 'subscription/:businessNick', component: WelcomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'plans', component: PlansComponent },
   { path: 'additional-info', component: AdditionalInfoComponent },
