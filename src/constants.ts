@@ -1,7 +1,6 @@
 import { HttpHeaders } from "@angular/common/http";
-export const credencialUsuario = "admin";
-export const credencialPassword = "admin";
-export const credencial = credencialUsuario + ":" + credencialPassword;
+import { environment } from "./environments/environment";
+export const credencial = environment.username + ":" + environment.password;
 export const headersBasic = new HttpHeaders({ "Content-Type": "application/json", "Authorization": "Basic " + btoa(credencial) });
 export const optionsBasic = { headers: headersBasic };
 export const headersAuth= new HttpHeaders({ "Content-Type": "application/json", "Authorization": "Bearer " + sessionStorage.getItem('token') || "" });
