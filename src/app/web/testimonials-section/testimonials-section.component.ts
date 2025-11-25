@@ -29,7 +29,7 @@ export class TestimonialsSectionComponent implements AfterViewInit {
     {
       id: 'item-2',
       question: '¿Cuánto cuesta usar +Breve?',
-      answer: '+Breve tiene un modelo de cobro por transacción, sin costos fijos mensuales. Solo pagas una pequeña comisión por cada suscripción cobrada exitosamente.',
+      answer: 'Usar +Breve tiene un costo mensual de $80.000 COP, que te da acceso al flujo digital de suscripción, al dashboard de gestión y al portal de pagos para tus clientes. Además, cobramos una comisión del 5% por cada transacción realizada dentro de la plataforma.De esta forma solo pagas un valor fijo accesible y una pequeña comisión por las ventas que realmente generas a través de +Breve.',
       isOpen: false
     },
     {

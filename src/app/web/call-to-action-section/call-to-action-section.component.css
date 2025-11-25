@@ -1,0 +1,11 @@
+nav ul li button {
+  font-family: 'Degular', sans-serif;
+  font-size: 16px !important;
+  font-weight: 400;
+}
+
+@media (min-width: 1024px) {
+  nav ul li button {
+    font-size: 16px !important;
+  }
+}
