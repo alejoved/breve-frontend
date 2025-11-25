@@ -42,4 +42,10 @@ export class BusinessService {
       map(response => response as Business));
     return await firstValueFrom(observable);
   }
+
+  async filterByNick(nick: string): Promise<Business> {
+    const observable = this.http.get(environment.host + "/api/business/filterByNick/" + nick, optionsAuth).pipe(
+      map(response => response as Business));
+    return await firstValueFrom(observable);
+  }
 }

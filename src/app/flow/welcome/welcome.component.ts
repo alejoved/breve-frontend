@@ -10,19 +10,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class WelcomeComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-  businessName: string | null = null;
+  businessNick: string | null = null;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const nameFromParam = params.get('businessName');
-      if (nameFromParam) {
-        this.businessName = nameFromParam;
+      const nickFromParam = params.get('businessNick');
+      if (nickFromParam) {
+        this.businessNick = nickFromParam;
       } else {
         this.router.navigate(['']);
       }
     });
     setTimeout(() => {
-      this.router.navigate(['/contact'], { state: { businessName: this.businessName } });
+      this.router.navigate(['/contact'], { state: { businessNick: this.businessNick } });
     }, 2500);
   }
 }

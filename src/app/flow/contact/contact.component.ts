@@ -21,7 +21,7 @@ export class ContactComponent {
   private customerService = inject(CustomerService);
   private businessService = inject(BusinessService);
 
-  businessName = business_name;
+  businessNick = business_name;
   businessId: string | null = null;
 
   formData = {
@@ -41,17 +41,17 @@ export class ContactComponent {
   constructor() {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state) {
-      this.businessName = state['businessName'];
+      this.businessNick = state['businessNick'];
     }
     if(!state){
       this.router.navigate(['']);
     }
-    this.businessFilterByName();
+    this.businessFilterByNick();
   }
 
-  async businessFilterByName() {
+  async businessFilterByNick() {
     try {
-      const business = await this.businessService.filterByName(this.businessName);
+      const business = await this.businessService.filterByNick(this.businessNick);
       this.businessId = business ? business.id! : null;
     } catch (error) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
