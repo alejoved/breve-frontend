@@ -1,101 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 @import 'sweetalert2/dist/sweetalert2.min.css';
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-Thin.otf') format('opentype');
-  font-weight: 100;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-ThinItalic.otf') format('opentype');
-  font-weight: 100;
-  font-style: italic;
-}
+/* ...todos los @font-face de Degular existentes... */
 
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-LightItalic.otf') format('opentype');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-RegularItalic.otf') format('opentype');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-MediumItalic.otf') format('opentype');
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-Semibold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-SemiboldItalic.otf') format('opentype');
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-BoldItalic.otf') format('opentype');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-Black.otf') format('opentype');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Degular';
-  src: url('assets/tipografia/Degular-BlackItalic.otf') format('opentype');
-  font-weight: 900;
-  font-style: italic;
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -105,16 +12,85 @@
     font-family: 'Degular', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 
+  html {
+    font-size: 16px; /* Base para rem */
+    height: 100%;
+    margin: 0;
+  }
+
   body {
     font-family: 'Degular', 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 16px; /* Tamaño base */
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: #fafafa;
+    color: #1f2937;
+    height: 100%;
+    margin: 0;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Degular', 'Inter', sans-serif;
+  /* Tamaños de encabezados proporcionales */
+  h1 {
+    font-size: 2.5rem; /* 40px */
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 2rem; /* 32px */
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.4;
+  }
+  
+  h4 {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.4;
+  }
+  
+  h5 {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.4;
+  }
+  
+  h6 {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5;
+  }
+
+  /* Elementos de formulario */
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: 16px; /* Evita zoom en iOS */
+  }
+
+  /* Párrafos */
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Listas */
+  li {
+    font-size: 16px;
+  }
+
+  /* Links */
+  a {
+    font-size: 16px;
+  }
+
+  /* Tablas */
+  table {
+    font-size: 16px;
+  }
+
+  th, td {
+    font-size: 16px;
   }
 }
 
@@ -129,6 +105,7 @@
     box-shadow: 0 20px 25px -5px rgba(37, 211, 102, 0.4), 0 10px 10px -5px rgba(37, 211, 102, 0.3);
   }
 }
+
 .animate-pulse-soft {
   animation: pulse-soft 2s ease-in-out infinite;
 }

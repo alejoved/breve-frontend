@@ -1,22 +1,28 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
   ],
   theme: {
     extend: {
-      colors: {
-        colorwhite: {
-          100: "#ffffff",
-        },
-      },
       fontFamily: {
-        'funnel': ['Funnel Display', 'Helvetica', 'sans-serif'],
-        'degular': ['Degular', 'Helvetica', 'sans-serif'],
-        'proxima': ['Proxima Nova', 'Helvetica', 'sans-serif'],
-        'albert': ['Albert Sans', 'Helvetica', 'sans-serif'],
-        'urbanist': ['Urbanist', 'Helvetica', 'sans-serif'],
-        'inter': ['Inter', 'Helvetica', 'sans-serif'],
+        'sans': ['Degular', 'Inter', 'system-ui', 'sans-serif'],
+        'degular': ['Degular', 'sans-serif'],
+        'funnel': ['"Funnel Display"', 'sans-serif'],
       },
+      fontSize: {
+        // Establecer base en 16px
+        'xs': '12px',
+        'sm': '14px',
+        'base': '16px',      // ← Tamaño base del proyecto
+        'lg': '18px',
+        'xl': '20px',
+        '2xl': '24px',
+        '3xl': '30px',
+        '4xl': '36px',
+        '5xl': '48px',
+        '6xl': '60px',
+      }
     },
   },
   plugins: [],
