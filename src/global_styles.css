@@ -1,27 +1,117 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700&display=swap');
 @import 'sweetalert2/dist/sweetalert2.min.css';
 
-/* ...todos los @font-face de Degular existentes... */
+/* Degular Font Family - Todas las variantes */
+@font-face {
+  font-family: 'Degular';
+  src: url('/assets/fonts/Degular-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Degular';
+  src: url('/assets/fonts/Degular-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Degular';
+  src: url('/assets/fonts/Degular-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Degular';
+  src: url('/assets/fonts/Degular-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Degular';
+  src: url('/assets/fonts/Degular-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Degular';
+  src: url('/assets/fonts/Degular-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Degular';
+  src: url('/assets/fonts/Degular-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Funnel Display Font Family */
+@font-face {
+  font-family: 'Funnel Display';
+  src: url('/assets/fonts/FunnelDisplay-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Funnel Display';
+  src: url('/assets/fonts/FunnelDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Funnel Display';
+  src: url('/assets/fonts/FunnelDisplay-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Funnel Display';
+  src: url('/assets/fonts/FunnelDisplay-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* Degular como fuente base para todo */
   * {
-    font-family: 'Degular', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Degular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   html {
-    font-size: 16px; /* Base para rem */
+    font-size: 16px;
     height: 100%;
     margin: 0;
   }
 
   body {
-    font-family: 'Degular', 'Inter', sans-serif;
+    font-family: 'Degular', sans-serif;
     font-weight: 400;
-    font-size: 16px; /* Tamaño base */
+    font-size: 16px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,65 +121,67 @@
     margin: 0;
   }
 
-  /* Tamaños de encabezados proporcionales */
+  /* Funnel Display SOLO para títulos (h1-h6) */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Funnel Display', 'Degular', sans-serif;
+  }
+
   h1 {
     font-size: 2.5rem; /* 40px */
+    font-weight: 500;
     line-height: 1.2;
   }
   
   h2 {
     font-size: 2rem; /* 32px */
+    font-weight: 500;
     line-height: 1.3;
   }
   
   h3 {
     font-size: 1.5rem; /* 24px */
+    font-weight: 500;
     line-height: 1.4;
   }
   
   h4 {
     font-size: 1.25rem; /* 20px */
+    font-weight: 500;
     line-height: 1.4;
   }
   
   h5 {
     font-size: 1.125rem; /* 18px */
+    font-weight: 400;
     line-height: 1.4;
   }
   
   h6 {
     font-size: 1rem; /* 16px */
+    font-weight: 400;
     line-height: 1.5;
   }
 
-  /* Elementos de formulario */
+  /* Degular para elementos de formulario */
   button, input, select, textarea {
-    font-family: inherit;
-    font-size: 16px; /* Evita zoom en iOS */
+    font-family: 'Degular', sans-serif;
+    font-size: 16px;
   }
 
-  /* Párrafos */
+  /* Degular para texto general */
+  p, li, a, span, div, label {
+    font-family: 'Degular', sans-serif;
+  }
+
   p {
     font-size: 16px;
+    font-weight: 400;
     line-height: 1.5;
   }
 
-  /* Listas */
-  li {
-    font-size: 16px;
-  }
-
-  /* Links */
-  a {
-    font-size: 16px;
-  }
-
-  /* Tablas */
-  table {
-    font-size: 16px;
-  }
-
-  th, td {
+  /* Degular para tablas */
+  table, th, td {
+    font-family: 'Degular', sans-serif;
     font-size: 16px;
   }
 }
@@ -108,4 +200,33 @@
 
 .animate-pulse-soft {
   animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Clases de utilidad para pesos de fuente */
+.font-thin {
+  font-weight: 100;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-black {
+  font-weight: 900;
 }
