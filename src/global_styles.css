@@ -62,14 +62,14 @@
 /* Base: textos en Degular, títulos en Funnel */
 @layer base {
   html {
-    font-size: 16px;
+    font-size: 24px;
     height: 100%;
   }
 
   body {
     font-family: 'Degular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 24px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -97,7 +97,7 @@
   table, th, td,
   button, input, select, textarea {
     font-family: 'Degular', sans-serif;
-    font-size: 16px;
+    font-size: 24px;
   }
 }
 

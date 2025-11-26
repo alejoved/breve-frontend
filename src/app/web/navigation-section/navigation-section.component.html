@@ -2,7 +2,7 @@
   <div [class]="'flex flex-col w-full md:w-auto md:max-w-[595px] items-start gap-6 md:gap-[34px] transition-all duration-700 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
     <img class="w-[124px] h-[26.82px]" alt="Group" src="assets/group-1000003767.png">
 
-    <p class="flex items-center justify-center self-stretch min-h-[81px] font-degular font-normal text-white text-base tracking-[0] leading-relaxed md:leading-6">
+    <p class="flex items-center justify-center self-stretch min-h-[81px] font-degular font-normal text-white tracking-[0]">
       Tus clientes ya están listos para suscribirse. Con +Breve recibes esos ingresos automáticamente, sin procesos manuales ni seguir mensajes uno a uno.
     </p>
 
@@ -10,7 +10,7 @@
   </div>
 
   <nav [class]="'flex flex-col w-full md:w-auto items-start gap-4 md:gap-5 transition-all duration-700 delay-200 ' + (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')">
-    <h3 class="font-degular font-semibold text-white text-lg tracking-[0] leading-tight">
+    <h3 class="font-funnel font-semibold text-white">
       Producto
     </h3>
 
@@ -19,7 +19,7 @@
         <a
           [href]="link.href"
           (click)="handleScrollTo($event, link.href)"
-          class="font-degular font-normal text-white text-sm tracking-[0] leading-relaxed cursor-pointer hover:opacity-80 transition-opacity">
+          class="font-degular font-normal text-white tracking-[0] cursor-pointer hover:opacity-80 transition-opacity">
           {{ link.text }}
         </a>
       </li>
