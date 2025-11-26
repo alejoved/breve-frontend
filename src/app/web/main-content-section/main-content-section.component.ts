@@ -42,4 +42,16 @@ export class MainContentSectionComponent {
   getCurrentDemoUrl(): string {
     return this.demoUrls[this.activeDemo];
   }
+
+  handleScrollTo(href: string): void {
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
 }
