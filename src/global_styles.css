@@ -189,3 +189,25 @@
 .font-semibold { font-weight: 600 !important; }
 .font-bold { font-weight: 700 !important; }
 .font-black { font-weight: 900 !important; }
+
+/* Forzar Funnel Display en títulos (última opción) */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Funnel Display', 'Degular', sans-serif !important;
+}
+
+/* Forzar Degular en todo lo demás */
+body, p, span, div, a, button, input, select, textarea, li, td, th, label {
+  font-family: 'Degular', sans-serif !important;
+}
+
+/* Sobrescribir Tailwind si es necesario */
+.font-funnel,
+[class*="font-funnel"] {
+  font-family: 'Funnel Display', 'Degular', sans-serif !important;
+}
+
+.font-degular,
+[class*="font-degular"] {
+  font-family: 'Degular', sans-serif !important;
+}
