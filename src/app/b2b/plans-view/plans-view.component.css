@@ -1,3 +1,6 @@
+/* Respeta global_styles: 20px base y clamp en h1–h6.
+   Se eliminaron font-size mayores. Solo se mantienen tamaños reducidos para badges/meta. */
+
 .plans-container {
   max-width: 1200px;
 }
@@ -10,10 +13,11 @@
 }
 
 .page-title {
-  font-size: 28px;
+  /* Usa elemento h1/h2 en HTML para tamaño fluido */
   font-weight: 700;
   color: #1a1a1a;
   margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .create-btn {
@@ -21,19 +25,20 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
-  color: white;
+  background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
+  color: #fff;
   border: none;
   border-radius: 40px;
-  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: inherit;
+  /* font-size inherit (20px base) */
 }
 
 .create-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(107, 78, 230, 0.3);
+  box-shadow: 0 4px 12px rgba(107,78,230,0.3);
 }
 
 .create-btn svg {
@@ -44,20 +49,20 @@
 
 .plans-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
   gap: 20px;
 }
 
 .plan-card {
-  background: white;
+  background: #fff;
   border-radius: 16px;
   padding: 28px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: all 0.2s;
 }
 
 .plan-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 .plan-header {
@@ -72,17 +77,18 @@
 }
 
 .plan-name {
-  font-size: 22px;
+  /* Usa h3 en HTML si quieres clamp; aquí solo estilo */
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 8px 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .plan-status {
   display: inline-block;
   padding: 4px 12px;
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 12px; /* badge menor */
   font-weight: 600;
 }
 
@@ -131,25 +137,27 @@
 }
 
 .price-amount {
-  font-size: 36px;
   font-weight: 700;
-  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
+  background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.1;
+  /* sin font-size: usar h2/h3 tag si se requiere mayor escala */
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .price-period {
-  font-size: 16px;
+  font-size: 12px; /* meta menor */
   color: #6c757d;
 }
 
 .plan-description {
-  font-size: 14px;
   color: #6c757d;
   line-height: 1.6;
   margin: 0 0 16px 0;
   min-height: 40px;
+  /* font-size base (inherit) */
 }
 
 .plan-features {
@@ -163,7 +171,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 13px; /* etiqueta menor */
   color: #1a1a1a;
   padding: 6px 0;
 }
@@ -185,13 +193,13 @@
   width: 100%;
   padding: 10px;
   border: 2px solid #e0e0e0;
-  background: white;
+  background: #fff;
   border-radius: 40px;
-  font-size: 14px;
   font-weight: 600;
   color: #6c757d;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 14px; /* control táctil menor */
 }
 
 .toggle-btn:hover {
@@ -207,11 +215,11 @@
 
 .empty-state {
   grid-column: 1 / -1;
-  background: white;
+  background: #fff;
   border-radius: 16px;
   padding: 60px 20px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .empty-state svg {
@@ -223,16 +231,17 @@
 }
 
 .empty-state h3 {
-  font-size: 20px;
   font-weight: 600;
   color: #1a1a1a;
   margin: 0 0 8px 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .empty-state p {
-  font-size: 14px;
+  font-size: 14px; /* texto secundario */
   color: #6c757d;
   margin: 0 0 24px 0;
+  line-height: 1.5;
 }
 
 .loading-state {
@@ -260,10 +269,7 @@
 
 .create-plan-view {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: #f8f9fa;
   z-index: 1000;
   overflow-y: auto;
@@ -272,7 +278,7 @@
 .create-plan-header {
   position: sticky;
   top: 0;
-  background: white;
+  background: #fff;
   border-bottom: 1px solid #e9ecef;
   padding: 16px 20px;
   display: flex;
@@ -307,13 +313,13 @@
 }
 
 .create-plan-title {
-  font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0;
   flex: 1;
   text-align: center;
   padding-right: 40px;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .create-plan-content {
@@ -329,17 +335,17 @@
 }
 
 .form-section {
-  background: white;
+  background: #fff;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .section-title {
-  font-size: 20px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 20px 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .section-header {
@@ -359,10 +365,11 @@
 
 .form-label {
   display: block;
-  font-size: 15px;
   font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 8px;
+  font-family: inherit;
+  /* tamaño base */
 }
 
 .required {
@@ -374,7 +381,6 @@
   padding: 14px 16px;
   border: none;
   border-radius: 12px;
-  font-size: 16px;
   transition: all 0.2s;
   box-sizing: border-box;
   font-family: inherit;
@@ -385,7 +391,7 @@
 .form-input:focus {
   outline: none;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(107, 78, 230, 0.1);
+  box-shadow: 0 0 0 3px rgba(107,78,230,0.1);
 }
 
 .form-input::placeholder {
@@ -412,10 +418,10 @@ textarea.form-input {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
   pointer-events: none;
+  /* usa tamaño base */
 }
 
 .price-input {
@@ -432,12 +438,12 @@ textarea.form-input {
   padding: 14px 16px;
   border: none;
   border-radius: 12px;
-  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   background: #f5f5f5;
   color: #6c757d;
+  font-size: 14px; /* menor para botones agrupados */
 }
 
 .period-btn:hover {
@@ -446,7 +452,7 @@ textarea.form-input {
 
 .period-btn.active {
   background: #845EEE;
-  color: white;
+  color: #fff;
 }
 
 .add-feature-btn {
@@ -457,11 +463,11 @@ textarea.form-input {
   border: none;
   background: transparent;
   color: #845EEE;
-  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 8px;
+  font-size: 14px; /* acción secundaria */
 }
 
 .add-feature-btn:hover {
@@ -488,7 +494,7 @@ textarea.form-input {
   padding: 12px 16px;
   background: #f5f5f5;
   border-radius: 12px;
-  font-size: 15px;
+  font-size: 14px; /* lista compacta */
   color: #1a1a1a;
 }
 
@@ -530,7 +536,6 @@ textarea.form-input {
 }
 
 .status-title {
-  font-size: 16px;
   font-weight: 600;
   color: #1a1a1a;
   margin: 0 0 4px 0;
@@ -558,10 +563,7 @@ textarea.form-input {
 .toggle-slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: #d1d5db;
   transition: 0.3s;
   border-radius: 30px;
@@ -574,7 +576,7 @@ textarea.form-input {
   width: 24px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
+  background-color: #fff;
   transition: 0.3s;
   border-radius: 50%;
 }
@@ -588,10 +590,10 @@ textarea.form-input {
 }
 
 .form-actions {
-  background: white;
+  background: #fff;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .submit-btn {
@@ -599,17 +601,18 @@ textarea.form-input {
   padding: 18px;
   border: none;
   border-radius: 40px;
-  font-size: 17px;
   font-weight: 600;
-  color: white;
-  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
+  color: #fff;
+  background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
   cursor: pointer;
   transition: all 0.2s;
+  font-family: inherit;
+  /* tamaño base */
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(107, 78, 230, 0.3);
+  box-shadow: 0 8px 20px rgba(107,78,230,0.3);
 }
 
 @media (max-width: 768px) {
@@ -618,71 +621,47 @@ textarea.form-input {
     align-items: flex-start;
     gap: 16px;
   }
-
   .create-btn {
     width: 100%;
     justify-content: center;
   }
-
   .plans-grid {
     grid-template-columns: 1fr;
   }
-
   .create-plan-header {
     padding: 12px 16px;
   }
-
-  .create-plan-title {
-    font-size: 20px;
-    padding-right: 0;
-  }
-
   .create-plan-content {
     padding: 16px;
   }
-
   .form-section {
     padding: 20px;
   }
-
   .price-period-grid {
     grid-template-columns: 1fr;
   }
-
   .form-actions {
     padding: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .page-title {
-    font-size: 24px;
-  }
-
-  .create-plan-title {
-    font-size: 18px;
-  }
-
-  .section-title {
-    font-size: 18px;
-  }
-
   .form-section {
     padding: 16px;
   }
-
   .form-actions {
     padding: 16px;
   }
+  .features-list {
+    gap: 10px;
+  }
 }
 
+/* Modal */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -692,32 +671,22 @@ textarea.form-input {
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-content {
-  background: white;
+  background: #fff;
   border-radius: 20px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   animation: slideUp 0.3s ease;
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .modal-header {
@@ -747,14 +716,14 @@ textarea.form-input {
 }
 
 .modal-title {
-  font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 12px;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .modal-description {
-  font-size: 15px;
+  font-size: 14px; /* texto secundario */
   color: #6c757d;
   line-height: 1.6;
   margin: 0;
@@ -776,10 +745,10 @@ textarea.form-input {
   padding: 14px 24px;
   border: none;
   border-radius: 12px;
-  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 14px; /* acción menor */
 }
 
 .modal-btn.cancel {
@@ -794,57 +763,45 @@ textarea.form-input {
 
 .modal-btn.danger {
   background: #dc3545;
-  color: white;
+  color: #fff;
 }
 
 .modal-btn.danger:hover {
   background: #c82333;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  box-shadow: 0 4px 12px rgba(220,53,69,0.3);
 }
 
 @media (max-width: 480px) {
   .modal-content {
     border-radius: 16px;
   }
-
   .modal-header {
     padding: 24px 24px 20px;
   }
-
   .modal-icon-wrapper {
     width: 56px;
     height: 56px;
   }
-
   .modal-icon-wrapper svg {
     width: 28px;
     height: 28px;
   }
-
-  .modal-title {
-    font-size: 20px;
-  }
-
-  .modal-description {
-    font-size: 14px;
-  }
-
   .modal-actions {
     padding: 0 24px 24px;
     flex-direction: column-reverse;
   }
-
   .modal-btn {
     width: 100%;
   }
 }
+
 .form-input.error {
   border-color: #dc3545;
 }
 
 .field-error {
   color: #dc3545;
-  font-size: 12px;
+  font-size: 12px; /* mensaje pequeño */
   margin-top: 4px;
 }

@@ -6,7 +6,7 @@
 
 .sidebar {
   width: 240px;
-  background: white;
+  background: #ffffff;
   border-right: 1px solid #e9ecef;
   padding: 24px 0;
   display: flex;
@@ -24,7 +24,7 @@
 .logo {
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  background: linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -33,22 +33,23 @@
 }
 
 .logo-icon {
-  color: white;
-  font-size: 20px;
   font-weight: 700;
+  color: #ffffff;
+  /* sin font-size: usa 20px base */
 }
 
 .brand-name {
-  font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
+  /* sin font-size: h1/h2 recomendado en HTML si posible */
 }
 
 .brand-subtitle {
-  font-size: 14px;
-  color: #6c757d;
   margin: 4px 0 0;
+  color: #6c757d;
+  /* sin font-size */
 }
 
 .sidebar-nav {
@@ -69,10 +70,11 @@
   color: #6c757d;
   cursor: pointer;
   border-radius: 12px;
-  font-size: 15px;
   font-weight: 500;
   transition: all 0.2s;
   text-align: left;
+  font-family: 'Degular',sans-serif;
+  /* sin font-size */
 }
 
 .nav-item:hover {
@@ -99,7 +101,7 @@
 }
 
 .top-header {
-  background: white;
+  background: #ffffff;
   border-bottom: 1px solid #e9ecef;
   padding: 16px 32px;
   position: sticky;
@@ -123,18 +125,20 @@
 }
 
 .greeting h1 {
-  font-size: 20px;
   font-weight: 400;
   color: #6c757d;
   margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
+  /* clamp desde global */
 }
 
 .user-name {
-  font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 4px 0 0;
   text-transform: capitalize;
+  font-family: 'Funnel Display','Degular',sans-serif;
+  /* sin font-size */
 }
 
 .header-actions {
@@ -167,7 +171,7 @@
   height: 48px;
   border-radius: 50%;
   border: 2px solid #e9ecef;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  background: linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -180,7 +184,7 @@
 
 .profile-btn:hover {
   border-color: #fbbf24;
-  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.2);
+  box-shadow: 0 2px 8px rgba(251,191,36,0.2);
   transform: scale(1.05);
 }
 
@@ -193,7 +197,7 @@
 
 .profile-sidebar {
   width: 320px;
-  background: white;
+  background: #ffffff;
   border-left: 1px solid #e9ecef;
   position: fixed;
   right: 0;
@@ -204,7 +208,7 @@
   flex-direction: column;
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+  box-shadow: -4px 0 24px rgba(0,0,0,0.08);
 }
 
 .profile-sidebar.mobile-open {
@@ -252,28 +256,29 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  background: linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
   font-weight: 700;
-  color: white;
+  color: #ffffff;
   margin: 0 auto 16px;
+  /* sin font-size */
 }
 
 .profile-sidebar-name {
-  font-size: 20px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 4px;
   text-transform: capitalize;
+  font-family: 'Funnel Display','Degular',sans-serif;
+  /* sin font-size */
 }
 
 .profile-sidebar-role {
-  font-size: 14px;
   color: #6c757d;
   margin: 0;
+  /* sin font-size */
 }
 
 .profile-sidebar-nav {
@@ -292,12 +297,13 @@
   color: #495057;
   cursor: pointer;
   border-radius: 12px;
-  font-size: 15px;
   font-weight: 500;
   transition: all 0.2s;
   text-decoration: none;
   text-align: left;
   width: 100%;
+  font-family: 'Degular',sans-serif;
+  /* sin font-size */
 }
 
 .profile-nav-item:hover {
@@ -341,50 +347,31 @@
   .sidebar {
     transform: translateX(-100%);
   }
-
   .sidebar.mobile-open {
     transform: translateX(0);
   }
-
   .main-content {
     margin-left: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
-
   .mobile-menu-btn {
     display: flex;
   }
-
   .top-header {
     padding: 16px;
   }
-
   .content-area {
     padding: 16px;
     max-width: 100vw;
     overflow-x: hidden;
   }
-
-  .main-content {
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  .greeting h1 {
-    font-size: 16px;
-  }
-
-  .user-name {
-    font-size: 20px;
-  }
-
+  /* se eliminan font-size específicos para usar clamp y base */
   .mobile-overlay {
     display: block;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    background: rgba(0,0,0,0.5);
     z-index: 99;
   }
 }

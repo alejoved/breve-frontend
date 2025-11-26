@@ -5,7 +5,7 @@
 }
 
 .header {
-  background: white;
+  background: #ffffff;
   padding: 16px;
   display: flex;
   align-items: center;
@@ -41,10 +41,11 @@
 }
 
 .title {
-  font-size: 22px;
-  font-weight: 700;
+  /* Sin font-size: usa tamaño global (ideal si es h1/h2) */
+  font-weight: 600;
   color: #5b21b6;
   margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .content {
@@ -66,9 +67,13 @@
 }
 
 .form-label {
-  font-size: 15px;
+  /* Sin font-size: usa 20px global */
   font-weight: 600;
   color: #1a1a1a;
+  font-family: 'Degular', sans-serif;
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
 .required {
@@ -81,15 +86,17 @@
   padding: 14px 16px;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  font-size: 16px;
+  /* Sin font-size: usa 20px global */
   transition: all 0.2s;
   box-sizing: border-box;
+  background: #ffffff;
+  font-family: inherit;
 }
 
 .form-input:focus {
   outline: none;
   border-color: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
 }
 
 .form-input.error {
@@ -98,7 +105,8 @@
 
 .field-error {
   color: #dc3545;
-  font-size: 12px;
+  font-size: 12px; /* Excepción intencional */
+  line-height: 1.3;
   margin-top: -4px;
 }
 
@@ -112,13 +120,14 @@
 .cancel-btn {
   padding: 16px;
   border: 2px solid #e0e0e0;
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
-  font-size: 16px;
   font-weight: 600;
   color: #6c757d;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: inherit;
+  /* Sin font-size */
 }
 
 .cancel-btn:hover {
@@ -129,17 +138,18 @@
   padding: 16px;
   border: none;
   border-radius: 40px;
-  font-size: 16px;
   font-weight: 600;
-  color: white;
-  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
+  color: #ffffff;
+  background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
   cursor: pointer;
   transition: all 0.3s;
+  font-family: inherit;
+  /* Sin font-size */
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(107, 78, 230, 0.3);
+  box-shadow: 0 8px 24px rgba(107,78,230,0.3);
 }
 
 .submit-btn:disabled {

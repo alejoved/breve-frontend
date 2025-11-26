@@ -1,23 +1,23 @@
 <div class="bank-account-container" *ngIf="!loading">
   <div class="header">
-    <button class="back-btn" (click)="goBack()">
+    <button class="back-btn" (click)="goBack()" aria-label="Volver">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
     </button>
-    <h1 class="title">Cuenta Bancaria</h1>
+    <h1 class="title font-funnel">Cuenta Bancaria</h1>
   </div>
 
   <div class="content">
-    <p class="description">
+    <p class="description font-degular">
       Conecta tu cuenta bancaria para recibir pagos de tus suscriptores de forma segura.
     </p>
 
     <form class="form" (ngSubmit)="save()">
       <div class="form-group">
-        <label class="form-label">Nombre del Banco<span class="required">*</span></label>
+        <label class="form-label font-degular">Nombre del Banco<span class="required">*</span></label>
         <select
-          class="form-input"
+          class="form-input font-degular"
           [class.error]="errors.bankName && touched.bankName"
           [(ngModel)]="formData.bankName"
           (ngModelChange)="validateBankName()"
@@ -34,32 +34,30 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">Tipo de cuenta<span class="required">*</span></label>
+        <label class="form-label font-degular">Tipo de cuenta<span class="required">*</span></label>
         <div class="button-group">
           <button
             type="button"
-            class="option-btn"
+            class="option-btn font-degular"
             [class.active]="formData.accountType === 'corriente'"
-            (click)="formData.accountType = 'corriente'"
-          >
+            (click)="formData.accountType = 'corriente'">
             Corriente
           </button>
           <button
             type="button"
-            class="option-btn"
+            class="option-btn font-degular"
             [class.active]="formData.accountType === 'ahorros'"
-            (click)="formData.accountType = 'ahorros'"
-          >
+            (click)="formData.accountType = 'ahorros'">
             Ahorros
           </button>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Número de cuenta<span class="required">*</span></label>
+        <label class="form-label font-degular">Número de cuenta<span class="required">*</span></label>
         <input
           type="text"
-          class="form-input"
+          class="form-input font-degular"
           [class.error]="errors.accountNumber && touched.accountNumber"
           placeholder="304590569045"
           [(ngModel)]="formData.accountNumber"
@@ -77,10 +75,10 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">Nombre del Titular<span class="required">*</span></label>
+        <label class="form-label font-degular">Nombre del Titular<span class="required">*</span></label>
         <input
           type="text"
-          class="form-input"
+          class="form-input font-degular"
           [class.error]="errors.accountOwner && touched.accountOwner"
           placeholder="Andrés Quintero"
           [(ngModel)]="formData.accountOwner"
@@ -94,7 +92,7 @@
         </div>
       </div>
 
-      <button type="submit" class="submit-btn" [disabled]="saving">
+      <button type="submit" class="submit-btn font-degular" [disabled]="saving">
         {{ saving ? 'Guardando...' : 'Guardar' }}
       </button>
     </form>
@@ -103,5 +101,5 @@
 
 <div class="loading-state" *ngIf="loading">
   <div class="spinner"></div>
-  <p>Cargando...</p>
+  <p class="font-degular">Cargando...</p>
 </div>

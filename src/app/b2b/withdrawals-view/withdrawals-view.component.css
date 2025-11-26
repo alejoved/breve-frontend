@@ -1,3 +1,4 @@
+/* Respeta global_styles: sin font-size en títulos y textos principales; solo excepciones pequeñas para badges/meta. */
 .withdrawals-container {
   padding: 2rem;
   max-width: 1400px;
@@ -17,7 +18,6 @@
   background: transparent;
   border: none;
   border-radius: 8px;
-  font-size: 15px;
   font-weight: 500;
   color: #6c757d;
   cursor: pointer;
@@ -25,9 +25,7 @@
   margin-bottom: 16px;
 }
 
-.back-btn:hover {
-  background: #f8f9fa;
-}
+.back-btn:hover { background: #f8f9fa; }
 
 .back-btn svg {
   width: 24px;
@@ -36,15 +34,15 @@
 }
 
 .page-header h1 {
-  font-size: 2rem;
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
+  /* sin font-size (usa clamp global h1) */
 }
 
 .page-subtitle {
-  font-size: 1rem;
   color: #666;
+  /* sin font-size (usa 20px base) */
 }
 
 .stats-grid {
@@ -55,10 +53,10 @@
 }
 
 .stat-card {
-  background: white;
+  background: #fff;
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   display: flex;
   gap: 1rem;
   align-items: flex-start;
@@ -67,32 +65,30 @@
 
 .stat-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 
 .balance-card {
   border: 2px solid #10b981;
-  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+  background: linear-gradient(135deg,#ecfdf5 0%,#ffffff 100%);
 }
 
 .limit-warning {
   border: 2px solid #f59e0b;
-  background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);
+  background: linear-gradient(135deg,#fef3c7 0%,#ffffff 100%);
 }
 
 .limit-warning .stat-icon {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: linear-gradient(135deg,#f59e0b 0%,#d97706 100%);
 }
 
-.limit-warning .stat-info {
-  color: #d97706;
-}
+.limit-warning .stat-info { color: #d97706; }
 
 .stat-icon {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg,#10b981 0%,#059669 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,30 +98,29 @@
 .stat-icon svg {
   width: 24px;
   height: 24px;
-  stroke: white;
+  stroke: #fff;
   stroke-width: 2;
 }
 
-.stat-content {
-  flex: 1;
-}
+.stat-content { flex: 1; }
 
 .stat-label {
-  font-size: 0.875rem;
+  font-size: 14px; /* meta menor */
   color: #666;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
 .stat-value {
-  font-size: 2rem;
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 0.25rem;
+  line-height: 1.1;
+  /* sin font-size (usa base o envoltura h*/
 }
 
 .stat-info {
-  font-size: 0.875rem;
+  font-size: 14px; /* meta menor */
   color: #10b981;
   font-weight: 500;
 }
@@ -143,23 +138,23 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
-  color: white;
+  background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
+  color: #fff;
   border: none;
   border-radius: 40px;
-  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  /* sin font-size */
 }
 
 .withdraw-btn-primary:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(107, 78, 230, 0.3);
+  box-shadow: 0 4px 12px rgba(107,78,230,0.3);
 }
 
 .withdraw-btn-primary:disabled {
-  opacity: 0.5;
+  opacity: .5;
   cursor: not-allowed;
   transform: none;
 }
@@ -172,17 +167,17 @@
 }
 
 .withdraw-info-text {
-  font-size: 0.875rem;
+  font-size: 14px; /* meta menor */
   color: #666;
   text-align: right;
   margin: 0;
 }
 
 .history-section {
-  background: white;
+  background: #fff;
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   margin-bottom: 2rem;
 }
 
@@ -193,16 +188,16 @@
 }
 
 .section-header h2 {
-  font-size: 1.5rem;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0;
+  /* sin font-size (clamp h2) */
 }
 
 .section-description {
-  font-size: 0.875rem;
+  font-size: 14px; /* meta menor */
   color: #666;
-  margin: 0.5rem 0 0 0;
+  margin: .5rem 0 0;
 }
 
 .loading-state {
@@ -212,6 +207,7 @@
   justify-content: center;
   padding: 4rem 2rem;
   gap: 1rem;
+  color: #666;
 }
 
 .spinner {
@@ -220,19 +216,10 @@
   border: 4px solid #f3f4f6;
   border-top-color: #3b82f6;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin .8s linear infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.loading-state p {
-  color: #666;
-  font-size: 1rem;
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .empty-state {
   display: flex;
@@ -252,15 +239,15 @@
 }
 
 .empty-state h3 {
-  font-size: 1.25rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
+  /* sin font-size (h3 clamp) */
 }
 
 .empty-state p {
   color: #666;
-  font-size: 1rem;
+  /* sin font-size */
 }
 
 .payments-list,
@@ -275,13 +262,13 @@
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 1.5rem;
-  transition: all 0.2s;
+  transition: all .2s;
 }
 
 .payment-card:hover,
 .withdrawal-card:hover {
   border-color: #3b82f6;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 4px 12px rgba(59,130,246,0.1);
 }
 
 .payment-main,
@@ -293,65 +280,49 @@
 }
 
 .payment-info,
-.withdrawal-info {
-  flex: 1;
-}
+.withdrawal-info { flex: 1; }
 
 .payment-subscriber {
-  font-size: 1.125rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 0.25rem;
+  margin-bottom: .25rem;
+  /* sin font-size */
 }
 
 .payment-amount,
 .withdrawal-amount {
-  font-size: 1.5rem;
   font-weight: 700;
   color: #1a1a1a;
+  /* sin font-size */
 }
 
 .payment-date,
 .withdrawal-date {
-  font-size: 0.875rem;
+  font-size: 14px; /* meta menor */
   color: #666;
 }
 
-.withdrawal-status {
-  display: flex;
-  align-items: center;
-}
+.withdrawal-status { display: flex; align-items: center; }
 
 .status-badge {
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: 12px; /* badge */
   font-weight: 600;
 }
 
-.status-pending {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.status-completed {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-.status-rejected {
-  background: #fee2e2;
-  color: #991b1b;
-}
+.status-pending { background: #fef3c7; color: #92400e; }
+.status-completed { background: #d1fae5; color: #065f46; }
+.status-rejected { background: #fee2e2; color: #991b1b; }
 
 .withdrawal-footer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: .5rem;
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #f3f4f6;
-  font-size: 0.875rem;
+  font-size: 14px; /* meta menor */
   color: #059669;
 }
 
@@ -362,48 +333,33 @@
   stroke-width: 2;
 }
 
+/* Modal */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 20px;
-  animation: fadeIn 0.2s ease;
+  animation: fadeIn .2s ease;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
 .modal-content {
-  background: white;
+  background: #fff;
   border-radius: 20px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: slideUp .3s ease-out;
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity:0; }
+  to { transform: translateY(0); opacity:1; }
 }
 
 .modal-header {
@@ -427,8 +383,8 @@
 }
 
 .modal-icon-wrapper.success {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
+  background: linear-gradient(135deg,#10b981 0%,#059669 100%);
+  color: #fff;
 }
 
 .modal-icon-wrapper svg {
@@ -444,14 +400,14 @@
 }
 
 .modal-title {
-  font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 12px;
+  /* sin font-size (h2/h3 tag recomendado) */
 }
 
 .modal-description {
-  font-size: 15px;
+  font-size: 15px; /* texto secundario */
   color: #6c757d;
   line-height: 1.6;
   margin: 0 0 12px;
@@ -463,18 +419,19 @@
 }
 
 .modal-info-small {
-  font-size: 14px;
+  font-size: 14px; /* meta menor */
   color: #6c757d;
   margin: 0;
 }
 
 .modal-info {
-  font-size: 1.125rem;
   color: #1a1a1a;
   margin: 16px 0 0;
   padding: 1rem;
   background: #f0fdf4;
   border-radius: 8px;
+  font-weight: 600;
+  /* sin font-size */
 }
 
 .modal-info strong {
@@ -493,10 +450,10 @@
   padding: 12px 24px;
   border: none;
   border-radius: 12px;
-  font-size: 15px;
+  font-size: 14px; /* acción menor */
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all .2s;
 }
 
 .modal-btn.cancel {
@@ -504,115 +461,46 @@
   color: #6c757d;
 }
 
-.modal-btn.cancel:hover {
-  background: #e9ecef;
-}
+.modal-btn.cancel:hover { background: #e9ecef; }
 
 .modal-btn.confirm {
-  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
-  color: white;
+  background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
+  color: #fff;
 }
 
 .modal-btn.confirm:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(107, 78, 230, 0.3);
+  box-shadow: 0 4px 12px rgba(107,78,230,0.3);
 }
 
 .modal-btn.confirm:disabled {
-  opacity: 0.5;
+  opacity: .5;
   cursor: not-allowed;
   transform: none;
 }
 
 .modal-btn.primary {
   width: 100%;
-  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
-  color: white;
+  background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
+  color: #fff;
 }
 
 .modal-btn.primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(107, 78, 230, 0.3);
+  box-shadow: 0 4px 12px rgba(107,78,230,0.3);
 }
 
+/* Responsive layout (sin cambios de font-size grandes) */
 @media (max-width: 768px) {
-  .withdrawals-container {
-    padding: 1rem;
-  }
-
-  .page-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .stat-value {
-    font-size: 1.5rem;
-  }
-
-  .withdrawal-action {
-    align-items: center;
-  }
-
-  .withdraw-info-text {
-    text-align: center;
-  }
-
-  .withdraw-btn-primary {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-  }
-
-  .history-section {
-    padding: 1rem;
-  }
-
+  .withdrawals-container { padding: 1rem; }
+  .stats-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .history-section { padding: 1rem; }
   .payment-card,
-  .withdrawal-card {
-    padding: 1rem;
-  }
-
-  .payment-amount,
-  .withdrawal-amount {
-    font-size: 1.25rem;
-  }
-
-  .modal-header {
-    padding: 24px;
-  }
-
-  .modal-icon-wrapper {
-    width: 56px;
-    height: 56px;
-  }
-
-  .modal-icon-wrapper svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  .modal-icon-wrapper.success svg {
-    width: 36px;
-    height: 36px;
-  }
-
-  .modal-title {
-    font-size: 20px;
-  }
-
-  .modal-description {
-    font-size: 14px;
-  }
-
-  .modal-actions {
-    padding: 0 24px 24px;
-    flex-direction: column-reverse;
-  }
-
-  .modal-btn {
-    width: 100%;
-  }
+  .withdrawal-card { padding: 1rem; }
+  .modal-header { padding: 24px; }
+  .modal-icon-wrapper { width: 56px; height: 56px; }
+  .modal-icon-wrapper svg { width: 28px; height: 28px; }
+  .modal-icon-wrapper.success svg { width: 36px; height: 36px; }
+  .modal-actions { padding: 0 24px 24px; flex-direction: column-reverse; }
+  .modal-btn { width: 100%; }
 }
