@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 interface NavigationLink {
-  text: string;
+  label: string;
   href: string;
 }
 
@@ -21,12 +21,12 @@ export class NavigationSectionComponent implements AfterViewInit {
   constructor(private router: Router) {}
 
   navigationLinks: NavigationLink[] = [
-    { text: '¿Cómo funciona?', href: '#como-funciona' },
-    { text: 'Características', href: '#caracteristicas' },
-    { text: 'Preguntas frecuentes', href: '#preguntas-frecuentes' },
-    { text: 'Gestionar negocio', href: '#gestionar-negocio' },
-    { text: 'Pagar suscripción', href: '#pagar-suscripcion' },
-    { text: 'Contacto', href: '#contacto' }
+    { label: '¿Cómo funciona?', href: '#como-funciona' },
+    { label: 'Características', href: '#caracteristicas' },
+    { label: 'Preguntas frecuentes', href: '#preguntas-frecuentes' },
+    { label: 'Gestionar negocio', href: '/login' },
+    { label: 'Pagar suscripción', href: '/portal' },
+    { label: 'Contacto', href: '#contacto' }
   ];
 
   ngAfterViewInit() {
