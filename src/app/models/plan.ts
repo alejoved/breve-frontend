@@ -5,6 +5,7 @@ export class Plan {
     name?: string;
     description?: string;
     features?: string[];
+    contract?: string;
     price?: number;
     type?: string;
     popular?: boolean;

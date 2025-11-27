@@ -1,6 +1,3 @@
-/* Respeta global_styles (20px base y clamp en h1–h6). 
-   Se eliminan font-size locales; solo se mantiene 14px para meta secundaria. */
-
 .page-container {
   min-height: 100vh;
   background: #fafafa;
@@ -26,7 +23,6 @@
 }
 
 .title {
-  /* Usa h1/h2 tag en el HTML para el clamp (sin font-size aquí) */
   font-weight: 700;
   color: #1f2937;
   margin: 0;
@@ -34,7 +30,6 @@
 }
 
 .step-counter {
-  font-size: 14px; /* meta secundaria */
   font-weight: 600;
   color: #6b7280;
   margin: 0;
@@ -58,7 +53,6 @@
 }
 
 .contract-title {
-  /* Usa h2/h3 tag para escala (sin font-size) */
   font-weight: 700;
   color: #1f2937;
   margin: 0 0 20px 0;
@@ -127,7 +121,6 @@ input[type="checkbox"] {
   cursor: pointer;
   transition: all 0.3s;
   font-family: inherit;
-  /* sin font-size */
 }
 
 .btn-continue:hover:not(:disabled) {

@@ -32,6 +32,7 @@ export class PlansViewComponent implements OnInit {
     description: '',
     type: 'mensual' as 'mensual' | 'anual',
     features: [] as string[],
+    contract: '',
     active: true,
     business: { id: this.business?.id }
   };
@@ -39,13 +40,15 @@ export class PlansViewComponent implements OnInit {
   errors = {
     name: '',
     price: '',
-    description: ''
+    description: '',
+    contract: ''
   };
 
   touched = {
     name: false,
     price: false,
-    description: false
+    description: false,
+    contract: false
   };
 
   newFeature = '';
@@ -83,6 +86,7 @@ export class PlansViewComponent implements OnInit {
       features: [],
       price: 0,
       type: 'mensual',
+      contract: '',
       active: true,
       business: { id: this.business?.id }
     };
@@ -99,6 +103,7 @@ export class PlansViewComponent implements OnInit {
       features: [...(plan.features || [])],
       price: plan.price!,
       type: plan.type! as 'mensual' | 'anual',
+      contract: plan.contract || '',
       active: plan.active === true,
       business: { id: this.business?.id }
     };
@@ -170,6 +175,7 @@ export class PlansViewComponent implements OnInit {
     this.validateName();
     this.validatePrice();
     this.validateDescription();
+    this.validateContract();
   }
 
   validateName() {
@@ -206,10 +212,15 @@ export class PlansViewComponent implements OnInit {
     }
   }
 
+  validateContract() {
+    this.errors.contract = '';
+  }
+
   isFormValid(): boolean {
     return !this.errors.name &&
            !this.errors.price &&
            !this.errors.description &&
+           !this.errors.contract &&
            this.formData.name.trim() !== '' &&
            this.formData.price > 0 &&
            this.formData.description.trim() !== '';
@@ -221,6 +232,7 @@ export class PlansViewComponent implements OnInit {
       case 'name': this.validateName(); break;
       case 'price': this.validatePrice(); break;
       case 'description': this.validateDescription(); break;
+      case 'contract': this.validateContract(); break;
     }
   }
 }

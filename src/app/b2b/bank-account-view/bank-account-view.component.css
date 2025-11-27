@@ -41,7 +41,6 @@
 }
 
 .title {
-  /* Sin font-size para respetar h1 global (clamp) */
   font-weight: 500;
   color: #5b21b6;
   margin: 0;
@@ -54,7 +53,6 @@
 }
 
 .description {
-  /* Sin font-size: usa 20px global */
   color: #6c757d;
   line-height: 1.6;
   margin: 0 0 32px 0;
@@ -73,7 +71,6 @@
 }
 
 .form-label {
-  /* Sin font-size: usa 20px global */
   font-weight: 600;
   color: #1a1a1a;
   display: flex;
@@ -90,7 +87,6 @@
   padding: 14px 16px;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  /* Sin font-size: usa 20px global */
   transition: all 0.2s;
   box-sizing: border-box;
   background: #ffffff;
@@ -119,7 +115,6 @@ select.form-input {
 
 .field-error {
   color: #dc3545;
-  font-size: 12px; /* excepción intencional */
   margin-top: -4px;
 }
 
@@ -134,7 +129,6 @@ select.form-input {
   border: 2px solid #e0e0e0;
   background: #ffffff;
   border-radius: 12px;
-  /* Sin font-size: usa 20px global */
   font-weight: 600;
   color: #6c757d;
   cursor: pointer;
@@ -157,7 +151,6 @@ select.form-input {
   padding: 16px;
   border: none;
   border-radius: 40px;
-  /* Sin font-size: usa 20px global */
   font-weight: 600;
   color: #ffffff;
   background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);

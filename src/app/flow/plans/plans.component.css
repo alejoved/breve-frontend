@@ -1,6 +1,3 @@
-/* Respeta global_styles (20px base y clamp en h1–h6). 
-   Se eliminan font-size grandes; solo se mantienen tamaños menores (12–14px) para meta/badges. */
-
 .page-container {
   min-height: 100vh;
   background: #fafafa;
@@ -26,7 +23,6 @@
 }
 
 .title {
-  /* Usa h1/h2 en HTML para tamaño fluido (sin font-size local) */
   font-weight: 700;
   color: #1f2937;
   margin: 0;
@@ -34,7 +30,6 @@
 }
 
 .step-counter {
-  font-size: 14px; /* meta secundaria */
   font-weight: 600;
   color: #6b7280;
   margin: 0;
@@ -81,7 +76,6 @@
   color: #ffffff;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px; /* badge */
   font-weight: 700;
   letter-spacing: 0.5px;
 }
@@ -127,7 +121,6 @@
   align-items: flex-start;
   gap: 12px;
   color: #1f2937;
-  /* font-size base */
 }
 
 .feature-item svg {
@@ -148,7 +141,6 @@
   cursor: pointer;
   transition: all 0.3s;
   font-family: inherit;
-  /* sin font-size */
 }
 
 .btn-continue:hover:not(:disabled) {

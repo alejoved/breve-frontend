@@ -213,6 +213,29 @@
       </div>
 
       <div class="form-section">
+        <h3 class="section-title">Contrato del Plan</h3>
+        <p class="section-description">Este contrato se mostrará a los usuarios durante el proceso de suscripción (opcional)</p>
+
+        <div class="form-group">
+          <label class="form-label">Términos y Condiciones</label>
+          <textarea
+            class="form-input contract-textarea"
+            [class.error]="errors.contract && touched.contract"
+            placeholder="Escribe los términos y condiciones del plan. Por ejemplo: 'Al suscribirte aceptas los siguientes términos...'"
+            [(ngModel)]="formData.contract"
+            (ngModelChange)="validateContract()"
+            (blur)="onFieldBlur('contract')"
+            name="contract"
+            rows="8"
+          ></textarea>
+          <div *ngIf="errors.contract && touched.contract" class="field-error">
+            {{ errors.contract }}
+          </div>
+          <p class="field-hint">Puedes incluir políticas de cancelación, renovación automática, métodos de pago, etc.</p>
+        </div>
+      </div>
+
+      <div class="form-section">
         <h3 class="section-title">Estado del Plan</h3>
 
         <div class="status-toggle">

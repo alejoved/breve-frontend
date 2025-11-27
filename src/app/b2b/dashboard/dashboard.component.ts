@@ -30,6 +30,8 @@ export class DashboardComponent implements OnInit {
   userName = 'Usuario';
   openPlansCreateForm = false;
   business: Business | null = null;
+  subscriptionUrl = '';
+  linkCopied = false;
 
   constructor(private router: Router, private businessService: BusinessService, private authB2B: AuthB2BService) {}
 
@@ -62,6 +64,18 @@ export class DashboardComponent implements OnInit {
 
   closeProfileMenu() {
     this.isProfileMenuOpen = false;
+  }
+
+  async copySubscriptionLink() {
+    try {
+      await navigator.clipboard.writeText(this.subscriptionUrl);
+      this.linkCopied = true;
+      setTimeout(() => {
+        this.linkCopied = false;
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   }
 
   async logout() {

@@ -3,7 +3,6 @@
 }
 
 .page-title {
-  /* Sin font-size: usa h1/h2 tag o clamp global */
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 24px 0;
@@ -27,12 +26,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700; /* sin font-size: hereda 20px */
+  font-weight: 700;
   margin: 0 auto 20px;
 }
 
 .profile-name {
-  /* Sin font-size: usa h3/h4 en HTML si necesitas escala */
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 8px 0;
@@ -40,7 +38,6 @@
 }
 
 .profile-subtitle {
-  font-size: 14px; /* excepción meta menor */
   color: #6c757d;
   margin: 0;
 }
@@ -67,7 +64,6 @@
   transition: all 0.2s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   font-family: 'Degular',sans-serif;
-  /* sin font-size (20px base) */
 }
 
 .menu-item:hover {
@@ -79,6 +75,51 @@
   color: #dc2626;
   width: 100%;
   text-align: left;
+}
+
+
+.menu-item.link-item {
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+
+.menu-item.link-item:hover {
+  background: #e9ecef;
+  border-color: #6B4EE6;
+}
+
+.menu-item.link-item.copied {
+  background: #d1fae5;
+  border-color: #10b981;
+}
+
+.menu-item.link-item.copied .menu-icon {
+  background: #10b981;
+}
+
+.menu-item.link-item.copied .menu-icon svg {
+  color: white;
+}
+
+.link-text {
+  font-family: 'Courier New', monospace;
+  color: #6c757d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-item.link-item .menu-icon {
+  background: #6B4EE6;
+}
+
+.menu-item.link-item .menu-icon svg {
+  color: white;
 }
 
 .menu-icon {
@@ -109,8 +150,213 @@
   color: #9ca3af;
 }
 
+.subscription-link-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-top: 24px;
+}
+
+.card-header {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.header-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FF88AA 0%, #6B4EE6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  color: white;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.card-title {
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px 0;
+}
+
+.card-description {
+  color: #6c757d;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.link-display {
+  margin-bottom: 24px;
+}
+
+.link-input-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.link-input {
+  flex: 1;
+  padding: 14px 16px;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  color: #1a1a1a;
+  font-family: 'Courier New', monospace;
+  transition: all 0.2s;
+}
+
+.link-input:focus {
+  outline: none;
+  background: #fff;
+  border-color: #6B4EE6;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: linear-gradient(90deg, #FF88AA 0%, #6B4EE6 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 78, 230, 0.3);
+}
+
+.copy-btn.copied {
+  background: #10b981;
+}
+
+.copy-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.social-share {
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.share-label {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  flex: 1;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.social-btn.whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.social-btn.whatsapp:hover {
+  background: #20BA5A;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.social-btn.facebook {
+  background: #1877F2;
+  color: white;
+}
+
+.social-btn.facebook:hover {
+  background: #0C63D4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+}
+
+.social-btn.twitter {
+  background: #1DA1F2;
+  color: white;
+}
+
+.social-btn.twitter:hover {
+  background: #0C8BD9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 161, 242, 0.3);
+}
+
 @media (max-width: 640px) {
   .profile-card {
     padding: 32px 24px;
+  }
+
+  .subscription-link-card {
+    padding: 20px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .link-input-wrapper {
+    flex-direction: column;
+  }
+
+  .link-input {
+    padding: 12px 14px;
+  }
+
+  .copy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .social-buttons {
+    flex-direction: column;
+  }
+
+  .social-btn {
+    width: 100%;
   }
 }

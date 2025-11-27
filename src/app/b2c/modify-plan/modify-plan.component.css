@@ -1,6 +1,3 @@
-/* Respeta global_styles: 20px base y clamp para títulos (usa h1–h6 en HTML). 
-   Se eliminan font-size grandes salvo excepciones pequeñas (badges/meta). */
-
 .modify-plan-container {
   min-height: 100vh;
   background: #f9fafb;
@@ -39,7 +36,6 @@
 }
 
 .header-title {
-  /* sin font-size (usa h1/h2 tag en HTML) */
   font-weight: 700;
   color: #4c1d95;
   margin: 0;
@@ -94,7 +90,6 @@
   padding: 4px 12px;
   background: #f59e0b;
   color: #ffffff;
-  font-size: 11px; /* excepción pequeña */
   font-weight: 700;
   border-radius: 12px;
   margin-bottom: 8px;
@@ -102,7 +97,6 @@
 }
 
 .plan-name {
-  /* sin font-size (usa h3/h4 tag si requiere escala) */
   font-weight: 700;
   color: #1f2937;
   margin: 0;
@@ -110,7 +104,6 @@
 }
 
 .plan-price {
-  /* sin font-size (usa h3/h4 tag si requiere escala) */
   font-weight: 700;
   color: #7c3aed;
   white-space: nowrap;
@@ -128,7 +121,6 @@
   align-items: center;
   gap: 12px;
   padding: 6px 0;
-  /* sin font-size (20px base) */
   color: #374151;
 }
 
@@ -143,7 +135,6 @@
   padding: 16px 20px;
   border-radius: 12px;
   margin: 24px 0;
-  font-size: 14px; /* meta secundaria */
   color: #78350f;
   line-height: 1.5;
 }
@@ -151,7 +142,6 @@
 .btn-primary {
   width: 100%;
   padding: 18px 32px;
-  /* sin font-size (20px base) */
   font-weight: 600;
   color: #ffffff;
   background: linear-gradient(90deg, #7c3aed 0%, #ec4899 100%);
@@ -211,7 +201,6 @@
     height: 40px;
   }
 
-  /* Se eliminan font-size adaptativos para usar clamp/base */
   .content {
     padding: 16px;
   }
@@ -231,7 +220,6 @@
   }
 
   .info-message {
-    font-size: 14px;
     padding: 14px 16px;
   }
 }

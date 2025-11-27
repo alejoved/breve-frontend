@@ -1,4 +1,3 @@
-/* Respeta global_styles: sin font-size local; hereda 20px base y clamp en títulos si se añaden. */
 .header {
   display: flex;
   align-items: center;
