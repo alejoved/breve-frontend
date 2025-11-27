@@ -1,160 +1,156 @@
+/* Respeta global_styles (20px base y clamp en h1–h6). 
+   Se eliminan font-size grandes; solo se mantiene 14px para mensajes de error y meta secundaria. */
+
 .page-container {
-    min-height: 100vh;
-    background: #fafafa;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
-    flex: 1;
-    background: white;
-    padding: 32px 24px;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
+  flex: 1;
+  background: #ffffff;
+  padding: 32px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .step-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1f2937;
-    margin: 0;
+  /* Usa h1/h2 en el HTML para tamaño fluido (sin font-size aquí) */
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .step-counter {
-    font-size: 18px;
-    font-weight: 600;
-    color: #6b7280;
+  font-size: 14px; /* meta secundaria */
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0;
 }
 
 .description {
-    font-size: 16px;
-    color: #6b7280;
-    margin: 24px 0 32px;
-    line-height: 1.5;
+  /* Base 20px heredado */
+  color: #6b7280;
+  margin: 24px 0 32px;
+  line-height: 1.5;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #1f2937;
+  /* Base heredado */
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
 }
 
-.input, .select {
-    padding: 16px;
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    font-size: 16px;
-    color: #1f2937;
-    transition: all 0.2s;
-    font-family: inherit;
-    background: white;
+.input,
+.select {
+  padding: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  color: #1f2937;
+  transition: all 0.2s;
+  font-family: inherit;
+  background: #ffffff;
+  box-sizing: border-box;
 }
 
-.input::placeholder, .select option[value=""] {
-    color: #9ca3af;
+.input::placeholder,
+.select option[value=""] {
+  color: #9ca3af;
 }
 
-.input:focus, .select:focus {
-    outline: none;
-    border-color: #667eea;
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #667eea;
 }
 
 .select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236b7280' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    padding-right: 48px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236b7280' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 48px;
 }
 
 .input-error {
-    border-color: #ef4444;
+  border-color: #ef4444;
 }
 
 .input-error:focus {
-    border-color: #dc2626;
+  border-color: #dc2626;
 }
 
 .error-message {
-    font-size: 14px;
-    color: #ef4444;
-    margin-top: 4px;
+  font-size: 14px; /* excepción */
+  color: #ef4444;
+  margin-top: 4px;
 }
 
 .btn-continue {
-    margin-top: 40px;
-    padding: 18px;
-    background: linear-gradient(90deg, #FF8BAA 0%, #6B4EE6 100%);
-    color: white;
-    border: none;
-    border-radius: 40px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
+  margin-top: 40px;
+  padding: 18px;
+  background: linear-gradient(90deg, #FF8BAA 0%, #6B4EE6 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
 }
 
 .btn-continue:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
 }
 
 .btn-continue:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
-    .content {
+  .content {
     padding: 24px 20px;
-    }
-
-    .title {
-    font-size: 24px;
-    }
-
-    .step-counter {
-    font-size: 16px;
-    }
-
-    .description {
-    font-size: 14px;
+  }
+  .description {
     margin: 16px 0 24px;
-    }
-
-    .form {
+  }
+  .form {
     gap: 20px;
-    }
-
-    .input, .select {
+  }
+  .input,
+  .select {
     padding: 14px;
-    }
-
-    .btn-continue {
+  }
+  .btn-continue {
     margin-top: 32px;
     padding: 16px;
-    font-size: 16px;
-    }
+  }
 }

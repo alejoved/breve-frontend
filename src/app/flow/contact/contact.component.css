@@ -1,150 +1,146 @@
+/* Respeta global_styles (20px base y clamp en h1–h6).
+   Se eliminaron font-size explícitos en títulos y campos; solo se mantienen tamaños pequeños para meta/error. */
+
 .page-container {
-    min-height: 100vh;
-    background: #fafafa;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
-    flex: 1;
-    background: white;
-    padding: 32px 24px;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
+  flex: 1;
+  background: #ffffff;
+  padding: 32px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .step-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1f2937;
-    margin: 0;
+  /* Usa h1/h2 en el HTML para tamaño fluido (sin font-size local) */
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .step-counter {
-    font-size: 18px;
-    font-weight: 600;
-    color: #6b7280;
+  font-size: 14px; /* meta secundaria */
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0;
 }
 
 .description {
-    font-size: 16px;
-    color: #6b7280;
-    margin: 24px 0 32px;
-    line-height: 1.5;
+  /* Hereda 20px base */
+  color: #6b7280;
+  margin: 24px 0 32px;
+  line-height: 1.5;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #1f2937;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  /* sin font-size: base 20px */
 }
 
 .input {
-    padding: 16px;
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    font-size: 16px;
-    color: #1f2937;
-    transition: all 0.2s;
-    font-family: inherit;
+  padding: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  color: #1f2937;
+  transition: all 0.2s;
+  font-family: inherit;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* sin font-size: base 20px */
 }
 
 .input::placeholder {
-    color: #9ca3af;
+  color: #9ca3af;
 }
 
 .input:focus {
-    outline: none;
-    border-color: #667eea;
+  outline: none;
+  border-color: #667eea;
 }
 
 .input-error {
-    border-color: #ef4444;
+  border-color: #ef4444;
 }
 
 .input-error:focus {
-    border-color: #dc2626;
+  border-color: #dc2626;
 }
 
 .error-message {
-    font-size: 14px;
-    color: #ef4444;
-    margin-top: 4px;
+  font-size: 14px; /* excepción */
+  color: #ef4444;
+  margin-top: 4px;
 }
 
 .btn-continue {
-    margin-top: 40px;
-    padding: 18px;
-    background: linear-gradient(90deg, #FF8BAA 0%, #6B4EE6 100%);
-    color: white;
-    border: none;
-    border-radius: 40px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
+  margin-top: 40px;
+  padding: 18px;
+  background: linear-gradient(90deg, #FF8BAA 0%, #6B4EE6 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+  /* sin font-size */
 }
 
 .btn-continue:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102,126,234,0.3);
 }
 
 .btn-continue:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
+/* Responsive: ajustes de layout sin cambiar font-size principal */
 @media (max-width: 768px) {
-    .content {
+  .content {
     padding: 24px 20px;
-    }
-
-    .title {
-    font-size: 24px;
-    }
-
-    .step-counter {
-    font-size: 16px;
-    }
-
-    .description {
-    font-size: 14px;
+  }
+  .description {
     margin: 16px 0 24px;
-    }
-
-    .form {
+  }
+  .form {
     gap: 20px;
-    }
-
-    .input {
+  }
+  .input {
     padding: 14px;
-    }
-
-    .btn-continue {
+  }
+  .btn-continue {
     margin-top: 32px;
     padding: 16px;
-    font-size: 16px;
-    }
+  }
 }

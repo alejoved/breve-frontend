@@ -1,193 +1,178 @@
+/* Respeta global_styles (20px base y clamp en h1–h6). 
+   Se eliminan font-size grandes; solo se mantienen tamaños menores (12–14px) para meta/badges. */
+
 .page-container {
-    min-height: 100vh;
-    background: #fafafa;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
-    flex: 1;
-    background: white;
-    padding: 32px 24px;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
+  flex: 1;
+  background: #ffffff;
+  padding: 32px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .step-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1f2937;
-    margin: 0;
+  /* Usa h1/h2 en HTML para tamaño fluido (sin font-size local) */
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .step-counter {
-    font-size: 18px;
-    font-weight: 600;
-    color: #6b7280;
+  font-size: 14px; /* meta secundaria */
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0;
 }
 
 .description {
-    font-size: 16px;
-    color: #6b7280;
-    margin: 24px 0 32px;
-    line-height: 1.5;
+  /* Base 20px heredado */
+  color: #6b7280;
+  margin: 24px 0 32px;
+  line-height: 1.5;
 }
 
 .plans-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .plan-card {
-    position: relative;
-    border: 3px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 24px;
-    cursor: pointer;
-    transition: all 0.3s;
+  position: relative;
+  border: 3px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: #fff;
 }
 
 .plan-card:hover {
-    border-color: #667eea;
+  border-color: #667eea;
 }
 
 .plan-card.selected {
-    border-color: #667eea;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
 }
 
 .plan-badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: linear-gradient(90deg, #f59e0b 0%, #f97316 100%);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: linear-gradient(90deg,#f59e0b 0%,#f97316 100%);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px; /* badge */
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .plan-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 20px;
-    margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+  margin-top: 24px;
 }
 
 .plan-card:not(:has(.plan-badge)) .plan-header {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .plan-name {
-    font-size: 24px;
-    font-weight: 700;
-    color: #1f2937;
-    margin: 0;
+  /* Usa h3/h4 en HTML si se requiere escala */
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .plan-price {
-    font-size: 24px;
-    font-weight: 700;
-    color: #6B4EE6;
+  font-weight: 700;
+  color: #6B4EE6;
+  margin: 0;
+  font-family: 'Funnel Display','Degular',sans-serif;
 }
 
 .features-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .feature-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 16px;
-    color: #1f2937;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #1f2937;
+  /* font-size base */
 }
 
 .feature-item svg {
-    flex-shrink: 0;
-    margin-top: 2px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #10b981;
 }
 
 .btn-continue {
-    width: 100%;
-    margin-top: 40px;
-    padding: 18px;
-    background: linear-gradient(90deg, #FF8BAA 0%, #6B4EE6 100%);
-    color: white;
-    border: none;
-    border-radius: 40px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
+  width: 100%;
+  margin-top: 40px;
+  padding: 18px;
+  background: linear-gradient(90deg,#FF8BAA 0%,#6B4EE6 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+  /* sin font-size */
 }
 
 .btn-continue:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102,126,234,0.3);
 }
 
 .btn-continue:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
-    .content {
+  .content {
     padding: 24px 20px;
-    }
-
-    .title {
-    font-size: 24px;
-    }
-
-    .step-counter {
-    font-size: 16px;
-    }
-
-    .description {
-    font-size: 14px;
+  }
+  .description {
     margin: 16px 0 24px;
-    }
-
-    .plan-card {
+  }
+  .plan-card {
     padding: 20px;
-    }
-
-    .plan-name {
-    font-size: 20px;
-    }
-
-    .plan-price {
-    font-size: 20px;
-    }
-
-    .feature-item {
-    font-size: 14px;
-    }
-
-    .btn-continue {
+  }
+  .btn-continue {
     margin-top: 32px;
     padding: 16px;
-    font-size: 16px;
-    }
+  }
 }
