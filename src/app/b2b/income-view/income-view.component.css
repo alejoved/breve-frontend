@@ -112,4 +112,7 @@
   .income-grid {
     grid-template-columns: 1fr;
   }
+  .card-value {
+    font-size: 25px;
+  }
 }

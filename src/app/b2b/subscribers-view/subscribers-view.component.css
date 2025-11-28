@@ -446,10 +446,13 @@
   .subscriber-card { padding: 24px; }
   .subscriber-avatar { width: 56px; height: 56px; }
   .subscriber-email { display: block; }
-  .stat-amount { font-size: 25px; }
 }
 
 @media (min-width: 1024px) {
   .subscriber-actions { grid-template-columns: auto auto; justify-content: flex-start; }
   .action-btn { min-width: 140px; }
+}
+
+@media (max-width: 640px) {
+  .stat-amount { font-size: 25px; }
 }
