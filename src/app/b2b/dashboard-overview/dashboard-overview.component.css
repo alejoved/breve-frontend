@@ -45,9 +45,10 @@
 }
 
 .metric-value {
-  font-weight: 700;
+  font-weight: 600;
   color: #1a1a1a;
   line-height: 1.2;
+  font-size: 35px;
 }
 
 .metric-label {

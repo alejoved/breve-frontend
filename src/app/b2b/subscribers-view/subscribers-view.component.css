@@ -43,12 +43,11 @@
 }
 
 .stat-value {
-  /* Usa tamaño base; si quieres más escala usa un h3 en HTML. */
-  font-weight: 700;
+  font-weight: 600;
   color: #5b21b6;
   margin-bottom: 4px;
   line-height: 1;
-  font-family: 'Funnel Display','Degular',sans-serif;
+  font-size: 35px;
 }
 
 .stat-label {
@@ -278,11 +277,11 @@
 }
 
 .stat-amount {
-  font-weight: 700;
+  font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 4px;
   word-wrap: break-word;
-  font-family: 'Funnel Display','Degular',sans-serif;
+  font-size: 35px;
 }
 
 .stat-desc {

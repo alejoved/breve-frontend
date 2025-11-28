@@ -57,12 +57,11 @@
 }
 
 .card-value {
-  /* Mantiene tamaño base (20px) o usa h3 en HTML si quieres clamp */
-  font-weight: 700;
+  font-weight: 600;
   color: #1a1a1a;
   line-height: 1.2;
   margin: 0;
-  font-family: 'Funnel Display','Degular',sans-serif;
+  font-size: 35px;
 }
 
 .info-section {

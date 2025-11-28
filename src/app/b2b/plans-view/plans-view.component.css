@@ -132,13 +132,13 @@
 }
 
 .price-amount {
-  font-weight: 700;
+  font-weight: 600;
   background: linear-gradient(90deg,#FF88AA 0%,#6B4EE6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.1;
-  font-family: 'Funnel Display','Degular',sans-serif;
+  font-size: 35px;
 }
 
 .price-period {
