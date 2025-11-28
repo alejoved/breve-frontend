@@ -446,6 +446,7 @@
   .subscriber-card { padding: 24px; }
   .subscriber-avatar { width: 56px; height: 56px; }
   .subscriber-email { display: block; }
+  .stat-amount { font-size: 25px; }
 }
 
 @media (min-width: 1024px) {

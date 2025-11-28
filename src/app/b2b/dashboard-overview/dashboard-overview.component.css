@@ -281,6 +281,10 @@
   .metric-card {
     padding: 20px 16px;
   }
+  .metric-value {
+    font-size: 25px;
+  }
+
   .metric-icon {
     width: 40px;
     height: 40px;
