@@ -125,15 +125,15 @@ export class PaymentComponent implements OnInit {
             title: 'Pago exitoso',
             text: 'Tu pago ha sido procesado correctamente.'
           });
-          this.router.navigate(['/portal']);
+          this.router.navigate(['/payment']);
         } catch (ex: any) {
           Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
-          this.router.navigate(['/portal']);
+          this.router.navigate(['/payment']);
         }
       });
     } catch (ex: any) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
-      this.router.navigate(['/portal']);
+      this.router.navigate(['/payment']);
     }
   }
 }
