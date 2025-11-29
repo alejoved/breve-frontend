@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
     const businessId = this.authB2B.getBusinessId();
     this.business = await this.businessService.filterById(businessId!);
     this.userName = this.business?.name!;
+    this.subscriptionUrl = `${window.location.origin}/subscription/${encodeURIComponent(this.business.nick!)}`;
   }
 
   setView(view: 'dashboard' | 'ingresos' | 'suscriptores' | 'planes' | string) {

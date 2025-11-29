@@ -1,6 +1,7 @@
 export class Business {
     id?: string;
     name?: string;
+    nick?: string;
     nit?: string;
     email?: string;
     password?: string;
