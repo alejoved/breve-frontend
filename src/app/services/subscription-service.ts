@@ -101,4 +101,10 @@ export class SubscriptionService {
       map(response => response as number));
     return await firstValueFrom(observable);
   }
+
+  async sendEmail(subscriptionId: string): Promise<boolean> {
+    const observable = this.http.get(environment.host + "/api/subscription/sendEmail/" + subscriptionId, optionsAuth).pipe(
+      map(response => response as boolean));
+    return await firstValueFrom(observable);
+  }
 }

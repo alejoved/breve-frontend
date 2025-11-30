@@ -102,7 +102,8 @@ export class ClarityComponent {
             subscription.customer = { id: this.customerId! };
             subscription.plan = { id: this.planId! };
             subscription.pay = { id: this.pay!.id };
-            await this.subscriptionService.create(subscription);
+            const response = await this.subscriptionService.create(subscription);
+            await this.subscriptionService.sendEmail(response.id!);
             Swal.fire({
               icon: 'success',
               title: 'Pago exitoso',
