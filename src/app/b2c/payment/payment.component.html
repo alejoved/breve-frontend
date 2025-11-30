@@ -15,23 +15,9 @@
       <div class="plan-header">
         <div class="plan-title-row">
           <h2 class="plan-name">{{ subscription.plan?.name }}</h2>
-          <button (click)="editPlan(subscription)" class="edit-button">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M14.166 2.5c.442-.442 1.162-.442 1.604 0l1.73 1.73c.442.442.442 1.162 0 1.604l-9.5 9.5H4.166v-3.834l9.5-9.5h.5zM2.5 17.5h15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
         </div>
         <span class="status-badge">Activo</span>
       </div>
-
-      <ul class="features-list">
-        <li *ngFor="let feature of subscription.plan?.features" class="feature-item">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M16.666 5L7.5 14.167l-4.167-4.167" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          {{ feature }}
-        </li>
-      </ul>
 
       <div class="info-section">
         <div class="info-label">Monto mensual:</div>

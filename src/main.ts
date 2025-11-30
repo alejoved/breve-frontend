@@ -15,7 +15,6 @@ import { LoginComponent } from './app/b2b/login/login.component';
 import { ClarityComponent } from './app/flow/clarity/clarity.component';
 import { WithdrawalsViewComponent } from './app/b2b/withdrawals-view/withdrawals-view.component';
 import { PortalComponent } from './app/b2c/portal/portal.component';
-import { ModifyPlanComponent } from './app/b2c/modify-plan/modify-plan.component';
 import { PaymentComponent } from './app/b2c/payment/payment.component';
 import { LandingPageComponent } from './app/web/landing/landing-page.component';
 import { AuthInterceptor } from './app/auth/auth-interceptor';
@@ -44,7 +43,6 @@ const routes = [
   { path: 'business-info', component: BusinessInfoViewComponent, canActivate: [AuthB2BGuard] },
   { path: 'withdrawals', component: WithdrawalsViewComponent, canActivate: [AuthB2BGuard] },
   { path: 'portal', component: PortalComponent },
-  { path: 'modify-plan', component: ModifyPlanComponent },
   { path: 'payment', component: PaymentComponent },
   { path: '**', redirectTo: '' },
 ];
