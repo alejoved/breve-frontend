@@ -27,6 +27,7 @@
   color: #1f2937;
   margin: 0;
   font-family: 'Funnel Display','Degular',sans-serif;
+  font-size: 40px;
 }
 
 .step-counter {
@@ -55,6 +56,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin: 0 0 12px 0;
+  font-size: 20px;
 }
 
 .section-content {

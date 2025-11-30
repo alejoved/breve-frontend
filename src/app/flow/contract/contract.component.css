@@ -27,6 +27,7 @@
   color: #1f2937;
   margin: 0;
   font-family: 'Funnel Display','Degular',sans-serif;
+  font-size: 40px;
 }
 
 .step-counter {
@@ -57,6 +58,7 @@
   color: #1f2937;
   margin: 0 0 20px 0;
   font-family: 'Funnel Display','Degular',sans-serif;
+  font-size: 30px;
 }
 
 .contract-content {
