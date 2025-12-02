@@ -22,7 +22,7 @@ export class MainContentSectionComponent {
   isVisible = false;
 
   demoUrls: DemoUrls = {
-    flujo: 'https://supademo.com/embed/cm3owbcmu17g4128qvzg18p33',
+    flujo: 'https://app.supademo.com/demo/cmiovvlax1icdgxadm345absg?utm_source=link',
     tablero: 'https://supademo.com/embed/YOUR_ANALYTICS_DEMO_ID',
     portal: 'https://supademo.com/embed/YOUR_PAYMENTS_DEMO_ID'
   };
