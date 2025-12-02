@@ -23,10 +23,9 @@ export class NavigationSectionComponent implements AfterViewInit {
   navigationLinks: NavigationLink[] = [
     { label: '¿Cómo funciona?', href: '#como-funciona' },
     { label: 'Características', href: '#caracteristicas' },
-    { label: 'Preguntas frecuentes', href: '#preguntas-frecuentes' },
+    { label: 'Ayuda', href: '#preguntas-frecuentes' },
     { label: 'Gestionar negocio', href: '/login' },
-    { label: 'Pagar suscripción', href: '/portal' },
-    { label: 'Contacto', href: '#contacto' }
+    { label: 'Pagar suscripción', href: '/portal' }
   ];
 
   ngAfterViewInit() {
