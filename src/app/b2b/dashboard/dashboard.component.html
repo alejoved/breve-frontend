@@ -86,7 +86,7 @@
           </button>
 
           <button class="profile-btn" (click)="toggleProfileMenu()">
-            <img src="/assets/Logo blanco.png" alt="Logo" class="profile-logo">
+            <img src="{{business?.logo}}" alt="Logo" class="profile-logo">
           </button>
         </div>
       </div>
@@ -114,7 +114,7 @@
   <div class="profile-sidebar-content">
     <div class="profile-sidebar-user">
       <div class="profile-sidebar-avatar">
-        {{ userName.charAt(0).toUpperCase() }}
+        <img src="{{business?.logo}}" alt="Logo" class="profile-logo">
       </div>
       <h3 class="profile-sidebar-name">{{ userName }}</h3>
       <p class="profile-sidebar-role">Administrador</p>
