@@ -1,65 +1,24 @@
-/* El nav nunca debe desbordar el ancho de la página */
-.cta-nav {
-  max-width: 100%;
-  overflow: visible;
-  box-sizing: border-box;
-}
-
-/* El logo y el CTA no se encogen */
-.brand-logo,
-.cta-wrapper {
-  flex-shrink: 0;
-}
-
-/* El bloque central puede encoger y hacer scroll horizontal si es necesario */
+/* Centro del nav: el contenido se alinea al centro y puede encoger sin romper layout */
 .nav-center {
   flex: 1 1 auto;
-  min-width: 0;                /* clave para permitir el encogimiento */
-  overflow-x: auto;            /* evita que empuje el CTA fuera del contenedor */
+  min-width: 0;
+  display: flex;               /* permite centrar el ul internamente */
+  justify-content: center;     /* centra el bloque del menú */
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+.nav-center > ul {
+  justify-content: center;     /* centra los items dentro del ul */
+}
+/* opcional: ocultar scrollbar visual */
 .nav-center::-webkit-scrollbar { height: 0; }
 
-/* Ajustes en el rango típico de pantallas laptop (incluye Mac 14" ~1512px) */
+/* Ajustes en rango laptop */
 @media (min-width: 768px) and (max-width: 1536px) {
-  .nav-center > ul { gap: 12px; }         /* reduce separación entre items */
-  .cta-wrapper { height: 48px; }          /* CTA ligeramente más compacto */
+  .nav-center > ul { gap: 12px; }
+  .cta-wrapper { height: 48px; }
 }
-
-/* Seguridad: evita que botones crezcan sin límite */
-.nav-center button {
-  max-width: 100%;
-  white-space: nowrap;
-}
-/* El nav nunca debe desbordar el ancho de la página */
-.cta-nav {
-  max-width: 100%;
-  overflow: visible;
-  box-sizing: border-box;
-}
-
-/* El logo y el CTA no se encogen */
-.brand-logo,
-.cta-wrapper {
-  flex-shrink: 0;
-}
-
-/* El bloque central puede encoger y hacer scroll horizontal si es necesario */
-.nav-center {
-  flex: 1 1 auto;
-  min-width: 0;                /* clave para permitir el encogimiento */
-  overflow-x: auto;            /* evita que empuje el CTA fuera del contenedor */
-  -webkit-overflow-scrolling: touch;
-}
-.nav-center::-webkit-scrollbar { height: 0; }
-
-/* Ajustes en el rango típico de pantallas laptop (incluye Mac 14" ~1512px) */
-@media (min-width: 768px) and (max-width: 1536px) {
-  .nav-center > ul { gap: 12px; }         /* reduce separación entre items */
-  .cta-wrapper { height: 48px; }          /* CTA ligeramente más compacto */
-}
-
-/* Seguridad: evita que botones crezcan sin límite */
+/* Seguridad */
 .nav-center button {
   max-width: 100%;
   white-space: nowrap;

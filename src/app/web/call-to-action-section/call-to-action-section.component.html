@@ -1,11 +1,9 @@
 <header class="flex flex-col w-full items-start gap-2.5 px-4 md:px-12 lg:px-[76px] py-[30px]">
   <nav class="cta-nav flex items-center justify-between gap-4 px-4 md:px-[25px] py-4 md:py-2 bg-[#381472] rounded-[54px] w-full relative box-border">
-    <!-- Logo: no se encoge y usa ruta absoluta -->
     <img class="brand-logo w-[113px] h-[24.44px] flex-shrink-0" alt="+Breve" src="/assets/logo-breve.webp">
 
-    <!-- Centro: contenedor flexible con scroll horizontal si no cabe -->
     <div class="nav-center">
-      <ul class="hidden md:flex items-center gap-3 lg:gap-6 list-none m-0 p-0 whitespace-nowrap">
+      <ul class="hidden md:flex items-center justify-center gap-3 lg:gap-6 list-none m-0 p-0 whitespace-nowrap">
         <li *ngFor="let item of navigationItems">
           <button
             (click)="handleScrollTo(item.href)"
@@ -16,7 +14,6 @@
       </ul>
     </div>
 
-    <!-- CTA: no se encoge -->
     <div class="cta-wrapper hidden md:block md:min-w-[180px] lg:w-[235px] h-[50.64px] flex-shrink-0">
       <button (click)="handleScrollTo('#contacto')"
         class="w-full h-full rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] font-degular font-medium text-white text-center tracking-[0] hover:opacity-90 transition-opacity shadow-none focus-visible:ring-0 ring-[3.16px] ring-[#f9fafa4c] ring-inset">
@@ -24,34 +21,6 @@
       </button>
     </div>
 
-    <!-- Botón móvil -->
-    <button
-      class="md:hidden flex items-center justify-center w-10 h-10 text-white"
-      (click)="toggleMobileMenu()"
-      aria-label="Toggle menu">
-      <svg *ngIf="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-      <svg *ngIf="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-
-    <!-- Menú móvil -->
-    <div *ngIf="mobileMenuOpen" class="absolute top-full left-0 right-0 mt-2 bg-[#381472] rounded-[24px] p-4 md:hidden z-50">
-      <ul class="flex flex-col gap-4 list-none m-0 p-0 mb-4">
-        <li *ngFor="let item of navigationItems">
-          <button
-            (click)="handleScrollTo(item.href)"
-            class="w-full text-left px-2 py-2 font-degular font-normal text-white tracking-[0] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
-            {{ item.label }}
-          </button>
-        </li>
-      </ul>
-      <button (click)="handleScrollTo('#contacto')"
-        class="w-full h-[50px] rounded-[65.53px] border-0 bg-[linear-gradient(270deg,rgba(255,136,170,1)_0%,rgba(107,78,230,1)_73%)] font-degular font-medium text-white text-center tracking-[0] hover:opacity-90 transition-opacity shadow-none focus-visible:ring-0 ring-[3.16px] ring-[#f9fafa4c] ring-inset">
-        Contratar
-      </button>
-    </div>
+    <!-- menú móvil ... -->
   </nav>
 </header>

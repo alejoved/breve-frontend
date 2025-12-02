@@ -22,9 +22,9 @@ export class CallToActionSectionComponent {
   navigationItems: NavigationItem[] = [
     { label: '¿Cómo funciona?', href: '#como-funciona' },
     { label: 'Características', href: '#caracteristicas' },
-    { label: 'Ayuda', href: '#preguntas-frecuentes' },
     { label: 'Gestionar negocio', href: '/login' },
-    { label: 'Pagar suscripción', href: '/portal' }
+    { label: 'Pagar suscripción', href: '/portal' },
+    { label: 'Ayuda', href: '#preguntas-frecuentes' }
   ];
 
   toggleMobileMenu(): void {
