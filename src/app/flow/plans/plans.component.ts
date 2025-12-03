@@ -25,6 +25,7 @@ export class PlansComponent {
   businessId: string | null = null;
   customerId: string | null = null;
   planId: string | null = null;
+  expandedPlans: Set<string> = new Set<string>();
 
   constructor() {
     const state = this.router.getCurrentNavigation()?.extras.state;
@@ -51,12 +52,37 @@ export class PlansComponent {
     }
   }
 
+  isSelected(planId: string): boolean {
+    return this.selectedPlan?.id === planId;
+  }
+
   selectPlan(plan: Plan) {
     this.selectedPlan = plan;
   }
 
   formatPrice(price: number): string {
     return price.toLocaleString('es-CO');
+  }
+
+  toggleExpanded(event: Event, planId: string): void {
+    event.stopPropagation();
+    if (this.expandedPlans.has(planId)) {
+      this.expandedPlans.delete(planId);
+    } else {
+      this.expandedPlans.add(planId);
+    }
+  }
+
+  isExpanded(planId: string): boolean {
+    return this.expandedPlans.has(planId);
+  }
+
+  getVisibleFeatures(plan: Plan): string[] {
+    return this.isExpanded(plan.id!) ? plan.features! : plan.features!.slice(0, 3);
+  }
+
+  hasMoreFeatures(plan: Plan): boolean {
+    return plan.features!.length > 3;
   }
 
   onContinue() {

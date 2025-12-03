@@ -13,31 +13,82 @@
         Elige el plan que mejor se adapte a tus necesidades
     </p>
 
-    <div class="plans-container">
-        <div
+    <div class="plans-list">
+      <div
         *ngFor="let plan of plans"
         class="plan-card"
-        [class.selected]="selectedPlan?.id === plan.id"
+        [class.selected]="isSelected(plan.id!)"
+        [class.popular]="plan.popular"
         (click)="selectPlan(plan)"
-        >
-        <div class="plan-badge" *ngIf="plan.popular">
-            MÁS POPULAR
-        </div>
+      >
+        <!-- Popular Badge -->
+        <div *ngIf="plan.popular" class="badge">Recomendado</div>
 
-        <div class="plan-header">
+        <div class="card-content">
+          <!-- Plan Header -->
+          <div class="plan-header">
             <h3 class="plan-name">{{ plan.name }}</h3>
-            <div class="plan-price">${{ formatPrice(plan.price!) }}/mes</div>
-        </div>
+          </div>
 
-        <ul class="features-list">
-            <li *ngFor="let feature of plan.features" class="feature-item">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+          <!-- Price -->
+          <div class="price-container">
+            <span class="currency">$</span>
+            <span class="price">{{ plan.price!.toFixed(2) }}</span>
+            <span class="period">/ {{ plan.type! }}</span>
+          </div>
+
+          <!-- Separator Line -->
+          <div class="separator"></div>
+
+          <!-- Features -->
+          <div class="features-section">
+            <p class="features-title">¿Qué incluye?</p>
+            <ul class="features-list">
+              <li *ngFor="let feature of getVisibleFeatures(plan)" class="feature-item">
+                <svg
+                  class="check-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span class="feature-text">{{ feature }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Button Ver más -->
+          <button
+            *ngIf="hasMoreFeatures(plan)"
+            class="toggle-button"
+            (click)="toggleExpanded($event, plan.id!)"
+          >
+            {{ isExpanded(plan.id!) ? 'Ver menos' : 'Ver más' }}
+            <svg
+              class="chevron-icon"
+              [class.rotated]="isExpanded(plan.id!)"
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
-            <span>{{ feature }}</span>
-            </li>
-        </ul>
+          </button>
         </div>
+      </div>
     </div>
 
     <button
