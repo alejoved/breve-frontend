@@ -33,12 +33,10 @@
             <div class="card-header pb-3">
               <div class="flex items-center justify-between gap-3">
                 <div class="flex items-center gap-4 flex-1 min-w-0">
-                  <div class="subscription-icon">
-                    <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
-                      <path d="M3 9h18M9 21V9" stroke-width="2"/>
-                    </svg>
-                  </div>
+                    <img
+                      [src]="subscription.business?.logo" 
+                      alt="{{ subscription.business?.name }}" 
+                      class="h-10 w-10 object-cover rounded">
                   <h3 class="subscription-title">{{ subscription.business?.name }}</h3>
                 </div>
                 <svg class="h-5 w-5 text-muted-foreground flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
