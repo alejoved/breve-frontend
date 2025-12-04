@@ -20,9 +20,8 @@
   position: relative;
   z-index: 10;
   /* Altura completa con fallback para móviles */
-  min-height: 100vh;
-  min-height: 100svh;
   min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,6 +38,7 @@
   width: 100%;
   box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
   position: relative;
+  margin: 0;
 }
 
 .security-icon {
