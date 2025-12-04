@@ -19,6 +19,7 @@ import { PaymentComponent } from './app/b2c/payment/payment.component';
 import { LandingPageComponent } from './app/web/landing/landing-page.component';
 import { AuthInterceptor } from './app/auth/auth-interceptor';
 import { AuthB2BGuard } from './app/auth/auth-b2b-guard';
+import { PaymentDetailComponent } from './app/b2c/payment-detail/payment-detail.component';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +45,7 @@ const routes = [
   { path: 'withdrawals', component: WithdrawalsViewComponent, canActivate: [AuthB2BGuard] },
   { path: 'portal', component: PortalComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'payment-detail', component: PaymentDetailComponent },
   { path: '**', redirectTo: '' },
 ];
 

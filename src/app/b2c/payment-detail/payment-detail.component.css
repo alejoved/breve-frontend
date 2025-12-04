@@ -1,0 +1,154 @@
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  overflow: hidden;           /* clave para que el contenido respete el radio */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  animation: fadeIn 0.3s ease-in;
+}
+
+.card-header {
+  padding: 16px 16px 0 16px;
+}
+
+.card-content {
+  padding: 16px;
+}
+/* Business Logo - Optimized */
+.business-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(61, 28, 135, 0.15) 0%, rgba(61, 28, 135, 0.05) 100%);
+  border: 1px solid rgba(61, 28, 135, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Business Title - Optimized */
+.business-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1.2;
+  font-family: 'Funnel Display', sans-serif;
+}
+
+/* Empty state icon */
+.empty-state-icon {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background-color: rgb(220, 252, 231);
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card animations */
+.card {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Destructive border */
+.border-destructive {
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+/* Payment button */
+.btn-gradient {
+  background: linear-gradient(to right, #FF8BAA, #6B4EE6, #6B4EE6);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 40px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-gradient:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+}
+
+.btn-gradient:active {
+  transform: scale(0.98);
+}
+
+/* Price text */
+.price-text {
+  color: #6B4EE6;
+}
+
+/* Muted background */
+.bg-muted\/30 {
+  background: rgba(245, 245, 245, 0.3);
+}
+
+/* Invoice card hover */
+.card.border-destructive:hover {
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid transparent;
+}
+.badge-destructive {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .business-logo {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .business-title {
+    font-size: 1.375rem;
+  }
+}
