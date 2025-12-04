@@ -1,11 +1,6 @@
 .mesh-container {
-  min-height: 0vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
+  display: contents;          /* no participa en el layout */
+  padding: 0;                 /* elimina padding que crea scroll */
 }
 
 .gradient-background {
