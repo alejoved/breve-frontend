@@ -23,8 +23,8 @@ export class MainContentSectionComponent {
 
   demoUrls: DemoUrls = {
     flujo: 'https://app.supademo.com/embed/cmiovvlax1icdgxadm345absg?embed_v=2&utm_source=embed',
-    tablero: 'https://supademo.com/embed/YOUR_ANALYTICS_DEMO_ID',
-    portal: 'https://supademo.com/embed/YOUR_PAYMENTS_DEMO_ID'
+    tablero: 'https://app.supademo.com/embed/cmis8le9o21jol821e9z7i36d?embed_v=2&utm_source=embed',
+    portal: 'https://app.supademo.com/embed/cmis76hj320ldl821tpiy9hlm?embed_v=2&utm_source=embed'
   };
 
   ngAfterViewInit(): void {
