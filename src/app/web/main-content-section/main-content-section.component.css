@@ -1,18 +1,62 @@
-/* Overlay radial con blur 500 */
+/* Overlay radial global: cubre desde el título hasta después del demo y se extiende a los lados */
 .radial-gradient-overlay {
   position: absolute;
-  inset: -10% -5%;             /* se extiende un poco fuera para cubrir lados */
+  /* extiende el fondo más allá para cubrir lados y parte inferior */
+  inset: -8% -6% -12% -6%;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 20%, #FF88AA 0%, rgba(255,136,170,0) 100%),
-    radial-gradient(circle at 50% 85%, #FF88AA 100%, rgba(255,136,170,0) 0%);
+    /* Primer radial: sólido al centro que se desvanece */
+    radial-gradient(circle at 50% 25%, #FF88AA 0%, rgba(255,136,170,0) 100%),
+    /* Segundo radial invertido para reforzar intensidad en la zona del demo */
+    radial-gradient(circle at 50% 75%, #FF88AA 100%, rgba(255,136,170,0) 0%);
   filter: blur(500px);
-  opacity: 0.35;               /* ajusta intensidad si necesitas */
+  opacity: 0.38; /* ajusta intensidad según necesidad */
 }
 
-/* Asegura que el contenido esté por encima del overlay */
+/* Foco alrededor del contenedor del Supademo para expandir a los lados */
+.demo-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.demo-focus {
+  position: absolute;
+  /* ancho amplio para cubrir lados del demo */
+  width: min(1500px, 98%);
+  /* altura cubre desde mitad superior hasta un poco después del demo */
+  height: 115%;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle, #FF88AA 0%, rgba(255,136,170,0) 100%);
+  filter: blur(500px);
+  opacity: 0.45;
+}
+
+/* Asegura que el contenido quede por encima del overlay */
 section > *:not(.radial-gradient-overlay) {
   position: relative;
   z-index: 1;
+}
+.demo-wrapper > *:not(.demo-focus) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Opcional: ajustes responsivos para mantener cobertura en mobile */
+@media (max-width: 640px) {
+  .radial-gradient-overlay {
+    inset: -12% -8% -18% -8%;
+    opacity: 0.42;
+  }
+  .demo-focus {
+    width: 100%;
+    height: 130%;
+    top: -12%;
+    opacity: 0.48;
+  }
 }
