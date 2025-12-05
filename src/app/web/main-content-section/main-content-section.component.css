@@ -1,17 +1,14 @@
 /* Overlay radial global: cubre desde el título hasta después del demo y se extiende a los lados */
 .radial-gradient-overlay {
   position: absolute;
-  /* extiende el fondo más allá para cubrir lados y parte inferior */
-  inset: -8% -6% -12% -6%;
+  inset: -4% -3% -8% -3%;          /* reduce expansión en lados y parte inferior */
   z-index: 0;
   pointer-events: none;
   background:
-    /* Primer radial: sólido al centro que se desvanece */
     radial-gradient(circle at 50% 25%, #FF88AA 0%, rgba(255,136,170,0) 100%),
-    /* Segundo radial invertido para reforzar intensidad en la zona del demo */
     radial-gradient(circle at 50% 75%, #FF88AA 100%, rgba(255,136,170,0) 0%);
-  filter: blur(500px);
-  opacity: 0.38; /* ajusta intensidad según necesidad */
+  filter: blur(420px);              /* baja el blur para compactar el círculo */
+  opacity: 0.34;                    /* un poco menos intenso */
 }
 
 /* Foco alrededor del contenedor del Supademo para expandir a los lados */
@@ -23,18 +20,16 @@
 }
 .demo-focus {
   position: absolute;
-  /* ancho amplio para cubrir lados del demo */
-  width: min(1500px, 98%);
-  /* altura cubre desde mitad superior hasta un poco después del demo */
-  height: 115%;
-  top: -10%;
+  width: min(1200px, 92%);          /* reduce ancho */
+  height: 95%;                      /* reduce altura */
+  top: -6%;                         /* menos desplazamiento hacia arriba */
   left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
   z-index: 0;
   background: radial-gradient(circle, #FF88AA 0%, rgba(255,136,170,0) 100%);
-  filter: blur(500px);
-  opacity: 0.45;
+  filter: blur(420px);              /* consistente con el overlay */
+  opacity: 0.40;
 }
 
 /* Asegura que el contenido quede por encima del overlay */
@@ -50,13 +45,15 @@ section > *:not(.radial-gradient-overlay) {
 /* Opcional: ajustes responsivos para mantener cobertura en mobile */
 @media (max-width: 640px) {
   .radial-gradient-overlay {
-    inset: -12% -8% -18% -8%;
-    opacity: 0.42;
+    inset: -8% -6% -12% -6%;
+    opacity: 0.38;
+    filter: blur(380px);
   }
   .demo-focus {
-    width: 100%;
-    height: 130%;
-    top: -12%;
-    opacity: 0.48;
+    width: 94%;
+    height: 105%;
+    top: -8%;
+    opacity: 0.42;
+    filter: blur(380px);
   }
 }
