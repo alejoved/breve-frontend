@@ -18,7 +18,7 @@ interface DemoUrls {
   styleUrls: ['./main-content-section.component.css']
 })
 export class MainContentSectionComponent {
-  activeDemo: DemoType = 'flujo';
+  activeDemo: DemoType = 'tablero';
   isVisible = false;
 
   demoUrls: DemoUrls = {
