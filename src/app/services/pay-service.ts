@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { firstValueFrom } from 'rxjs';
-import { optionsBasic } from '../../constants';
+import { optionsAuth, optionsBasic } from '../../constants';
 import { environment } from '../../environments/environment';
 import { Pay } from '../models/pay';
 
@@ -43,14 +43,32 @@ export class PayService {
     return await firstValueFrom(observable);
   }
 
-  async historicalPayments(businessId: string): Promise<Pay[]> {
-    const observable = this.http.get(environment.host + "/api/pay/historicalPayments/" + businessId, optionsBasic).pipe(
-      map(response => response as Pay[]));
+  async filterByBusinessAndMonthlyRevenue(businessId: string): Promise<number> {
+      const observable = this.http.get(environment.host + "/api/pay/filterByBusinessAndMonthlyRevenue/" + businessId, optionsBasic).pipe(
+        map(response => response as number));
+      return await firstValueFrom(observable);
+  }
+
+  async filterByBusinessAndTotalRevenue(businessId: string): Promise<number> {
+    const observable = this.http.get(environment.host + "/api/pay/filterByBusinessAndTotalRevenue/" + businessId, optionsBasic).pipe(
+      map(response => response as number));
     return await firstValueFrom(observable);
   }
 
-  async historicalWithdrawals(businessId: string): Promise<Pay[]> {
-    const observable = this.http.get(environment.host + "/api/pay/historicalWithdrawals/" + businessId, optionsBasic).pipe(
+  async filterByBusinessAndTodayRevenue(businessId: string): Promise<number> {
+    const observable = this.http.get(environment.host + "/api/pay/filterByBusinessAndTodayRevenue/" + businessId, optionsBasic).pipe(
+      map(response => response as number));
+    return await firstValueFrom(observable);
+  }
+
+  async filterByBusinessAndAverage(businessId: string): Promise<number> {
+    const observable = this.http.get(environment.host + "/api/pay/filterByBusinessAndAverage/" + businessId, optionsBasic).pipe(
+      map(response => response as number));
+    return await firstValueFrom(observable);
+  }
+
+  async historicalPayments(businessId: string): Promise<Pay[]> {
+    const observable = this.http.get(environment.host + "/api/pay/historicalPayments/" + businessId, optionsBasic).pipe(
       map(response => response as Pay[]));
     return await firstValueFrom(observable);
   }

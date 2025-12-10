@@ -5,6 +5,7 @@ import { Business } from '../../models/business';
 import { BusinessService } from '../../services/business-service';
 import Swal from 'sweetalert2';
 import { AuthB2BService } from '../../auth/auth-b2b-service';
+import { PayService } from '../../services/pay-service';
 
 @Component({
   selector: 'app-income-view',
@@ -20,7 +21,7 @@ export class IncomeViewComponent implements OnInit {
   loading = true;
   business: Business | null = null;
 
-  constructor(private subscriptionService: SubscriptionService, private businessService: BusinessService, private authB2B: AuthB2BService) {}
+  constructor(private subscriptionService: SubscriptionService, private payService: PayService, private businessService: BusinessService, private authB2B: AuthB2BService) {}
 
   async ngOnInit() {
     const businessId = this.authB2B.getBusinessId();
@@ -31,9 +32,9 @@ export class IncomeViewComponent implements OnInit {
   async loadData() {
     this.loading = true;
     try {
-      this.monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business?.id!);
-      this.totalRevenue = await this.subscriptionService.filterByBusinessAndTotalRevenue(this.business?.id!);
-      this.average = await this.subscriptionService.filterByBusinessAndAverage(this.business?.id!);
+      this.monthlyRevenue = await this.payService.filterByBusinessAndMonthlyRevenue(this.business?.id!);
+      this.totalRevenue = await this.payService.filterByBusinessAndTotalRevenue(this.business?.id!);
+      this.average = await this.payService.filterByBusinessAndAverage(this.business?.id!);
     } catch (ex: any) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
     } finally {

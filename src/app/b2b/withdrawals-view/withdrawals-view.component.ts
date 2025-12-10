@@ -5,6 +5,8 @@ import { Business } from '../../models/business';
 import { PayService } from '../../services/pay-service';
 import { Pay } from '../../models/pay';
 import { AuthB2BService } from '../../auth/auth-b2b-service';
+import { DispersionService } from '../../services/dispersion-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-withdrawals-view',
@@ -20,13 +22,13 @@ export class WithdrawalsViewComponent implements OnInit {
   historicalPayments: Pay[] = [];
   loading = true;
   isProcessingWithdrawal = false;
-  maxMonthlyWithdrawals = 2;
+  maxMonthlyWithdrawals = 1;
   showSuccessModal = false;
   showConfirmModal = false;
   withdrawalAmountToConfirm = 0;
   business: Business | null = null;
 
-  constructor(private businessService: BusinessService, private payService: PayService, private authB2B: AuthB2BService) {}
+  constructor(private businessService: BusinessService, private payService: PayService, private dispersionService: DispersionService, private authB2B: AuthB2BService) {}
 
   async ngOnInit() {
     const businessId = this.authB2B.getBusinessId();
@@ -65,7 +67,7 @@ export class WithdrawalsViewComponent implements OnInit {
 
   async loadHistoricalWithdrawals() {
     try {
-      this.historicalWithdrawals = await this.payService.historicalWithdrawals(this.business?.id!);
+      this.historicalWithdrawals = await this.dispersionService.historical(this.business?.id!);
     } catch (error) {
       console.error('Error loading historical withdrawals:', error);
     }
@@ -95,9 +97,16 @@ export class WithdrawalsViewComponent implements OnInit {
     this.isProcessingWithdrawal = true;
     await new Promise(resolve => setTimeout(resolve, 1500));
     if (this.business) {
-      const withdrawalAmount = this.withdrawalAmountToConfirm;
-      this.showSuccessModal = true;
-      await this.loadData();
+      try {
+        const dispersion = await this.dispersionService.create(this.business.id!);
+        if(dispersion.id){
+          Swal.fire({ icon: "success", title: "Éxito", text: "Retiro de dinero " });
+        }
+        this.showSuccessModal = true;
+        await this.loadData();
+      }catch(error){
+        console.error('Error al retirar dinero', error);
+      }
     }
     this.isProcessingWithdrawal = false;
   }

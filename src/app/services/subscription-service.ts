@@ -54,12 +54,6 @@ export class SubscriptionService {
     return await firstValueFrom(observable);
   }
 
-  async filterByBusinessAndMonthlyRevenue(businessId: string): Promise<number> {
-    const observable = this.http.get(environment.host + "/api/subscription/filterByBusinessAndMonthlyRevenue/" + businessId, optionsAuth).pipe(
-      map(response => response as number));
-    return await firstValueFrom(observable);
-  }
-
   async filterByBusinessAndRetentionRate(businessId: string): Promise<number> {
     const observable = this.http.get(environment.host + "/api/subscription/filterByBusinessAndRetentionRate/" + businessId, optionsAuth).pipe(
       map(response => response as number));
@@ -80,24 +74,6 @@ export class SubscriptionService {
 
   async filterByBusinessAndRenewals(businessId: string): Promise<number> {
     const observable = this.http.get(environment.host + "/api/subscription/filterByBusinessAndRenewals/" + businessId, optionsAuth).pipe(
-      map(response => response as number));
-    return await firstValueFrom(observable);
-  }
-
-  async filterByBusinessAndTodayRevenue(businessId: string): Promise<number> {
-    const observable = this.http.get(environment.host + "/api/subscription/filterByBusinessAndTodayRevenue/" + businessId, optionsAuth).pipe(
-      map(response => response as number));
-    return await firstValueFrom(observable);
-  }
-
-  async filterByBusinessAndTotalRevenue(businessId: string): Promise<number> {
-    const observable = this.http.get(environment.host + "/api/subscription/filterByBusinessAndTotalRevenue/" + businessId, optionsAuth).pipe(
-      map(response => response as number));
-    return await firstValueFrom(observable);
-  }
-
-  async filterByBusinessAndAverage(businessId: string): Promise<number> {
-    const observable = this.http.get(environment.host + "/api/subscription/filterByBusinessAndAverage/" + businessId, optionsAuth).pipe(
       map(response => response as number));
     return await firstValueFrom(observable);
   }

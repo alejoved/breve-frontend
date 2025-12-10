@@ -6,6 +6,7 @@ import { BusinessService } from '../../services/business-service';
 import { Business } from '../../models/business';
 import Swal from 'sweetalert2';
 import { AuthB2BService } from '../../auth/auth-b2b-service';
+import { PayService } from '../../services/pay-service';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -40,7 +41,7 @@ export class DashboardOverviewComponent implements OnInit {
   loading = true;
   business: Business | null = null;
 
-  constructor(private businessService: BusinessService, private subscriptionService: SubscriptionService, private planService: PlanService, private authB2B: AuthB2BService) {}
+  constructor(private businessService: BusinessService, private payService: PayService, private subscriptionService: SubscriptionService, private planService: PlanService, private authB2B: AuthB2BService) {}
 
   async ngOnInit() {
     const businessId = this.authB2B.getBusinessId();
@@ -130,7 +131,7 @@ export class DashboardOverviewComponent implements OnInit {
 
   async monthlyRevenue() {
     try {
-      const monthlyRevenue = await this.subscriptionService.filterByBusinessAndMonthlyRevenue(this.business!.id!);
+      const monthlyRevenue = await this.payService.filterByBusinessAndMonthlyRevenue(this.business!.id!);
       this.stats.monthlyRevenue = monthlyRevenue;
     } catch (ex: any) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
@@ -175,7 +176,7 @@ export class DashboardOverviewComponent implements OnInit {
 
   async todayRevenue() {
     try {
-      const revenue = await this.subscriptionService.filterByBusinessAndTodayRevenue(this.business!.id!);
+      const revenue = await this.payService.filterByBusinessAndTodayRevenue(this.business!.id!);
       this.todayActivity.revenue = revenue;
     } catch (ex: any) {
       Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
