@@ -7,6 +7,7 @@ import { Pay } from '../../models/pay';
 import { AuthB2BService } from '../../auth/auth-b2b-service';
 import { DispersionService } from '../../services/dispersion-service';
 import Swal from 'sweetalert2';
+import { Dispersion } from '../../models/dispersion';
 
 @Component({
   selector: 'app-withdrawals-view',
@@ -18,7 +19,7 @@ import Swal from 'sweetalert2';
 export class WithdrawalsViewComponent implements OnInit {
   availableBalance = 0;
   monthlyWithdrawals = 0;
-  historicalWithdrawals: Pay[] = [];
+  historicalWithdrawals: Dispersion[] = [];
   historicalPayments: Pay[] = [];
   loading = true;
   isProcessingWithdrawal = false;
@@ -98,10 +99,7 @@ export class WithdrawalsViewComponent implements OnInit {
     await new Promise(resolve => setTimeout(resolve, 1500));
     if (this.business) {
       try {
-        const dispersion = await this.dispersionService.create(this.business.id!);
-        if(dispersion.id){
-          Swal.fire({ icon: "success", title: "Éxito", text: "Retiro de dinero " });
-        }
+        await this.dispersionService.create(this.business.id!);
         this.showSuccessModal = true;
         await this.loadData();
       }catch(error){

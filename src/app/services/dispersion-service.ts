@@ -14,7 +14,7 @@ export class DispersionService {
   constructor(private http: HttpClient) { }
 
   async create(businessId: string): Promise<Dispersion> {
-    const observable = this.http.post(environment.host + "/api/dispersion/" + businessId, optionsBasic).pipe(
+    const observable = this.http.post(environment.host + "/api/dispersion", {business:{id: businessId}}, optionsBasic).pipe(
       map(response => response as Dispersion));
     return await firstValueFrom(observable);
   }

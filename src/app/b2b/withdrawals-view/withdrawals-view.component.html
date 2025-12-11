@@ -110,19 +110,19 @@
         <div class="withdrawal-main">
           <div class="withdrawal-info">
             <div class="withdrawal-amount">{{ formatCurrency(withdrawal.amount!) }}</div>
-            <div class="withdrawal-date">{{ withdrawal.transactionDate! }}</div>
+            <div class="withdrawal-date">{{ withdrawal.date }}</div>
           </div>
           <div class="withdrawal-status">
-            <span class="status-badge" [ngClass]="getStatusClass(withdrawal.status!)">
-              {{ getStatusLabel(withdrawal.status!) }}
+            <span class="status-badge" [ngClass]="getStatusClass('approved')">
+              {{ getStatusLabel('approved') }}
             </span>
           </div>
         </div>
-        <div class="withdrawal-footer" *ngIf="withdrawal.transactionDate">
+        <div class="withdrawal-footer" *ngIf="withdrawal.date">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
-          <span>Completado el {{ withdrawal.transactionDate }}</span>
+          <span>Completado el {{ withdrawal.date }}</span>
         </div>
       </div>
     </div>
