@@ -22,7 +22,7 @@ export class UserReviewsSectionComponent implements AfterViewInit {
     {
       icon: 'assets/11zon_Gimnasios y fitness.webp',
       title: 'Gimnasios y fitness',
-      description: 'Ofrece membresías mensuales y olvídate de los cobros manuales.'
+      description: 'Gimnasios y Fitness: Cobros automáticos y gestión de membresías sin fricción.'
     },
     {
       icon: 'assets/11zon_Spas y centros de bienestar.webp',
@@ -37,7 +37,7 @@ export class UserReviewsSectionComponent implements AfterViewInit {
     {
       icon: 'assets/11zon_Academias y talleres.webp',
       title: 'Academias y talleres',
-      description: 'Recibe los pagos mensuales de tus cursos, sin esfuerzo.'
+      description: 'Academias y Talleres: Gestión de suscripciones para cursos y pagos mensuales.'
     },
     {
       icon: 'assets/11zon_Clubes sociales y deportivos.webp',

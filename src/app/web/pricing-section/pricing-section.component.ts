@@ -23,8 +23,8 @@ export class PricingSectionComponent implements AfterViewInit {
   steps: Step[] = [
     {
       number: 1,
-      title: 'Configuramos tu flujo de suscripción',
-      description: 'Recibimos la información de tu negocio, tus planes y precios. Nuestro equipo configura tu flujo personalizado para que tus clientes puedan suscribirse y pagar desde cualquier canal.',
+      title: 'Configura tu Link de Suscripción Único',
+      description: 'Recibimos la información de tus planes y precios. Nuestro equipo configura tu flujo de suscripción personalizado y te entrega un link único listo para compartir en tus redes o web.',
       image: 'assets/Group-1000003853.webp',
       features: [
         { icon: 'assets/background-shadow-1.webp', text: 'Configuración asistida por nuestro equipo' },
@@ -45,8 +45,8 @@ export class PricingSectionComponent implements AfterViewInit {
     },
     {
       number: 3,
-      title: 'Gestiona todo desde tu dashboard',
-      description: 'Accede a tu panel y visualiza tus ingresos, planes y suscriptores en tiempo real. Controla tus cobros, analiza tus métricas y haz crecer tu negocio con datos claros.',
+      title: 'Controla tu Gestión de Suscriptores',
+      description: 'Accede tu panel y visualiza tus ingresos, planes y suscriptores en tiempo real. Controla tus cobros automáticos, analiza tus métricas y haz crecer tu negocio con datos claros.',
       image: 'assets/Group-1000003858.webp',
       features: [
         { icon: 'assets/group-1000003912.webp', text: 'Dashboard con métricas en tiempo real' },

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,20 +13,20 @@ export class FeaturesSectionComponent implements AfterViewInit {
   isVisible = false;
 
   problemsList = [
-    'No tienes un flujo digital para que los clientes se suscriban.',
-    'Los pagos dependen de mensajes, recordatorios y seguimiento manual.',
-    'No sabes cuántos clientes siguen activos ni cuánto vas a cobrar.',
+    'No tienes un flujo de suscripción digital y fácil de compartir.',
+    'Los pagos recurrentes dependen de recordatorios seguimiento manual.',
+    'La gestión de suscriptores y las métricas de ingresos son confusas.',
     'Cambiar planes o precios es complicado para ti y para tus clientes.',
-    'No existe un portal donde tus clientes puedan pagar fácilmente.'
+    'Tus clientes no tienen un portal de pagos seguro y accesible.'
   ];
 
   solutionsList = [
     '✅  Tienes un flujo de suscripción digital listo para usar.',
-    '✅  Tus clientes se suscriben solos y pagan sin escribirte.',
-    '✅  Puedes ver estadísticas claras desde un dashboard (pagos, suscriptores, ingresos).',
+    '✅  Tus clientes se suscriben y pagan solos a través de un portal de pagos seguro.',
+    '✅  Tienes un dashboard con métricas claras para la gestión de suscriptores e ingresos.',
     '✅  Modificas planes y precios cuando lo necesites.',
     '✅  Tus clientes reciben un portal seguro para pagar.',
-    '✅  Los cobros se procesan automáticamente con +Breve a través de Wompi.'
+    '✅  Los cobros automáticos se procesan de forma segura Wompi.'
   ];
 
   ngAfterViewInit() {
