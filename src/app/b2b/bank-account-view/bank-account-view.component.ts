@@ -43,10 +43,6 @@ export class BankAccountViewComponent implements OnInit {
 
   formData = {
     id: '',
-    name: '',
-    nit: '',
-    email: '',
-    password: '',
     bankName: '',
     accountType: '',
     accountNumber: '',
@@ -86,10 +82,6 @@ export class BankAccountViewComponent implements OnInit {
     if (this.business) {
       this.formData = {
         id: this.business.id || '',
-        name: this.business.name || '',
-        nit: this.business.nit || '',
-        email: this.business.email || '',
-        password: this.business.password || '',
         bankName: this.business.bankName || '',
         accountType: this.business.accountType || '',
         accountNumber: this.business.accountNumber || '',
@@ -109,10 +101,10 @@ export class BankAccountViewComponent implements OnInit {
     }
     this.saving = true;
     try {
-      this.business = await this.businessService.update(this.formData);
-      Swal.fire({ icon: "success", title: "Éxito", text: "La informacion den la cuenta bancaria se ha guardado correctamente." });
+      this.business = await this.businessService.updateFinancial(this.formData);
+      Swal.fire({ icon: "success", title: "Éxito", text: "La informacion de la cuenta bancaria se ha guardado correctamente." });
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message});
     }
     this.saving = false;
   }

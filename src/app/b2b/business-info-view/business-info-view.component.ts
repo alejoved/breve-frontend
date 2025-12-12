@@ -22,6 +22,7 @@ export class BusinessInfoViewComponent implements OnInit {
   formData = {
     id: '',
     name: '',
+    nick: '',
     nit: '',
     ownerName: '',
     email: '',
@@ -64,6 +65,7 @@ export class BusinessInfoViewComponent implements OnInit {
       this.formData = {
         id: this.business.id || '',
         name: this.business.name || '',
+        nick: this.business.nick || '',
         nit: this.business.nit || '',
         ownerName: this.business.ownerName || '',
         email: this.business.email || '',
@@ -82,10 +84,10 @@ export class BusinessInfoViewComponent implements OnInit {
       return;
     }
     try {
-      this.business = await this.businessService.update(this.formData);
+      this.business = await this.businessService.updateInfo(this.formData);
       Swal.fire({ icon: "success", title: "Éxito", text: "La informacion del negocio se ha guardado correctamente." });
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
     this.saving = true;
     this.saving = false;

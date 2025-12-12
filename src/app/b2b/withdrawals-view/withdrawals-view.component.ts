@@ -53,24 +53,24 @@ export class WithdrawalsViewComponent implements OnInit {
   async loadAvailableBalance() {
     try {
       this.availableBalance = await this.payService.availableBalance(this.business?.id!);
-    } catch (error) {
-      console.error('Error loading available balance:', error);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
   async loadHistoricalPayments() {
     try {
       this.historicalPayments = await this.payService.historicalPayments(this.business?.id!);
-    } catch (error) {
-      console.error('Error loading historical payments:', error);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
   async loadHistoricalWithdrawals() {
     try {
       this.historicalWithdrawals = await this.dispersionService.historical(this.business?.id!);
-    } catch (error) {
-      console.error('Error loading historical withdrawals:', error);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -102,8 +102,8 @@ export class WithdrawalsViewComponent implements OnInit {
         await this.dispersionService.create(this.business.id!);
         this.showSuccessModal = true;
         await this.loadData();
-      }catch(error){
-        console.error('Error al retirar dinero', error);
+      }catch(ex: any){
+        Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
       }
     }
     this.isProcessingWithdrawal = false;

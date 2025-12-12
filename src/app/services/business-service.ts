@@ -19,8 +19,14 @@ export class BusinessService {
     return await firstValueFrom(observable);
   }
 
-  async update(business: Business): Promise<Business> {
-    const observable = this.http.patch(environment.host + "/api/business", business, optionsAuth).pipe(
+  async updateInfo(business: Business): Promise<Business> {
+    const observable = this.http.patch(environment.host + "/api/business/info", business, optionsAuth).pipe(
+      map(response => response as Business));
+    return await firstValueFrom(observable);
+  }
+
+  async updateFinancial(business: Business): Promise<Business> {
+    const observable = this.http.patch(environment.host + "/api/business/financial", business, optionsAuth).pipe(
       map(response => response as Business));
     return await firstValueFrom(observable);
   }
