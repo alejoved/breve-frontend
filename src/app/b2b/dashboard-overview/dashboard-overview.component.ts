@@ -116,7 +116,7 @@ export class DashboardOverviewComponent implements OnInit {
       const subscriptions = await this.subscriptionService.filterByBusiness(this.business!.id!);
       this.stats.activeSubscribers = subscriptions.length;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -125,7 +125,7 @@ export class DashboardOverviewComponent implements OnInit {
       const plans = await this.planService.filterByBusiness(this.business!.id!);
       this.stats.activePlans = plans.length;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -134,7 +134,7 @@ export class DashboardOverviewComponent implements OnInit {
       const monthlyRevenue = await this.payService.filterByBusinessAndMonthlyRevenue(this.business!.id!);
       this.stats.monthlyRevenue = monthlyRevenue;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -143,7 +143,7 @@ export class DashboardOverviewComponent implements OnInit {
       const retentionRate = await this.subscriptionService.filterByBusinessAndRetentionRate(this.business!.id!);
       this.stats.retentionRate = retentionRate;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -152,7 +152,7 @@ export class DashboardOverviewComponent implements OnInit {
       const newSubscriptions = await this.subscriptionService.filterByBusinessAndNewSubscriptions(this.business!.id!);
       this.todayActivity.newSubscriptions = newSubscriptions;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -161,7 +161,7 @@ export class DashboardOverviewComponent implements OnInit {
       const cancellations = await this.subscriptionService.filterByBusinessAndCancellations(this.business!.id!);
       this.todayActivity.cancellations = cancellations;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -170,7 +170,7 @@ export class DashboardOverviewComponent implements OnInit {
       const renewals = await this.subscriptionService.filterByBusinessAndRenewals(this.business!.id!);
       this.todayActivity.renewals = renewals;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 
@@ -179,7 +179,7 @@ export class DashboardOverviewComponent implements OnInit {
       const revenue = await this.payService.filterByBusinessAndTodayRevenue(this.business!.id!);
       this.todayActivity.revenue = revenue;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     }
   }
 }

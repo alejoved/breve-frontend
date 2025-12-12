@@ -43,9 +43,9 @@ export class ProfileViewComponent implements OnInit {
       }
       // encode nick por seguridad en la URL
       this.subscriptionUrl = `${window.location.origin}/subscription/${encodeURIComponent(this.business.nick!)}`;
-    } catch (e) {
+    } catch (ex: any) {
       this.error = 'Error cargando datos.';
-      console.error(e);
+      console.error(ex);
     } finally {
       this.loading = false;
     }

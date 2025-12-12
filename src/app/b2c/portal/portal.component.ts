@@ -48,8 +48,8 @@ export class PortalComponent implements OnInit, OnDestroy {
       } else {
         this.errorMessage = 'No se encontró ningún cliente con este número de documento';
       }
-    } catch (error) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     } finally {
       this.isLoading = false;
     }

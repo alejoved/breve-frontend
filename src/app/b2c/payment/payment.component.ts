@@ -5,7 +5,6 @@ import { Subscription } from '../../models/subscription';
 import { SubscriptionService } from '../../services/subscription-service';
 import { v4 as uuidv4 } from 'uuid';
 import { Pay } from '../../models/pay';
-import { PayService } from '../../services/pay-service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -43,8 +42,8 @@ export class PaymentComponent implements OnInit {
     this.isLoading = true;
     try {
       this.subscriptions = await this.subscriptionService.filterByCustomerAndRenewal(this.customerId);
-    } catch (error) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
       this.router.navigate(['']);
     } finally {
       this.isLoading = false;

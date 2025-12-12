@@ -70,8 +70,8 @@ export class PlansViewComponent implements OnInit {
       if (this.business) {
         this.plans = await this.planService.filterByBusiness(this.business?.id!);
       }
-    } catch (error) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     } finally {
       this.loading = false;
     }
@@ -130,7 +130,7 @@ export class PlansViewComponent implements OnInit {
       }
       await this.loadPlans();
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     } finally {
       this.closeCreateView();
     }

@@ -56,7 +56,7 @@ export class ClarityComponent {
       try {
         this.business = await this.businessService.filterById(this.businessId!);
       } catch (ex: any) {
-        Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+        Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
         this.router.navigate(['']);
       }
     }
@@ -111,12 +111,12 @@ export class ClarityComponent {
             });
             this.router.navigate(['/portal']);
           } catch (ex: any) {
-            Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+            Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
             this.router.navigate(['']);
           }
         });
       } catch (ex: any) {
-        Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+        Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
         this.router.navigate(['']);
       }
     }

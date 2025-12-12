@@ -63,7 +63,7 @@ export class AdditionalInfoComponent {
     this.formData.phone = customer.phone!;
     this.formData.email = customer.email!;
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
       this.router.navigate(['']);
     }
   }
@@ -140,11 +140,7 @@ export class AdditionalInfoComponent {
         const customer = await this.customerService.update(this.formData);
         this.router.navigate(['/contract'], { state: { business: { id: this.businessId }, customer: {id: customer.id }, plan: {id: this.planId } }});
       } catch (ex: any) {
-        if(ex.error.error == "Customer found"){
-          Swal.fire({ icon: "error", title: "Cliente existente", text: "Por favor, inicia sesion." });
-        } else {
-          Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
-        }
+        Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
         this.router.navigate(['']);
       }
     }

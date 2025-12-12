@@ -53,8 +53,8 @@ export class ContactComponent {
     try {
       const business = await this.businessService.filterByNick(this.businessNick);
       this.businessId = business ? business.id! : null;
-    } catch (error) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
       this.router.navigate(['']);
     }
   }
@@ -159,11 +159,7 @@ export class ContactComponent {
           this.router.navigate(['/plans'], { state: { business: { id: this.businessId }, customer: {id: customer.id } }});
         }
       } catch (ex: any) {
-        if(ex.error.error == "Customer found"){
-          Swal.fire({ icon: "error", title: "Usuario existente", text: "Usuario existente por favor inicia sesion" });
-        } else {
-          Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
-        }
+        Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
         this.router.navigate(['']);
       }
     }

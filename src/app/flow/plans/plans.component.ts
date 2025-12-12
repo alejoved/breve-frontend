@@ -47,7 +47,7 @@ export class PlansComponent {
         this.router.navigate(['']);
       }
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
       this.router.navigate(['']);
     }
   }

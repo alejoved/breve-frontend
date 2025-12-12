@@ -26,7 +26,7 @@ export class LoginComponent {
   emailTouched = false;
   passwordTouched = false;
 
-  constructor(private router: Router, private businessService: BusinessService, private authB2B: AuthB2BService) {
+  constructor(private router: Router, private authB2B: AuthB2BService) {
     if (this.authB2B.isAuthenticated()) {
       this.router.navigate(['/dashboard']);
     }
@@ -73,23 +73,7 @@ export class LoginComponent {
       }
     } catch (error: any) {
       this.loading = false;
-      
-      // Manejar diferentes tipos de errores
-      if (error.status === 401) {
-        this.errorMessage = 'Correo o contraseña incorrectos';
-      } else if (error.status === 403) {
-        this.errorMessage = 'Tu cuenta está desactivada. Contacta con soporte.';
-      } else if (error.status === 0) {
-        this.errorMessage = 'No se pudo conectar con el servidor. Verifica tu conexión.';
-      } else {
-        this.errorMessage = 'Ha ocurrido un error. Intenta nuevamente más tarde.';
-      }
-
-      Swal.fire({
-        icon: 'error',
-        title: 'Error de autenticación',
-        text: this.errorMessage
-      });
+      Swal.fire({ icon: 'error', title: 'Error', text: error.message });
     }
   }
 

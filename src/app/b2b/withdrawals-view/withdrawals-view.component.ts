@@ -46,7 +46,6 @@ export class WithdrawalsViewComponent implements OnInit {
         this.loadHistoricalWithdrawals()
       ]);
     }
-
     this.loading = false;
   }
 

@@ -64,7 +64,7 @@ export class SummaryComponent {
     try {
       this.plan = await this.planService.filterById(this.planId!);
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
       this.router.navigate(['']);
     }
   }
@@ -72,7 +72,7 @@ export class SummaryComponent {
     try {
       this.customer = await this.customerService.filterById(this.customerId!);
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
       this.router.navigate(['']);
     }
   }

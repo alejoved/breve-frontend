@@ -36,7 +36,7 @@ export class IncomeViewComponent implements OnInit {
       this.totalRevenue = await this.payService.filterByBusinessAndTotalRevenue(this.business?.id!);
       this.average = await this.payService.filterByBusinessAndAverage(this.business?.id!);
     } catch (ex: any) {
-      Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
     } finally {
       this.loading = false;
     }

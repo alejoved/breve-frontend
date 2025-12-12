@@ -37,9 +37,15 @@ export class PaymentDetailComponent implements OnInit {
   }
 
   async loadSubscription() {
-    this.loading = true;
-    this.renovacion = await this.subscriptionService.filterById(this.subscriptionId);
-    this.loading = false;
+    try {
+      this.loading = true;
+      this.renovacion = await this.subscriptionService.filterById(this.subscriptionId);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
+      this.router.navigate(['/portal']);
+    } finally {
+      this.loading = false;
+    }
   }
 
   goBack(): void {
@@ -99,12 +105,12 @@ export class PaymentDetailComponent implements OnInit {
             });
             this.router.navigate(['/payment'], { state: { customer: {id: this.renovacion?.customer?.id! } } });
         } catch (ex: any) {
-            Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+            Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
             this.router.navigate(['/portal']);
         }
         });
     } catch (ex: any) {
-        Swal.fire({ icon: "error", title: "Error", text: "Ha ocurrido un error. Intenta nuevamente más tarde." });
+        Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
         this.router.navigate(['/portal']);
     }
   }

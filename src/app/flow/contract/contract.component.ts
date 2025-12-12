@@ -7,6 +7,7 @@ import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { business_name } from '../../../constants';
 import { Plan } from '../../models/plan';
 import { PlanService } from '../../services/plan-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contract',
@@ -38,7 +39,12 @@ export class ContractComponent implements OnInit {
   }
 
   async ngOnInit() { 
-    this.plan = await this.planService.filterById(this.planId!);
+    try {
+      this.plan = await this.planService.filterById(this.planId!);
+    } catch (ex: any) {
+      Swal.fire({ icon: "error", title: "Error", text: ex.error.message });
+      this.router.navigate(['']);
+    }
   }
 
   onContinue() {
