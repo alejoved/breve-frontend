@@ -12,5 +12,7 @@ export class Business {
     accountType?: string;
     accountNumber?: string;
     accountOwner?: string;
+    identificationType?: string;
+    identificationNumber?: string;
     logo? : string;
 }

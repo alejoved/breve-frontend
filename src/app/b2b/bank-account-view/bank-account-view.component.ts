@@ -50,20 +50,26 @@ export class BankAccountViewComponent implements OnInit {
     bankName: '',
     accountType: '',
     accountNumber: '',
-    accountOwner: ''
+    accountOwner: '',
+    identificationType: '',
+    identificationNumber: ''
   };
 
   errors = {
     bankName: '',
     accountNumber: '',
     accountType: '',
-    accountOwner: ''
+    accountOwner: '',
+    identificationType: "",
+    identificationNumber: ""
   };
 
   touched = {
     bankName: false,
     accountNumber: false,
-    accountOwner: false
+    accountOwner: false,
+    identificationType: false,
+    identificationNumber: false
   };
 
   constructor(private businessService: BusinessService, private authB2B: AuthB2BService ) {
@@ -87,7 +93,9 @@ export class BankAccountViewComponent implements OnInit {
         bankName: this.business.bankName || '',
         accountType: this.business.accountType || '',
         accountNumber: this.business.accountNumber || '',
-        accountOwner: this.business.accountOwner || ''
+        accountOwner: this.business.accountOwner || '',
+        identificationType: this.business.identificationType || '',
+        identificationNumber: this.business.identificationNumber || ''
       };
     }
     this.loading = false;
@@ -123,6 +131,8 @@ export class BankAccountViewComponent implements OnInit {
     this.validateBankName();
     this.validateAccountNumber();
     this.validateAccountOwner();
+    this.validateIdentificationType();
+    this.validateIdentificationNumber();
   }
 
   validateBankName() {
@@ -163,13 +173,37 @@ export class BankAccountViewComponent implements OnInit {
     }
   }
 
+  validateIdentificationType() {
+    if (this.touched.identificationType) {
+      if (!this.formData.identificationType) {
+        this.errors.identificationType = 'Debes seleccionar un tipo de identificación';
+      } else {
+        this.errors.identificationType = '';
+      }
+    }
+  }
+
+  validateIdentificationNumber() {
+    if (this.touched.identificationNumber) {
+      if (!this.formData.identificationNumber) {
+        this.errors.identificationNumber = 'Debes digitar un numero de identificación';
+      } else {
+        this.errors.identificationNumber = '';
+      }
+    }
+  }
+
   isFormValid(): boolean {
     return !this.errors.bankName &&
            !this.errors.accountNumber &&
            !this.errors.accountOwner &&
+           !this.errors.identificationType &&
+           !this.errors.identificationNumber &&
            this.formData.bankName.trim() !== '' &&
            this.formData.accountNumber.trim() !== '' &&
-           this.formData.accountOwner.trim() !== '';
+           this.formData.accountOwner.trim() !== '' &&
+           this.formData.identificationType.trim() !== '' &&
+           this.formData.identificationNumber.trim() !== '';
   }
 
   onFieldBlur(field: keyof typeof this.touched) {
@@ -178,6 +212,8 @@ export class BankAccountViewComponent implements OnInit {
       case 'bankName': this.validateBankName(); break;
       case 'accountNumber': this.validateAccountNumber(); break;
       case 'accountOwner': this.validateAccountOwner(); break;
+      case 'identificationType': this.validateIdentificationType(); break;
+      case 'identificationNumber': this.validateIdentificationNumber(); break;
     }
   }
 
