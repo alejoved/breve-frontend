@@ -23,7 +23,7 @@ export class PricingSectionComponent implements AfterViewInit {
   steps: Step[] = [
     {
       number: 1,
-      title: 'Configura tu Link de Suscripción Único',
+      title: 'Configuramos tu Link de Suscripción Único',
       description: 'Recibimos la información de tus planes y precios. Nuestro equipo configura tu flujo de suscripción personalizado y te entrega un link único listo para compartir en tus redes o web.',
       image: 'assets/Group-1000003853.webp',
       features: [
