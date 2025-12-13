@@ -135,4 +135,4 @@ npm run build:prerender
 
 ## Licencia
 
-© MasBreve S.A.S. Todos los
+© MasBreve S.A.S. Todos los derechos reservados.
